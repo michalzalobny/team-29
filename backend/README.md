@@ -21,7 +21,7 @@ python main.py
 # if just inside the repository but outside of backend
 python backend/main.py
 ```
-Doing either of the above will serve the API on `http:127.0.0.1:8080`. 
+Doing either of the above will serve the API on `http://127.0.0.1:8080`. 
 To test if this works, you can go to that link in your browser.
 
 Interactive documention will be served at `/docs`, alternative documentation will be at `/redoc`
