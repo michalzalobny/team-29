@@ -1,18 +1,23 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { media } from 'styles/media';
+
+interface LinkItem {
+  isBold?: boolean;
+  isRound?: boolean;
+}
 
 export const Wrapper = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
   background: var(--blue);
 `;
 
 export const SectionsWrapper = styled.div`
   padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
 
   ${media.tablet} {
     width: 140rem;
@@ -40,6 +45,31 @@ export const LinksSection = styled.ul`
   margin-left: auto;
 `;
 
-export const LinkWrapper = styled.li``;
+export const LinkWrapper = styled.li`
+  ${media.tablet} {
+    &:not(:last-child) {
+      margin-right: 35px;
+    }
+  }
+`;
 
-export const LinkItem = styled.a``;
+export const LinkItem = styled.a<LinkItem>`
+  color: var(--white);
+  font-size: 15px;
+  cursor: pointer;
+
+  ${(props) =>
+    props.isBold &&
+    css`
+      font-weight: 800;
+    `}
+
+  ${(props) =>
+    props.isRound &&
+    css`
+      font-weight: 800;
+      padding: 10px 20px;
+      border-radius: 50px;
+      background-color: var(--grey);
+    `}
+`;
