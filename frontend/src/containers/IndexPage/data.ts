@@ -12,7 +12,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const head: HeadProps = {
     description: 'High-low card game',
     ogImageSrc:
-      'https://res.cloudinary.com/dpv0ukspz/image/upload/v1637603056/ogimage_htju9m.png',
+      'https://res.cloudinary.com/dpv0ukspz/image/upload/v1637971809/ogimage-100_ha9nmg.jpg',
     ogType: 'website',
     title: 'Save the animals | Game',
   };
