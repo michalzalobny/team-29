@@ -16,7 +16,7 @@ export const Layout = (props: Props) => {
   return (
     <>
       <S.Wrapper
-        transition={{ type: 'tween', duration: 0.5 }}
+        transition={{ type: 'tween', duration: 0.4 }}
         initial="initial"
         animate={isReady ? 'animate' : 'initial'}
         variants={WrapperV}
