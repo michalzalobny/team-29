@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import { springVerySlow } from 'components/Animations/framerTransitions';
+import { springSlow } from 'components/Animations/framerTransitions';
 
 interface Props {}
 
@@ -20,6 +20,6 @@ ContentWrapper.defaultProps = {
   },
 
   transition: {
-    ...springVerySlow,
+    ...springSlow,
   },
 };
