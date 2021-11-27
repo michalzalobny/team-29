@@ -99,6 +99,26 @@ export const LinkItem = styled.a<LinkItem>`
   line-height: 1.6;
   font-size: 15px;
   cursor: pointer;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--white);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s ease-in-out;
+  }
+
+  &:hover {
+    &:before {
+      transform: scale(1);
+    }
+  }
 
   ${(props) =>
     props.isBold &&
@@ -113,5 +133,9 @@ export const LinkItem = styled.a<LinkItem>`
       padding: 15px 20px;
       border-radius: 50px;
       background-color: var(--grey);
+
+      &:before {
+        display: none;
+      }
     `}
 `;
