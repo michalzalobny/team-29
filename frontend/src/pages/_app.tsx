@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
 import { GlobalStyles } from 'styles/GlobalStyles';
+import { Layout } from 'components/Layout/Layout';
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -16,7 +17,7 @@ export default function MyApp(props: AppProps) {
 
       <AnimatePresence exitBeforeEnter={false}>
         <>
-          {/* <Layout /> */}
+          <Layout />
 
           <Component
             key={router.route + router.locale}

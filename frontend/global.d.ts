@@ -1,4 +1,4 @@
-declare module 'prefix';
+/// <reference types="optimized-images-loader" />
 
 declare module '*.glsl' {
   const value: string;

@@ -1,5 +1,7 @@
+const withPlugins = require('next-compose-plugins');
+const withOptimizedImages = require('next-optimized-images');
+
 const nextConfig = {
-  reactStrictMode: true,
   i18n: {
     locales: ['en-US'],
     defaultLocale: 'en-US',
@@ -39,4 +41,7 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withPlugins(
+  [[withOptimizedImages, { optimizeImages: false }]],
+  nextConfig,
+);
