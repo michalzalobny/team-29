@@ -48,6 +48,12 @@ export const LinksSection = styled.ul`
 export const LinkWrapper = styled.li`
   ${media.tablet} {
     &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  ${media.tabletLand} {
+    &:not(:last-child) {
       margin-right: 35px;
     }
   }

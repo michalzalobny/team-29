@@ -1,5 +1,6 @@
 export const breakpoints = {
   tablet: 767,
+  tabletLand: 992,
   desktop: 1920,
 };
 
@@ -9,5 +10,6 @@ const customMediaQuery = (minWidth: number) =>
 export const media = {
   custom: customMediaQuery,
   tablet: customMediaQuery(breakpoints.tablet),
+  tabletLand: customMediaQuery(breakpoints.tabletLand),
   desktop: customMediaQuery(breakpoints.desktop),
 };
