@@ -41,7 +41,7 @@ export const ModalWrapper = styled(motion.div)`
   border-radius: 10px;
 `;
 
-export const CloseButtonWrapper = styled(motion.button)`
+export const CloseButtonWrapper = styled.button`
   position: absolute;
   left: calc(100% + 30px);
   top: 0;

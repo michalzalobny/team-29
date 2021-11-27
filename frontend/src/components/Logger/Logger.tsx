@@ -1,19 +1,11 @@
 import React from 'react';
 
 import { useLoggerContext } from 'context/LoggerContext';
-import {
-  springMedium,
-  springQuick,
-} from 'components/Animations/framerTransitions';
+import { springMedium } from 'components/Animations/framerTransitions';
 import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 
 import * as S from './Logger.styles';
-import {
-  BackgroundV,
-  ModalWrapperV,
-  WrapperV,
-  CloseButtonWrapperV,
-} from './Logger.motion';
+import { BackgroundV, ModalWrapperV, WrapperV } from './Logger.motion';
 
 export interface Props {
   initial: string;
@@ -32,8 +24,6 @@ export const Logger = (props: Props) => {
         <S.ModalContainer>
           <S.ModalWrapper variants={ModalWrapperV} transition={springMedium}>
             <S.CloseButtonWrapper
-              variants={CloseButtonWrapperV}
-              transition={springQuick}
               aria-label="close modal"
               onClick={() => setIsLoggerOpen(false)}
             >

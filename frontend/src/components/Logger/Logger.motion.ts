@@ -38,15 +38,3 @@ export const ModalWrapperV = {
     x: '30%',
   },
 };
-
-export const CloseButtonWrapperV = {
-  initial: {
-    rotate: '180deg',
-  },
-  animate: {
-    rotate: '0deg',
-  },
-  exit: {
-    rotate: '180deg',
-  },
-};
