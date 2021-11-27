@@ -25,7 +25,7 @@ export default function MyApp(props: AppProps) {
         },
         () => {
           setIsReady(true);
-          console.warn('Fonts were loading too long (over 2000ms)');
+          console.warn('Fonts were loading too long (over 1000ms)');
         },
       )
       .catch((err) => {
