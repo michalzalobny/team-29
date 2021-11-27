@@ -8,6 +8,7 @@ export const Wrapper = styled.nav`
   width: 100%;
   display: flex;
   align-items: center;
+  background: var(--blue);
 `;
 
 export const SectionsWrapper = styled.div`
@@ -16,7 +17,7 @@ export const SectionsWrapper = styled.div`
   ${media.tablet} {
     width: 140rem;
     margin: 0 auto;
-    padding: 4rem 0 0 0;
+    padding: 3rem 0;
   }
 `;
 
