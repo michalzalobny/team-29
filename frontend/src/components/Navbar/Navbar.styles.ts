@@ -68,7 +68,7 @@ export const LinkItem = styled.a<LinkItem>`
     props.isRound &&
     css`
       font-weight: 800;
-      padding: 10px 20px;
+      padding: 15px 20px;
       border-radius: 50px;
       background-color: var(--grey);
     `}
