@@ -1,8 +1,8 @@
 export const LinksSectionV = {
   initial: {
-    x: '0%',
+    x: '-100%',
   },
   animate: {
-    x: '-100%',
+    x: '0%',
   },
 };

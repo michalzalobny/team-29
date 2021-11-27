@@ -6,6 +6,8 @@ import { NavbarLink } from 'types';
 import { LogoDark } from 'components/LogoDark/LogoDark';
 import { LinkManager } from 'components/LinkManager/LinkManager';
 import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
+import { useBreakpoint } from 'hooks/useBreakpoint';
+import { breakpoints } from 'styles/media';
 
 import * as S from './Navbar.styles';
 import { LinksSectionV } from './Navbar.motion';
@@ -14,6 +16,8 @@ interface Props {}
 
 export const Navbar = (props: Props) => {
   const [isOpened, setIsOpened] = useState(false);
+
+  const isTablet = useBreakpoint(breakpoints.tablet);
 
   const handleOpenLogger = React.useCallback((type: string) => {
     alert(`opened ${type}`);
@@ -69,13 +73,15 @@ export const Navbar = (props: Props) => {
             </Link>
           </S.LogoSection>
           <S.ButtonSection onClick={() => setIsOpened((prev) => !prev)}>
-            <CloseButton isCrossed={!isOpened} />
+            <CloseButton isCrossed={isOpened} />
           </S.ButtonSection>
           <S.LinksSection
-            transition={springMedium}
+            transition={
+              isTablet ? { type: 'tween', duration: 0 } : springMedium
+            }
             variants={LinksSectionV}
             initial="initial"
-            animate={isOpened ? 'animate' : 'initial'}
+            animate={isOpened || isTablet ? 'animate' : 'initial'}
           >
             {links.map((navLink) => {
               return (
