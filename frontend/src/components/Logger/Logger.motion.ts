@@ -35,6 +35,6 @@ export const ModalWrapperV = {
   },
   exit: {
     opacity: 0,
-    x: '30%',
+    x: '-30%',
   },
 };
