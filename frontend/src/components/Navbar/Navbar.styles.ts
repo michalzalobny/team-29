@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+
 import { media } from 'styles/media';
 
 interface LinkItem {
@@ -34,12 +36,23 @@ export const LogoSection = styled.div`
   }
 `;
 
+export const ButtonSection = styled.button`
+  margin-left: auto;
+  margin-right: 2rem;
+  width: 3rem;
+  cursor: pointer;
+
+  ${media.tablet} {
+    display: none;
+  }
+`;
+
 export const LogoWrapper = styled.a`
   width: 100%;
   cursor: pointer;
 `;
 
-export const LinksSection = styled.ul`
+export const LinksSection = styled(motion.ul)`
   position: absolute;
   left: 0;
   top: 100%;

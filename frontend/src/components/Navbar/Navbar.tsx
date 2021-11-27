@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { NavbarLink } from 'types';
 import { LogoDark } from 'components/LogoDark/LogoDark';
 import { LinkManager } from 'components/LinkManager/LinkManager';
+import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 
 import * as S from './Navbar.styles';
+import { LinksSectionV } from './Navbar.motion';
 
 interface Props {}
 
 export const Navbar = (props: Props) => {
-  const handleOpenLogger = (type: string) => {
+  const [isOpened, setIsOpened] = useState(false);
+
+  const handleOpenLogger = React.useCallback((type: string) => {
     alert(`opened ${type}`);
-  };
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      setIsOpened(false);
+    };
+
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
 
   const links: NavbarLink[] = [
     {
@@ -51,7 +67,14 @@ export const Navbar = (props: Props) => {
               </S.LogoWrapper>
             </Link>
           </S.LogoSection>
-          <S.LinksSection>
+          <S.ButtonSection onClick={() => setIsOpened((prev) => !prev)}>
+            <CloseButton />
+          </S.ButtonSection>
+          <S.LinksSection
+            variants={LinksSectionV}
+            initial="initial"
+            animate={isOpened ? 'animate' : 'initial'}
+          >
             {links.map((navLink) => {
               return (
                 <S.LinkWrapper key={navLink.label}>
