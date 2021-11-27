@@ -73,7 +73,10 @@ export const Navbar = (props: Props) => {
               </S.LogoWrapper>
             </Link>
           </S.LogoSection>
-          <S.ButtonSection onClick={() => setIsOpened((prev) => !prev)}>
+          <S.ButtonSection
+            aria-label="open links menu"
+            onClick={() => setIsOpened((prev) => !prev)}
+          >
             <CloseButton isCrossed={isOpened} />
           </S.ButtonSection>
           <S.LinksSection
