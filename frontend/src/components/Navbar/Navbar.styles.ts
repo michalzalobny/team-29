@@ -5,7 +5,6 @@ import { media } from 'styles/media';
 
 interface LinkItem {
   isBold?: boolean;
-  isRound?: boolean;
 }
 
 export const Wrapper = styled.nav`
@@ -94,7 +93,8 @@ export const LinkWrapper = styled.li`
   }
 `;
 
-export const LinkItem = styled.a<LinkItem>`
+export const LinkItem = styled.span<LinkItem>`
+  display: inline-block;
   color: var(--white);
   line-height: 1.6;
   font-size: 15px;
@@ -124,18 +124,5 @@ export const LinkItem = styled.a<LinkItem>`
     props.isBold &&
     css`
       font-weight: 800;
-    `}
-
-  ${(props) =>
-    props.isRound &&
-    css`
-      font-weight: 800;
-      padding: 15px 20px;
-      border-radius: 50px;
-      background-color: var(--grey);
-
-      &:before {
-        display: none;
-      }
     `}
 `;

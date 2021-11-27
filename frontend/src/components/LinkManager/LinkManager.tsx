@@ -2,27 +2,29 @@ import React from 'react';
 import Link from 'next/link';
 
 interface Props {
-  href?: string;
+  elHref?: string;
   isExternal?: boolean;
   onClickFn?: () => void;
   children: React.ReactNode;
 }
 
 export const LinkManager = (props: Props) => {
-  const { href, children, isExternal, onClickFn } = props;
+  const { elHref, children, isExternal, onClickFn } = props;
 
   return (
     <>
       {isExternal ? (
-        <a href={href} target="_blank">
+        <a style={{ width: '100%' }} href={elHref} target="_blank">
           {children}
         </a>
       ) : onClickFn ? (
-        <button onClick={() => onClickFn()}>{children}</button>
+        <button style={{ width: '100%' }} onClick={() => onClickFn()}>
+          {children}
+        </button>
       ) : (
-        href && (
-          <Link href={href} passHref>
-            {children}
+        elHref && (
+          <Link href={elHref} passHref>
+            <a style={{ width: '100%' }}>{children}</a>
           </Link>
         )
       )}

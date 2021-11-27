@@ -8,6 +8,7 @@ import { LinkManager } from 'components/LinkManager/LinkManager';
 import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 import { useBreakpoint } from 'hooks/useBreakpoint';
 import { breakpoints } from 'styles/media';
+import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 
 import * as S from './Navbar.styles';
 import { LinksSectionV } from './Navbar.motion';
@@ -87,15 +88,16 @@ export const Navbar = (props: Props) => {
               return (
                 <S.LinkWrapper key={navLink.label}>
                   <LinkManager
-                    href={navLink.href}
+                    elHref={navLink.href}
                     onClickFn={navLink.onClickFn}
                   >
-                    <S.LinkItem
-                      isBold={navLink.isBold}
-                      isRound={navLink.isRound}
-                    >
-                      {navLink.label}
-                    </S.LinkItem>
+                    {navLink.isRound ? (
+                      <BlobButton label={navLink.label} />
+                    ) : (
+                      <S.LinkItem isBold={navLink.isBold}>
+                        {navLink.label}
+                      </S.LinkItem>
+                    )}
                   </LinkManager>
                 </S.LinkWrapper>
               );
