@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+import { springQuick } from 'components/Animations/framerTransitions';
 import { NavbarLink } from 'types';
 import { LogoDark } from 'components/LogoDark/LogoDark';
 import { LinkManager } from 'components/LinkManager/LinkManager';
@@ -71,6 +72,7 @@ export const Navbar = (props: Props) => {
             <CloseButton />
           </S.ButtonSection>
           <S.LinksSection
+            transition={springQuick}
             variants={LinksSectionV}
             initial="initial"
             animate={isOpened ? 'animate' : 'initial'}
