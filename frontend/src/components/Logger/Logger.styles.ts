@@ -1,8 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
 import { media } from 'styles/media';
 import { sharedValues } from 'utils/sharedValues';
+
+interface Button {
+  isActive: boolean;
+}
+
+interface Border {
+  elWidth: number;
+  translateX: number;
+}
 
 export const Wrapper = styled(motion.div)`
   position: fixed;
@@ -60,4 +69,60 @@ export const CloseButtonWrapper = styled.button`
     left: calc(100% + 20px);
     top: 0;
   }
+`;
+
+export const CenterContent = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const ButtonsWrapper = styled.div`
+  position: relative;
+`;
+
+export const ButtonsContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 2px solid ${sharedValues.colors.lightGrey};
+  border-radius: 50px;
+`;
+
+export const Border = styled.span<Border>`
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  border-radius: 50px;
+  border: 2px solid ${sharedValues.colors.brownDark};
+  display: inline-block;
+  height: 100%;
+  width: ${(props) => props.elWidth}px;
+
+  transform: ${(props) => `translateX(${props.translateX}px)`};
+
+  transition: transform 0.35s ease-in-out;
+`;
+
+export const Button = styled.button<Button>`
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  color: ${sharedValues.colors.black};
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 10px 25px;
+  font-size: 15px;
+  line-height: 1.6;
+  transition: color 0.35s ease-in-out;
+
+  &:not(:last-child) {
+    margin-right: 25px;
+  }
+
+  ${(props) =>
+    props.isActive &&
+    css`
+      color: ${sharedValues.colors.brownDark};
+    `}
 `;
