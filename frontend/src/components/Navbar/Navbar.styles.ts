@@ -39,7 +39,7 @@ export const LogoSection = styled.div`
 export const ButtonSection = styled.button`
   margin-left: auto;
   margin-right: 2rem;
-  width: 60px;
+  width: 45px;
   cursor: pointer;
 
   ${media.tablet} {
