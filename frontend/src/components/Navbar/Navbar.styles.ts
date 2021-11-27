@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
+import { sharedValues } from 'utils/sharedValues';
 import { media } from 'styles/media';
 
 interface LinkItem {
@@ -12,7 +13,7 @@ export const Wrapper = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  background: var(--blue);
+  background: ${sharedValues.colors.blue};
 `;
 
 export const SectionsWrapper = styled.div`
@@ -58,7 +59,7 @@ export const LinksSection = styled(motion.ul)`
   display: flex;
   flex-direction: column;
   padding: 2rem 3rem;
-  background-color: var(--blue);
+  background-color: ${sharedValues.colors.blue};
   width: 100%;
 
   ${media.tablet} {
@@ -95,7 +96,7 @@ export const LinkWrapper = styled.li`
 
 export const LinkItem = styled.span<LinkItem>`
   display: inline-block;
-  color: var(--white);
+  color: ${sharedValues.colors.white};
   line-height: 1.6;
   font-size: 15px;
   cursor: pointer;
@@ -108,7 +109,7 @@ export const LinkItem = styled.span<LinkItem>`
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--white);
+    background-color: ${sharedValues.colors.white};
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.45s ease-in-out;

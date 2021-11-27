@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+import { sharedValues } from 'utils/sharedValues';
+
 export const Wrapper = styled.span`
   display: inline-block;
   width: 100%;
@@ -19,7 +21,7 @@ export const Background = styled.span`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--white);
+  background-color: ${sharedValues.colors.white};
   border-radius: 50%;
 `;
 
@@ -31,7 +33,7 @@ export const BarTop = styled(motion.span)`
   transform: translate(-50%, -50%);
   width: 40%;
   height: 1px;
-  background-color: var(--black);
+  background-color: ${sharedValues.colors.black};
 `;
 
 export const BarBottom = styled(motion.span)`
@@ -42,5 +44,5 @@ export const BarBottom = styled(motion.span)`
   transform: translate(-50%, -50%);
   width: 40%;
   height: 1px;
-  background-color: var(--black);
+  background-color: ${sharedValues.colors.black};
 `;

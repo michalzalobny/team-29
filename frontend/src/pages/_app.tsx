@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import 'focus-visible';
 import '../styles/index.scss';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';

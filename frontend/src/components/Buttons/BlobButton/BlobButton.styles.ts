@@ -14,7 +14,7 @@ export const Wrapper = styled.span<Wrapper>`
   display: inline-block;
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 20px ${(props) => props.backgroundColor};
+  box-shadow: 0 0 13px ${(props) => props.backgroundColor};
   font-size: 15px;
   line-height: 1.6;
 
@@ -30,7 +30,7 @@ export const Wrapper = styled.span<Wrapper>`
     background-color: inherit;
     z-index: -1;
     border-radius: inherit;
-    transition-duration: 0.75s;
+    transition-duration: 0.8s;
     transition-property: opacity, width, height;
   }
 
