@@ -14,17 +14,24 @@ export const LinkManager = (props: Props) => {
   return (
     <>
       {isExternal ? (
-        <a style={{ width: '100%' }} href={elHref} target="_blank">
+        <a
+          style={{ width: '100%', display: 'flex' }}
+          href={elHref}
+          target="_blank"
+        >
           {children}
         </a>
       ) : onClickFn ? (
-        <button style={{ width: '100%' }} onClick={() => onClickFn()}>
+        <button
+          style={{ width: '100%', display: 'flex' }}
+          onClick={() => onClickFn()}
+        >
           {children}
         </button>
       ) : (
         elHref && (
           <Link href={elHref} passHref>
-            <a style={{ width: '100%' }}>{children}</a>
+            <a style={{ width: '100%', display: 'flex' }}>{children}</a>
           </Link>
         )
       )}
