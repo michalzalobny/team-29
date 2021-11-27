@@ -15,7 +15,7 @@ export interface Props {
 
 export const Logger = (props: Props) => {
   const { ...rest } = props;
-  const { setIsLoggerOpen } = useLoggerContext();
+  const { setIsLoggerOpen, activeLoggerMode } = useLoggerContext();
 
   return (
     <>
@@ -29,6 +29,7 @@ export const Logger = (props: Props) => {
             >
               <CloseButton isCrossed={true} />
             </S.CloseButtonWrapper>
+            {<p style={{ fontSize: '15px' }}>{activeLoggerMode} mode</p>}
           </S.ModalWrapper>
         </S.ModalContainer>
       </S.Wrapper>

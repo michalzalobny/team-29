@@ -10,7 +10,7 @@ export const Wrapper = styled.span<Wrapper>`
   color: ${(props) => props.textColor};
   border-radius: 50px;
   cursor: pointer;
-  padding: 15px 30px;
+  padding: 10px 25px;
   display: inline-block;
   position: relative;
   z-index: 1;

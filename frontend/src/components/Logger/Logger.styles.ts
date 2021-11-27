@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+import { media } from 'styles/media';
 import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled(motion.div)`
@@ -19,7 +20,7 @@ export const Background = styled(motion.div)`
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: saturate(180%) blur(5px);
 `;
 
@@ -31,20 +32,32 @@ export const ModalContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 18rem;
+  padding-top: 10rem;
 `;
 
 export const ModalWrapper = styled(motion.div)`
-  width: 48rem;
-  padding: 4rem;
+  width: 90%;
+  padding: 30px;
   background-color: ${sharedValues.colors.white};
   border-radius: 10px;
+
+  ${media.tablet} {
+    padding: 35px;
+    width: 480px;
+  }
 `;
 
 export const CloseButtonWrapper = styled.button`
   position: absolute;
-  left: calc(100% + 30px);
-  top: 0;
+  right: 0;
+  bottom: calc(100% + 20px);
   width: 45px;
   cursor: pointer;
+
+  ${media.tablet} {
+    right: initial;
+    bottom: initial;
+    left: calc(100% + 20px);
+    top: 0;
+  }
 `;

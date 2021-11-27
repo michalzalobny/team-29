@@ -81,7 +81,7 @@ export const LinkWrapper = styled.li`
     padding-bottom: 0;
 
     &:not(:last-child) {
-      margin-right: 20px;
+      margin-right: 15px;
       margin-bottom: 0;
     }
   }
