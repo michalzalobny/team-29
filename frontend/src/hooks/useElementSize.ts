@@ -12,14 +12,14 @@ interface Size {
 }
 
 const EmptySSRRect: DomRectSSR = {
-  bottom: 0,
-  height: 0,
-  left: 0,
-  right: 0,
-  top: 0,
-  width: 0,
-  x: 0,
-  y: 0,
+  bottom: 1,
+  height: 1,
+  left: 1,
+  right: 1,
+  top: 1,
+  width: 1,
+  x: 1,
+  y: 1,
 };
 
 const emptySize: Size = {
