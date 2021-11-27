@@ -27,7 +27,7 @@ export const SectionsWrapper = styled.div`
 `;
 
 export const LogoSection = styled.div`
-  width: 12rem;
+  width: 16rem;
 
   ${media.tablet} {
     width: 24rem;
@@ -40,21 +40,43 @@ export const LogoWrapper = styled.a`
 `;
 
 export const LinksSection = styled.ul`
+  position: absolute;
+  left: 0;
+  top: 100%;
   display: flex;
-  align-items: center;
-  margin-left: auto;
+  flex-direction: column;
+  padding: 2rem 3rem;
+  background-color: var(--blue);
+  width: 100%;
+
+  ${media.tablet} {
+    padding: 3rem;
+    position: initial;
+    top: initial;
+    left: initial;
+    flex-direction: row;
+    width: initial;
+    align-items: center;
+    margin-left: auto;
+  }
 `;
 
 export const LinkWrapper = styled.li`
+  padding-bottom: 50px;
+
   ${media.tablet} {
+    padding-bottom: 0;
+
     &:not(:last-child) {
       margin-right: 20px;
+      margin-bottom: 0;
     }
   }
 
   ${media.tabletLand} {
     &:not(:last-child) {
       margin-right: 35px;
+      margin-bottom: 0;
     }
   }
 `;
