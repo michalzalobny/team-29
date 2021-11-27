@@ -96,6 +96,7 @@ export const LinkWrapper = styled.li`
 
 export const LinkItem = styled.a<LinkItem>`
   color: var(--white);
+  line-height: 1.6;
   font-size: 15px;
   cursor: pointer;
 
