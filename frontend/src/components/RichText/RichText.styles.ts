@@ -1,4 +1,6 @@
-.richText {
+import styled from 'styled-components';
+
+export const TextWrapper = styled.span`
   position: relative;
   display: inline-block;
 
@@ -19,4 +21,4 @@
       padding-bottom: 0;
     }
   }
-}
+`;

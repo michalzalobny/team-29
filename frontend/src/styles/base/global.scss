@@ -22,11 +22,11 @@ html {
 html {
   font-size: calc(100vw / 375 * 10);
 
-  @include media('>phone') {
+  @media only screen and (min-width: 767px) {
     font-size: calc(100vw / 1920 * 10);
   }
 
-  @include media('>=desktop') {
+  @media only screen and (min-width: 1920px) {
     font-size: 62.5%;
   }
 }

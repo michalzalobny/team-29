@@ -1,43 +1,69 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import NextDocument, {
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  Html,
+} from 'next/document';
+import React from 'react';
+import { ServerStyleSheet } from 'styled-components';
 
-import { setCssVariables, VARIABLES } from 'utils/setCssVariables';
+import { VARIABLES, setCssVariables } from 'utils/setCssVariables';
 
-import type { DocumentContext } from 'next/document';
-
-export default class MyDocument extends Document {
+export default class Document extends NextDocument {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await NextDocument.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
     return (
       <Html>
         <Head>
+          {' '}
           <link
             rel="preload"
             as="font"
             type="font/woff2"
             href="/fonts/openSans800.woff2"
             crossOrigin="anonymous"
-          />
+          />{' '}
           <link
             rel="preload"
             as="font"
             type="font/woff2"
             href="/fonts/openSans400.woff2"
             crossOrigin="anonymous"
-          />
-
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-
+          />{' '}
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />{' '}
           <script
             dangerouslySetInnerHTML={{
               __html: `(${setCssVariables.toString()})({variables:${JSON.stringify(
                 VARIABLES,
               )}})`,
             }}
-          />
+          />{' '}
         </Head>
         <body>
           <Main />

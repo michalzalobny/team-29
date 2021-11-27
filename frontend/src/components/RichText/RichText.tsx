@@ -1,7 +1,7 @@
 import React from 'react';
 import { compiler } from 'markdown-to-jsx';
 
-import styles from './richText.module.scss';
+import * as S from './RichText.styles';
 
 export interface RichTextProps {
   text: string;
@@ -10,7 +10,5 @@ export interface RichTextProps {
 export const RichText = (props: RichTextProps) => {
   const { text } = props;
 
-  return (
-    <span className={styles.richText}>{compiler(text, { wrapper: null })}</span>
-  );
+  return <S.TextWrapper>{compiler(text, { wrapper: null })}</S.TextWrapper>;
 };

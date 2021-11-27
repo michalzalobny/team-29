@@ -1,15 +1,8 @@
-const path = require('path');
-
 const nextConfig = {
   reactStrictMode: true,
   i18n: {
     locales: ['en-US'],
     defaultLocale: 'en-US',
-  },
-  //Appends responsive file to each css module in the app
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-    prependData: '@import "./src/styles/utils/responsive.scss";',
   },
   webpack: (config) => {
     config.module.rules.push({

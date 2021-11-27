@@ -1,24 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { AnimatePresence } from 'framer-motion';
 import '../styles/index.scss';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
+import { GlobalStyles } from 'styles/GlobalStyles';
+
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
   const router = useRouter();
-  const [isInit, setIsInit] = useState(false);
-
-  useEffect(() => {
-    setIsInit(true);
-  }, [isInit]);
 
   return (
     <>
-      <Component
-        key={router.route + router.locale}
-        router={router}
-        {...pageProps}
-      />
+      <GlobalStyles />
+
+      <AnimatePresence exitBeforeEnter={false}>
+        <>
+          {/* <Layout /> */}
+
+          <Component
+            key={router.route + router.locale}
+            router={router}
+            {...pageProps}
+          />
+        </>
+      </AnimatePresence>
     </>
   );
 }
