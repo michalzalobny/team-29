@@ -69,7 +69,7 @@ export const Navbar = (props: Props) => {
             </Link>
           </S.LogoSection>
           <S.ButtonSection onClick={() => setIsOpened((prev) => !prev)}>
-            <CloseButton />
+            <CloseButton isCrossed={!isOpened} />
           </S.ButtonSection>
           <S.LinksSection
             transition={springMedium}
