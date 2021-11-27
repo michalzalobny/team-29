@@ -9,6 +9,7 @@ import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 import { useBreakpoint } from 'hooks/useBreakpoint';
 import { breakpoints } from 'styles/media';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
+import { useLoggerContext, ActiveLoggerMode } from 'context/LoggerContext';
 
 import * as S from './Navbar.styles';
 import { LinksSectionV } from './Navbar.motion';
@@ -18,10 +19,13 @@ interface Props {}
 export const Navbar = (props: Props) => {
   const [isOpened, setIsOpened] = useState(false);
 
+  const { setActiveLoggerMode, setIsLoggerOpen } = useLoggerContext();
+
   const isTablet = useBreakpoint(breakpoints.tablet);
 
-  const handleOpenLogger = React.useCallback((type: string) => {
-    alert(`opened ${type}`);
+  const handleOpenLogger = React.useCallback((mode: ActiveLoggerMode) => {
+    setActiveLoggerMode(mode);
+    setIsLoggerOpen(true);
   }, []);
 
   useEffect(() => {
@@ -53,12 +57,12 @@ export const Navbar = (props: Props) => {
     {
       label: 'Sign in',
       isBold: true,
-      onClickFn: () => handleOpenLogger('login'),
+      onClickFn: () => handleOpenLogger('signin'),
     },
     {
       label: 'Sign up',
       isBold: true,
-      onClickFn: () => handleOpenLogger('register'),
+      onClickFn: () => handleOpenLogger('signup'),
     },
   ];
 

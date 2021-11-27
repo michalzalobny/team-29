@@ -1,5 +1,6 @@
 export const tween = {
   type: 'tween',
+  ease: 'easeInOut',
   duration: 0.4,
   restDelta: 0.01,
   restSpeed: 0.01,
@@ -18,9 +19,9 @@ export const springMedium = {
   type: 'spring',
   stiffness: 100,
   damping: 20,
-  mass: 1.4,
-  restDelta: 0.0001,
-  restSpeed: 0.0001,
+  mass: 1,
+  restDelta: 0.001,
+  restSpeed: 0.001,
 };
 
 export const springQuick = {

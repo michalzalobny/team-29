@@ -27,3 +27,12 @@ export const BarTopV = {
     top: '50%',
   },
 };
+
+export const ContentWrapperV = {
+  initial: {
+    rotate: '0deg',
+  },
+  animate: {
+    rotate: '180deg',
+  },
+};

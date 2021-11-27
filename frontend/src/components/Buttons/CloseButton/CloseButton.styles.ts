@@ -46,3 +46,12 @@ export const BarBottom = styled(motion.span)`
   height: 1px;
   background-color: ${sharedValues.colors.black};
 `;
+
+export const ContentWrapper = styled(motion.span)`
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;

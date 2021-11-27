@@ -6,6 +6,7 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import FontFaceObserver from 'fontfaceobserver';
 
+import { LoggerContextProvider } from 'context/LoggerContext';
 import { GlobalStyles } from 'styles/GlobalStyles';
 import { Layout } from 'components/Layout/Layout';
 
@@ -35,7 +36,7 @@ export default function MyApp(props: AppProps) {
   }, []);
 
   return (
-    <>
+    <LoggerContextProvider>
       <GlobalStyles />
 
       <AnimatePresence exitBeforeEnter={false}>
@@ -49,6 +50,6 @@ export default function MyApp(props: AppProps) {
           </Layout>
         </>
       </AnimatePresence>
-    </>
+    </LoggerContextProvider>
   );
 }

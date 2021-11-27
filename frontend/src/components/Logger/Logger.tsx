@@ -1,0 +1,47 @@
+import React from 'react';
+
+import { useLoggerContext } from 'context/LoggerContext';
+import {
+  springMedium,
+  springQuick,
+} from 'components/Animations/framerTransitions';
+import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
+
+import * as S from './Logger.styles';
+import {
+  BackgroundV,
+  ModalWrapperV,
+  WrapperV,
+  CloseButtonWrapperV,
+} from './Logger.motion';
+
+export interface Props {
+  initial: string;
+  animate: string;
+  exit: string;
+}
+
+export const Logger = (props: Props) => {
+  const { ...rest } = props;
+  const { setIsLoggerOpen } = useLoggerContext();
+
+  return (
+    <>
+      <S.Wrapper variants={WrapperV} {...rest}>
+        <S.Background transition={springMedium} variants={BackgroundV} />
+        <S.ModalContainer>
+          <S.ModalWrapper variants={ModalWrapperV} transition={springMedium}>
+            <S.CloseButtonWrapper
+              variants={CloseButtonWrapperV}
+              transition={springQuick}
+              aria-label="close modal"
+              onClick={() => setIsLoggerOpen(false)}
+            >
+              <CloseButton isCrossed={true} />
+            </S.CloseButtonWrapper>
+          </S.ModalWrapper>
+        </S.ModalContainer>
+      </S.Wrapper>
+    </>
+  );
+};
