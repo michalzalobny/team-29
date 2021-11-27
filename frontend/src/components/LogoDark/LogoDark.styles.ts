@@ -4,6 +4,7 @@ export const LogoImg = styled.img`
   width: 100%;
 `;
 
-export const Wrapper = styled.button`
+export const Wrapper = styled.div`
   width: 100%;
+  display: flex;
 `;

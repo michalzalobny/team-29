@@ -11,7 +11,7 @@ export default function IndexPage(props: Props) {
   return (
     <>
       <Head {...head} />
-      <S.Wrapper>test</S.Wrapper>
+      <S.Wrapper></S.Wrapper>
     </>
   );
 }
