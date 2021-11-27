@@ -10,7 +10,6 @@ interface Button {
 
 interface Border {
   elWidth: number;
-  translateX: number;
 }
 
 export const Wrapper = styled(motion.div)`
@@ -88,8 +87,9 @@ export const ButtonsContainer = styled.div`
   border-radius: 50px;
 `;
 
-export const Border = styled.span<Border>`
+export const Border = styled(motion.span)<Border>`
   position: absolute;
+  pointer-events: none;
   z-index: 1;
   top: 0;
   left: 0;
@@ -98,10 +98,6 @@ export const Border = styled.span<Border>`
   display: inline-block;
   height: 100%;
   width: ${(props) => props.elWidth}px;
-
-  transform: ${(props) => `translateX(${props.translateX}px)`};
-
-  transition: transform 0.35s ease-in-out;
 `;
 
 export const Button = styled.button<Button>`

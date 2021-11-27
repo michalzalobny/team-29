@@ -26,8 +26,8 @@ export const springMedium = {
 
 export const springQuick = {
   type: 'spring',
-  stiffness: 100,
-  damping: 10,
+  stiffness: 150,
+  damping: 15,
   restDelta: 0.01,
   restSpeed: 0.01,
 };

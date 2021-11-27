@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 
 import { useLoggerContext } from 'context/LoggerContext';
-import { springMedium } from 'components/Animations/framerTransitions';
+import {
+  springMedium,
+  springQuick,
+} from 'components/Animations/framerTransitions';
 import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 import { useElementSize } from 'hooks/useElementSize';
 
@@ -27,6 +30,15 @@ export const Logger = (props: Props) => {
   const { size: sizeUp } = useElementSize(buttonUpRef);
   const { size: sizeWrapper } = useElementSize(buttonsWrapperRef);
 
+  const BorderV = {
+    initial: {
+      x: 0,
+    },
+    animate: {
+      x: sizeWrapper.clientRect.width - sizeUp.clientRect.width,
+    },
+  };
+
   return (
     <>
       <S.Wrapper variants={WrapperV} {...rest}>
@@ -42,10 +54,11 @@ export const Logger = (props: Props) => {
             <S.CenterContent>
               <S.ButtonsWrapper ref={buttonsWrapperRef}>
                 <S.Border
-                  translateX={
-                    activeLoggerMode === 'signin'
-                      ? 0
-                      : sizeWrapper.clientRect.width - sizeUp.clientRect.width
+                  transition={springQuick}
+                  variants={BorderV}
+                  initial="initial"
+                  animate={
+                    activeLoggerMode === 'signup' ? 'animate' : 'initial'
                   }
                   elWidth={
                     activeLoggerMode === 'signin'
