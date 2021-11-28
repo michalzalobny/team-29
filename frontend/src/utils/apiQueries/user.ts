@@ -8,7 +8,7 @@ export const yupSignInSchema = yup.object().shape({
 });
 
 export const yupSignUpSchema = yup.object().shape({
-  name: yup.string(),
+  name: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().min(8).max(16).required(),
 });
