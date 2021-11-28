@@ -1,15 +1,15 @@
 // https://jasonwatmore.com/post/2021/09/13/react-hook-form-display-custom-error-message-returned-from-api-request
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { springMedium } from 'components/Animations/framerTransitions';
-import { useInput } from 'hooks/useInput';
+
 import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import axios from 'utils/axiosInstance';
+import { Input } from 'components/Input/Input';
 
 import { WrapperV } from './SignInForm.motion';
 import * as S from './SignInForm.styles';
@@ -22,29 +22,9 @@ const schema = yup.object().shape({
 });
 
 export const SignInForm = (props: Props) => {
-  const { setError, watch, register, handleSubmit, formState, reset } = useForm(
-    {
-      resolver: yupResolver(schema),
-    },
-  );
+  const hookForm = useForm({ resolver: yupResolver(schema) });
 
-  const {
-    onFocus: onFocusEmail,
-    isFocused: isFocusedEmail,
-    onBlur: onBlurEmail,
-  } = useInput({
-    watch,
-    fieldName: 'email',
-  });
-
-  const {
-    onFocus: onFocusPassword,
-    isFocused: isFocusedPassword,
-    onBlur: onBlurPassword,
-  } = useInput({
-    watch,
-    fieldName: 'password',
-  });
+  const { setError, handleSubmit, formState } = hookForm;
 
   const { errors, isSubmitting } = formState;
 
@@ -69,37 +49,19 @@ export const SignInForm = (props: Props) => {
               <S.ApiError>{errors.apiError?.message}</S.ApiError>
             )}
 
-            <S.InputWrapper>
-              <S.Label isFocused={isFocusedEmail} htmlFor="email">
-                Email
-              </S.Label>
-              <S.Input
-                isError={errors.email}
-                {...register('email', { onBlur: onBlurEmail })}
-                id="email"
-                type="email"
-                onFocus={onFocusEmail}
-              />
-            </S.InputWrapper>
-            {errors.email?.message && (
-              <S.InputError>{errors.email?.message}</S.InputError>
-            )}
+            <Input
+              fieldName="email"
+              hookForm={hookForm}
+              label="Email"
+              inputType="email"
+            />
 
-            <S.InputWrapper>
-              <S.Label isFocused={isFocusedPassword} htmlFor="password">
-                Password
-              </S.Label>
-              <S.Input
-                isError={errors.password}
-                type="password"
-                id="password"
-                onFocus={onFocusPassword}
-                {...register('password', { onBlur: onBlurPassword })}
-              />
-            </S.InputWrapper>
-            {errors.password?.message && (
-              <S.InputError>{errors.password?.message}</S.InputError>
-            )}
+            <Input
+              fieldName="password"
+              hookForm={hookForm}
+              label="Password"
+              inputType="password"
+            />
           </S.InputsContainer>
 
           <S.Center>
