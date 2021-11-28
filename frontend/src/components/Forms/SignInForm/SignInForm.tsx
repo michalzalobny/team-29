@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+// https://jasonwatmore.com/post/2021/09/13/react-hook-form-display-custom-error-message-returned-from-api-request
+
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -20,9 +22,11 @@ const schema = yup.object().shape({
 });
 
 export const SignInForm = (props: Props) => {
-  const { watch, register, handleSubmit, formState, reset } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const { setError, watch, register, handleSubmit, formState, reset } = useForm(
+    {
+      resolver: yupResolver(schema),
+    },
+  );
 
   const {
     onFocus: onFocusEmail,
@@ -42,73 +46,60 @@ export const SignInForm = (props: Props) => {
     fieldName: 'password',
   });
 
-  const [serverErrors, setServerErrors] = useState([]);
-
   const { errors, isSubmitting } = formState;
 
   const onSubmitHandler = React.useCallback(async (data) => {
-    setServerErrors([]);
-
     try {
       const res = await axios.post('/users/auth/local', {
         email: data.email,
         password: data.password,
       });
     } catch (error) {
-      console.log(error);
-      setServerErrors([]);
+      //Error message from server
+      setError('apiError', { message: 'Something went wrong' });
     }
-
-    reset();
   }, []);
 
   return (
     <>
       <S.Wrapper variants={WrapperV} transition={springMedium}>
         <S.Form onSubmit={handleSubmit(onSubmitHandler)}>
-          {serverErrors && (
-            <ul>
-              {serverErrors.map((error) => (
-                <li key={error}>{error}</li>
-              ))}
-            </ul>
-          )}
           <S.InputsContainer>
-            <S.InputContainer>
-              <S.InputWrapper>
-                <S.Label isFocused={isFocusedEmail} htmlFor="email">
-                  Email
-                </S.Label>
-                <S.Input
-                  isError={errors.email}
-                  {...register('email', { onBlur: onBlurEmail })}
-                  id="email"
-                  type="email"
-                  onFocus={onFocusEmail}
-                />
-              </S.InputWrapper>
-              {errors.email?.message && (
-                <S.InputError>{errors.email?.message}</S.InputError>
-              )}
-            </S.InputContainer>
+            {errors.apiError?.message && (
+              <S.ApiError>{errors.apiError?.message}</S.ApiError>
+            )}
 
-            <S.InputContainer>
-              <S.InputWrapper>
-                <S.Label isFocused={isFocusedPassword} htmlFor="password">
-                  Password
-                </S.Label>
-                <S.Input
-                  isError={errors.password}
-                  type="password"
-                  id="password"
-                  onFocus={onFocusPassword}
-                  {...register('password', { onBlur: onBlurPassword })}
-                />
-              </S.InputWrapper>
-              {errors.password?.message && (
-                <S.InputError>{errors.password?.message}</S.InputError>
-              )}
-            </S.InputContainer>
+            <S.InputWrapper>
+              <S.Label isFocused={isFocusedEmail} htmlFor="email">
+                Email
+              </S.Label>
+              <S.Input
+                isError={errors.email}
+                {...register('email', { onBlur: onBlurEmail })}
+                id="email"
+                type="email"
+                onFocus={onFocusEmail}
+              />
+            </S.InputWrapper>
+            {errors.email?.message && (
+              <S.InputError>{errors.email?.message}</S.InputError>
+            )}
+
+            <S.InputWrapper>
+              <S.Label isFocused={isFocusedPassword} htmlFor="password">
+                Password
+              </S.Label>
+              <S.Input
+                isError={errors.password}
+                type="password"
+                id="password"
+                onFocus={onFocusPassword}
+                {...register('password', { onBlur: onBlurPassword })}
+              />
+            </S.InputWrapper>
+            {errors.password?.message && (
+              <S.InputError>{errors.password?.message}</S.InputError>
+            )}
           </S.InputsContainer>
 
           <S.Center>

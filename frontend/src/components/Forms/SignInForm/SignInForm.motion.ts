@@ -1,5 +1,3 @@
-import { Variants } from 'framer-motion';
-
 export const WrapperV = {
   initial: {
     opacity: 0,

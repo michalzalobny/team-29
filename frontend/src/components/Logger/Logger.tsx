@@ -55,7 +55,7 @@ export const Logger = (props: Props) => {
             transition={{
               ...springMedium,
               staggerChildren: 0.05,
-              delayChildren: 0.25,
+              delayChildren: 0.15,
             }}
           >
             <S.CloseButtonWrapper
