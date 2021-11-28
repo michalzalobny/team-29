@@ -55,7 +55,6 @@ export const Logger = (props: Props) => {
             transition={{
               ...springMedium,
               staggerChildren: 0.05,
-              delayChildren: 0.15,
             }}
           >
             <S.CloseButtonWrapper
@@ -82,6 +81,7 @@ export const Logger = (props: Props) => {
                       ? sizeIn.clientRect.width
                       : sizeUp.clientRect.width
                   }
+                  isWidthReady={sizeIn.isReady && sizeUp.isReady}
                 />
                 <S.ButtonsContainer>
                   <S.Button

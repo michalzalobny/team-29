@@ -10,6 +10,7 @@ interface Button {
 
 interface Border {
   elwidth: number;
+  isWidthReady: boolean;
 }
 
 export const Wrapper = styled(motion.div)`
@@ -98,7 +99,14 @@ export const Border = styled(motion.span)<Border>`
   display: inline-block;
   height: 100%;
   width: ${(props) => props.elwidth}px;
-  transition: width 0.35s ease-in-out;
+  opacity: 0;
+  transition: width 0.35s, opacity 0.35s 0.35s;
+
+  ${(props) =>
+    props.isWidthReady &&
+    css`
+      opacity: 1;
+    `}
 `;
 
 export const Button = styled.button<Button>`
