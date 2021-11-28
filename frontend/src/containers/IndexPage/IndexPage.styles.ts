@@ -1,3 +1,48 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div``;
+import { media } from 'styles/media';
+import { sharedValues } from 'utils/sharedValues';
+
+export const Wrapper = styled.div`
+  background-color: ${sharedValues.colors.blue};
+`;
+
+export const ContentWrapper = styled.div`
+  position: relative;
+`;
+
+export const HeadingWrapper = styled.div`
+  padding: 0 6rem;
+
+  ${media.tablet} {
+    width: 100rem;
+    margin: 0 auto;
+  }
+`;
+
+export const BottomImg = styled.img`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(50%);
+`;
+
+export const Heading = styled.h1`
+  width: 80%;
+  font-weight: 800;
+  font-size: 2.2rem;
+  line-height: 1.4;
+  color: ${sharedValues.colors.white};
+  padding: 2.5rem 0 5rem 0;
+
+  span {
+    color: ${sharedValues.colors.brown};
+  }
+
+  ${media.tablet} {
+    width: 55%;
+    font-size: 5.2rem;
+    padding: 5rem 0 18rem 0;
+  }
+`;

@@ -9,7 +9,8 @@ interface LinkItem {
 }
 
 export const Wrapper = styled.nav`
-  position: fixed;
+  position: sticky;
+  z-index: 5;
   top: 0;
   left: 0;
   width: 100%;
