@@ -50,6 +50,7 @@ export const SignInForm = (props: Props) => {
             )}
 
             <Input
+              inputAutoComplete="email"
               fieldName="email"
               hookForm={hookForm}
               label="Email"
@@ -57,6 +58,7 @@ export const SignInForm = (props: Props) => {
             />
 
             <Input
+              inputAutoComplete="current-password"
               fieldName="password"
               hookForm={hookForm}
               label="Password"
