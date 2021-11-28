@@ -76,12 +76,12 @@ export const Logger = (props: Props) => {
                   animate={
                     activeLoggerMode === 'signup' ? 'animate' : 'initial'
                   }
-                  elwidth={
+                  $elWidth={
                     activeLoggerMode === 'signin'
                       ? sizeIn.clientRect.width
                       : sizeUp.clientRect.width
                   }
-                  isWidthReady={sizeIn.isReady && sizeUp.isReady}
+                  $isWidthReady={sizeIn.isReady && sizeUp.isReady}
                 />
                 <S.ButtonsContainer>
                   <S.Button
