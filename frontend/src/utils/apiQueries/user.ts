@@ -1,18 +1,20 @@
+import * as yup from 'yup';
+
 import axios from 'utils/axiosInstance';
 
-interface PostLogin {
+export const yupLoginSchema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).max(16).required(),
+});
+
+interface SignInPOST {
   email: string;
   password: string;
 }
 
-export const postLogin = async (data: PostLogin) => {
-  try {
-    const response = await axios.post('/users/auth/local', {
-      email: data.email,
-      password: data.password,
-    });
-    return response;
-  } catch (error) {
-    return error;
-  }
+export const SignInPOST = ({ email, password }: SignInPOST) => {
+  return axios.post('/users/auth/local', {
+    email,
+    password,
+  });
 };

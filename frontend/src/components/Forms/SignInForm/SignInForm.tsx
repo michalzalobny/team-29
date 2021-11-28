@@ -2,26 +2,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 import { springMedium } from 'components/Animations/framerTransitions';
 import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { Input } from 'components/Input/Input';
-import { postLogin } from 'utils/apiQueries/user';
+import { SignInPOST, yupLoginSchema } from 'utils/apiQueries/user';
 
 import { WrapperV } from './SignInForm.motion';
 import * as S from './SignInForm.styles';
 
 interface Props {}
 
-const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).max(16).required(),
-});
-
 export const SignInForm = (props: Props) => {
-  const hookForm = useForm({ resolver: yupResolver(schema) });
+  const hookForm = useForm({ resolver: yupResolver(yupLoginSchema) });
 
   const { setError, handleSubmit, formState } = hookForm;
 
@@ -29,7 +23,7 @@ export const SignInForm = (props: Props) => {
 
   const onSubmitHandler = React.useCallback(async (data) => {
     try {
-      const res = await postLogin(data);
+      const res = await SignInPOST(data);
     } catch (error) {
       //Error message from server
       setError('apiError', { message: 'Something went wrong' });
