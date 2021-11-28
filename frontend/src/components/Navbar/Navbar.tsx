@@ -26,6 +26,7 @@ export const Navbar = (props: Props) => {
   const handleOpenLogger = React.useCallback((mode: ActiveLoggerMode) => {
     setActiveLoggerMode(mode);
     setIsLoggerOpen(true);
+    setIsOpened(false);
   }, []);
 
   useEffect(() => {
