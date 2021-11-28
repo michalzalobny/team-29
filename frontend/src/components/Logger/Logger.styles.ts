@@ -113,7 +113,11 @@ export const Button = styled.button<Button>`
   transition: color 0.35s ease-in-out;
 
   &:not(:last-child) {
-    margin-right: 25px;
+    margin-right: 5px;
+
+    ${media.tablet} {
+      margin-right: 25px;
+    }
   }
 
   ${(props) =>
