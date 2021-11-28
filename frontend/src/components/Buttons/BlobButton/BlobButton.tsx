@@ -9,11 +9,13 @@ interface Props {
   backgroundColor?: string;
   textColor?: string;
   renderAs?: 'span' | 'button';
+  extraSidePadding?: boolean;
 }
 
 export const BlobButton = React.forwardRef(
   (props: Props, ref: React.Ref<HTMLElement>) => {
     const {
+      extraSidePadding = false,
       renderAs = 'span',
       backgroundColor = sharedValues.colors.grey,
       textColor = sharedValues.colors.white,
@@ -23,6 +25,7 @@ export const BlobButton = React.forwardRef(
     return (
       <>
         <S.Wrapper
+          extraSidePadding={extraSidePadding}
           ref={ref}
           as={renderAs}
           backgroundColor={backgroundColor}

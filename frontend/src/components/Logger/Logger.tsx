@@ -7,9 +7,15 @@ import {
 } from 'components/Animations/framerTransitions';
 import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 import { useElementSize } from 'hooks/useElementSize';
+import { SignInForm } from 'components/Forms/SignInForm/SignInForm';
 
 import * as S from './Logger.styles';
-import { BackgroundV, ModalWrapperV, WrapperV } from './Logger.motion';
+import {
+  BackgroundV,
+  ModalWrapperV,
+  WrapperV,
+  ButtonsWrapperV,
+} from './Logger.motion';
 
 export interface Props {
   initial: string;
@@ -44,7 +50,14 @@ export const Logger = (props: Props) => {
       <S.Wrapper variants={WrapperV} {...rest}>
         <S.Background transition={springMedium} variants={BackgroundV} />
         <S.ModalContainer>
-          <S.ModalWrapper variants={ModalWrapperV} transition={springMedium}>
+          <S.ModalWrapper
+            variants={ModalWrapperV}
+            transition={{
+              ...springMedium,
+              staggerChildren: 0.05,
+              delayChildren: 0.25,
+            }}
+          >
             <S.CloseButtonWrapper
               aria-label="close modal"
               onClick={() => setIsLoggerOpen(false)}
@@ -52,7 +65,11 @@ export const Logger = (props: Props) => {
               <CloseButton isCrossed={true} />
             </S.CloseButtonWrapper>
             <S.CenterContent>
-              <S.ButtonsWrapper ref={buttonsWrapperRef}>
+              <S.ButtonsWrapper
+                variants={ButtonsWrapperV}
+                transition={springMedium}
+                ref={buttonsWrapperRef}
+              >
                 <S.Border
                   transition={springQuick}
                   variants={BorderV}
@@ -84,7 +101,7 @@ export const Logger = (props: Props) => {
                 </S.ButtonsContainer>
               </S.ButtonsWrapper>
             </S.CenterContent>
-            {<p style={{ fontSize: '15px' }}>{activeLoggerMode} mode</p>}
+            {activeLoggerMode === 'signin' ? <SignInForm /> : null}
           </S.ModalWrapper>
         </S.ModalContainer>
       </S.Wrapper>

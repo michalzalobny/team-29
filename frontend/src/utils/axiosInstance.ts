@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: `www.pythonapi.com/api`,
+  baseURL: `https://www.google.com/`,
   headers: {
     'Cache-Control': 'no-cache',
   },

@@ -51,7 +51,7 @@ export const ModalWrapper = styled(motion.div)`
 
   ${media.tablet} {
     padding: 35px;
-    width: 480px;
+    width: 430px;
   }
 `;
 
@@ -75,7 +75,7 @@ export const CenterContent = styled.div`
   justify-content: center;
 `;
 
-export const ButtonsWrapper = styled.div`
+export const ButtonsWrapper = styled(motion.div)`
   position: relative;
 `;
 
@@ -98,6 +98,7 @@ export const Border = styled(motion.span)<Border>`
   display: inline-block;
   height: 100%;
   width: ${(props) => props.elwidth}px;
+  transition: width 0.35s ease-in-out;
 `;
 
 export const Button = styled.button<Button>`
