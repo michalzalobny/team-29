@@ -60,7 +60,7 @@ export const Logger = (props: Props) => {
                   animate={
                     activeLoggerMode === 'signup' ? 'animate' : 'initial'
                   }
-                  elWidth={
+                  elwidth={
                     activeLoggerMode === 'signin'
                       ? sizeIn.clientRect.width
                       : sizeUp.clientRect.width

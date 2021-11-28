@@ -9,7 +9,7 @@ interface Button {
 }
 
 interface Border {
-  elWidth: number;
+  elwidth: number;
 }
 
 export const Wrapper = styled(motion.div)`
@@ -97,7 +97,7 @@ export const Border = styled(motion.span)<Border>`
   border: 2px solid ${sharedValues.colors.brownDark};
   display: inline-block;
   height: 100%;
-  width: ${(props) => props.elWidth}px;
+  width: ${(props) => props.elwidth}px;
 `;
 
 export const Button = styled.button<Button>`
