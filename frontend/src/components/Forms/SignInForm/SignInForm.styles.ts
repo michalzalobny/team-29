@@ -91,6 +91,6 @@ export const ApiError = styled.p`
   font-size: 14px;
   padding: 18px 20px;
   border-radius: 6px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: ${sharedValues.colors.white};
 `;
