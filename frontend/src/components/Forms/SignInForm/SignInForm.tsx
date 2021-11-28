@@ -1,5 +1,5 @@
 // https://jasonwatmore.com/post/2021/09/13/react-hook-form-display-custom-error-message-returned-from-api-request
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -12,9 +12,15 @@ import { SignInPOST, yupSignInSchema } from 'utils/apiQueries/user';
 import { WrapperV } from './SignInForm.motion';
 import * as S from './SignInForm.styles';
 
-interface Props {}
+interface Props {
+  initial: string;
+  animate: string;
+  resizeFn: () => void; //Used to update modal's height
+}
 
 export const SignInForm = (props: Props) => {
+  const { resizeFn, ...rest } = props;
+
   const hookForm = useForm({ resolver: yupResolver(yupSignInSchema) });
 
   const { setError, handleSubmit, formState } = hookForm;
@@ -30,31 +36,34 @@ export const SignInForm = (props: Props) => {
     }
   }, []);
 
+  //It is used only to update modal height
+  useEffect(() => {
+    resizeFn();
+  }, [errors?.password, errors?.email, errors?.apiError]);
+
   return (
     <>
-      <S.Wrapper variants={WrapperV} transition={springMedium}>
+      <S.Wrapper {...rest} variants={WrapperV} transition={springMedium}>
         <S.Form onSubmit={handleSubmit(onSubmitHandler)}>
-          <S.InputsContainer>
-            {errors.apiError?.message && (
-              <S.ApiError>{errors.apiError?.message}</S.ApiError>
-            )}
+          {errors.apiError?.message && (
+            <S.ApiError>{errors.apiError?.message}</S.ApiError>
+          )}
 
-            <Input
-              inputAutoComplete="email"
-              fieldName="email"
-              hookForm={hookForm}
-              label="Email"
-              inputType="email"
-            />
+          <Input
+            inputAutoComplete="email"
+            fieldName="email"
+            hookForm={hookForm}
+            label="Email"
+            inputType="email"
+          />
 
-            <Input
-              inputAutoComplete="current-password"
-              fieldName="password"
-              hookForm={hookForm}
-              label="Password"
-              inputType="password"
-            />
-          </S.InputsContainer>
+          <Input
+            inputAutoComplete="current-password"
+            fieldName="password"
+            hookForm={hookForm}
+            label="Password"
+            inputType="password"
+          />
 
           <S.Center>
             <S.SubmitWrapper disabled={isSubmitting} type="submit">

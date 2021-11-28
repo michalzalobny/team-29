@@ -41,19 +41,28 @@ export const ModalContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 10rem;
+  padding-top: 85px;
+
+  ${media.tablet} {
+    padding-top: 80px;
+  }
 `;
 
 export const ModalWrapper = styled(motion.div)`
   width: 90%;
-  padding: 30px;
+  padding: 35px;
+  padding-bottom: 0;
   background-color: ${sharedValues.colors.white};
   border-radius: 10px;
 
   ${media.tablet} {
-    padding: 35px;
     width: 430px;
   }
+`;
+
+export const ContentWrapper = styled.div`
+  max-height: 60vh;
+  overflow: auto;
 `;
 
 export const CloseButtonWrapper = styled.button`
@@ -134,4 +143,60 @@ export const Button = styled.button<Button>`
     css`
       color: ${sharedValues.colors.brownDark};
     `}
+`;
+
+interface SignInWrapper {
+  isActive: boolean;
+}
+
+export const SignInWrapper = styled.div<SignInWrapper>`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding-bottom: 35px;
+
+  ${(props) =>
+    !props.isActive &&
+    css`
+      pointer-events: none;
+      user-select: none;
+    `}
+`;
+
+interface SignUpWrapper {
+  isActive: boolean;
+}
+
+export const SignUpWrapper = styled.div<SignUpWrapper>`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  padding-bottom: 35px;
+
+  ${(props) =>
+    !props.isActive &&
+    css`
+      pointer-events: none;
+      user-select: none;
+    `}
+`;
+
+export const FormContainer = styled.div`
+  padding: 35px 0;
+  width: 80%;
+  margin: 0 auto;
+  perspective: 500px;
+`;
+
+interface FillBackground {
+  elHeight: number;
+}
+
+export const FillBackground = styled.div<FillBackground>`
+  width: 100%;
+  position: relative;
+  background-color: ${sharedValues.colors.white};
+  transition: height 0.65s cubic-bezier(0.64, 0.02, 0.16, 0.97);
+  height: ${(props) => props.elHeight}px;
+  overflow: hidden;
 `;

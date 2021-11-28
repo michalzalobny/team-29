@@ -1,14 +1,12 @@
-export const WrapperV = {
+import { Variants } from 'framer-motion';
+
+export const WrapperV: Variants = {
   initial: {
+    rotateX: '-90deg',
     opacity: 0,
-    x: '5rem',
   },
   animate: {
+    rotateX: '0deg',
     opacity: 1,
-    x: '0rem',
-  },
-  exit: {
-    opacity: 0,
-    x: '0rem',
   },
 };

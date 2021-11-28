@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 
 import { sharedValues } from 'utils/sharedValues';
 
-export const Wrapper = styled(motion.div)``;
+export const Wrapper = styled(motion.div)`
+  backface-visibility: hidden;
+`;
 
 export const Form = styled.form``;
 
@@ -15,12 +17,6 @@ export const SubmitWrapper = styled.button`
 export const Center = styled.span`
   display: flex;
   justify-content: center;
-`;
-
-export const InputsContainer = styled.div`
-  padding: 35px 0;
-  width: 80%;
-  margin: 0 auto;
 `;
 
 export const ApiError = styled.p`
