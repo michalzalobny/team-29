@@ -8,6 +8,7 @@ import {
 import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 import { useElementSize } from 'hooks/useElementSize';
 import { SignInForm } from 'components/Forms/SignInForm/SignInForm';
+import { SignUpForm } from 'components/Forms/SignUpForm/SignUpForm';
 
 import * as S from './Logger.styles';
 import {
@@ -101,7 +102,7 @@ export const Logger = (props: Props) => {
                 </S.ButtonsContainer>
               </S.ButtonsWrapper>
             </S.CenterContent>
-            {activeLoggerMode === 'signin' ? <SignInForm /> : null}
+            {activeLoggerMode === 'signin' ? <SignInForm /> : <SignUpForm />}
           </S.ModalWrapper>
         </S.ModalContainer>
       </S.Wrapper>

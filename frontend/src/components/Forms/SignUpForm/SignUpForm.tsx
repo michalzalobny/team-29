@@ -7,15 +7,15 @@ import { springMedium } from 'components/Animations/framerTransitions';
 import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { Input } from 'components/Input/Input';
-import { SignInPOST, yupSignInSchema } from 'utils/apiQueries/user';
+import { SignUpPOST, yupSignUpSchema } from 'utils/apiQueries/user';
 
-import { WrapperV } from './SignInForm.motion';
-import * as S from './SignInForm.styles';
+import { WrapperV } from './SignUpForm.motion';
+import * as S from './SignUpForm.styles';
 
 interface Props {}
 
-export const SignInForm = (props: Props) => {
-  const hookForm = useForm({ resolver: yupResolver(yupSignInSchema) });
+export const SignUpForm = (props: Props) => {
+  const hookForm = useForm({ resolver: yupResolver(yupSignUpSchema) });
 
   const { setError, handleSubmit, formState } = hookForm;
 
@@ -23,7 +23,7 @@ export const SignInForm = (props: Props) => {
 
   const onSubmitHandler = React.useCallback(async (data) => {
     try {
-      const res = await SignInPOST(data);
+      const res = await SignUpPOST(data);
     } catch (error) {
       //Error message from server
       setError('apiError', { message: 'Something went wrong' });
@@ -38,6 +38,13 @@ export const SignInForm = (props: Props) => {
             {errors.apiError?.message && (
               <S.ApiError>{errors.apiError?.message}</S.ApiError>
             )}
+
+            <Input
+              fieldName="name"
+              hookForm={hookForm}
+              label="Name"
+              inputType="text"
+            />
 
             <Input
               inputAutoComplete="email"
@@ -61,7 +68,7 @@ export const SignInForm = (props: Props) => {
               <BlobButton
                 extraSidePadding={true}
                 backgroundColor={sharedValues.colors.brownDark}
-                label="Sign in"
+                label="Sign up"
               />
             </S.SubmitWrapper>
           </S.Center>
