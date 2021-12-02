@@ -9,7 +9,7 @@ Important dependencies are going to be listed here for brief description of thei
 - `SQLAlchemy` - ORM for database management and queries
 - `Pydantic` - type and data validation
 - `Uvicorn` - lightning fast server, used for serving this backend API
-- `python-dotenv` - used for managing environment variables to keep secrets be secrets
+~~- `python-dotenv` - used for managing environment variables to keep secrets be secrets~~
 
 
 ## Usage
@@ -37,6 +37,25 @@ pip install requests
 pytest
 ```
 
+### Coding Guidelines (Linting and Formatting)
+Linting will be enforced by [`pylint`](https://pylint.pycqa.org/en/latest/user_guide/run.html) which 
+adheres to [PEP8](https://pep8.org/) by default. This means that variable and module names must be in
+ `snake_case`, class names must be in `PascalCase`, etc. *everything is in pep8*.
+
+
+This will be a new development dependency and must be installed.
+```sh
+pip install pylint
+```
+Configurations for it will be in [pylintrc](./backend/pylintrc] (which doesn't exist yet) so that 
+running `pylint` will be easier and your IDE and can just load it.
+
+We are going to adhere to [Google's style of documentation strings](https://gist.github.com/redlotus/3bc387c2591e3e908c9b63b97b11d24e) 
+as it is more modern than reStructuredText and is supported better for FastAPI's autodocumentation.
+
+It is also recommended to add [type hints](https://www.python.org/dev/peps/pep-0484/) to everything as much as possible. 
+
+
 ### Resources
 [FastAPI Tutorial and Docmentation](https://fastapi.tiangolo.com/tutorial/)
 - This includes everything from basic to advanced usage. It also includes 
@@ -44,4 +63,4 @@ a background on modern python features such as typehinting and asynchronous prog
 
 [FastAPI Login](https://fastapi-login.readthedocs.io/)
 - a fastapi plugin that allows easy management of authentication 
-using [JWT](https://jwt.io/introduction) and authorisation using OAuth2 scopes
+using OAuth2 and authorisation using OAuth2 scopes
