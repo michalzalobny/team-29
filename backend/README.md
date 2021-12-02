@@ -47,7 +47,7 @@ This will be a new development dependency and must be installed.
 ```sh
 pip install pylint
 ```
-Configurations for it will be in [pylintrc](./backend/pylintrc] (which doesn't exist yet) so that 
+Configurations for it will be in [pylintrc](./backend/pylintrc) (which doesn't exist yet) so that 
 running `pylint` will be easier and your IDE and can just load it.
 
 We are going to adhere to [Google's style of documentation strings](https://gist.github.com/redlotus/3bc387c2591e3e908c9b63b97b11d24e) 
