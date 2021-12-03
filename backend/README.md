@@ -9,8 +9,38 @@ Important dependencies are going to be listed here for brief description of thei
 - `SQLAlchemy` - ORM for database management and queries
 - `Pydantic` - type and data validation
 - `Uvicorn` - lightning fast server, used for serving this backend API
-~~- `python-dotenv` - used for managing environment variables to keep secrets be secrets~~
 
+### University Database Setup (**NEEDED when running on non-university machines**)
+Anything that is enclosed by `<>` must be replaced with actual values
+
+#### Setting up a database connection
+1. ssh into your university linux machine
+```shell
+ssh <uni_ssh_username>@linux.cs.ncl.ac.uk
+```
+2. create a configuration file for mysql
+```shell
+echo "bind-address=0.0.0.0" >> ~/my.cnf
+```
+You only have to do above once.
+
+Steps below must be repeated when the connection closes.
+3. After setting up the configuration file, either logout of the terminal or open a new one and do
+```shell
+ssh -f <your_ssh_username>@linux.cs.ncl.ac.uk -L 3307:cs-db.ncl.ac.uk:3306 -N
+```
+This should run a connection that *tunnels* from your machine to the university database **in the background**.
+Accessing `127.0.0.1:3307` now points to the university machines and then to the database
+
+### Environment variables (**NEEDED**)
+Create a file inside [backend folder](../backend) called `.env` and fill 
+(anything that is enclosed by `<>` must be replaced with actual values)
+**There must be no space between equal signs `=`**
+```
+DB_USERNAME=csc2033_team29
+DB_PASSWORD=<insert_our_db_password>
+DB_NAME=csc2033_team29
+```
 
 ## Usage
 ```sh
@@ -19,7 +49,8 @@ python main.py
 
 
 # if just inside the repository but outside of backend
-python backend/main.py
+# this is the preferred way
+python backend/main.py  
 ```
 Doing either of the above will serve the API on `http://127.0.0.1:8080`. 
 To test if this works, you can go to that link in your browser.
@@ -47,7 +78,7 @@ This will be a new development dependency and must be installed.
 ```sh
 pip install pylint
 ```
-Configurations for it will be in [pylintrc](./backend/pylintrc) (which doesn't exist yet) so that 
+Configurations for it will be in [pylintrc](../backend/pylintrc) (which doesn't exist yet) so that 
 running `pylint` will be easier and your IDE and can just load it.
 
 We are going to adhere to [Google's style of documentation strings](https://gist.github.com/redlotus/3bc387c2591e3e908c9b63b97b11d24e) 
