@@ -9,7 +9,6 @@ idna==3.3
 passlib==1.7.4
 pydantic==1.8.2
 PyJWT==2.3.0
-python-dotenv==0.19.2
 python-multipart==0.0.5
 six==1.16.0
 sniffio==1.2.0
@@ -17,3 +16,4 @@ SQLAlchemy==1.4.27
 starlette==0.16.0
 typing-extensions==4.0.0
 uvicorn==0.15.0
+PyMySQL==1.0.2
