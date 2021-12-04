@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import { useLoggerContext } from 'context/LoggerContext';
 import { springMedium, springQuick } from 'components/Animations/framerTransitions';
@@ -40,10 +40,6 @@ export const Logger = (props: Props) => {
       x: sizeWrapper.clientRect.width - sizeUp.clientRect.width,
     },
   };
-
-  useEffect(() => {
-    console.log('height', sizeInWrapper.clientRect.height);
-  }, [sizeInWrapper]);
 
   return (
     <>
