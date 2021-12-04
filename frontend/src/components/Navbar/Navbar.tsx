@@ -78,33 +78,23 @@ export const Navbar = (props: Props) => {
               </S.LogoWrapper>
             </Link>
           </S.LogoSection>
-          <S.ButtonSection
-            aria-label="open links menu"
-            onClick={() => setIsOpened((prev) => !prev)}
-          >
+          <S.ButtonSection aria-label="open links menu" onClick={() => setIsOpened(prev => !prev)}>
             <CloseButton isCrossed={isOpened} />
           </S.ButtonSection>
           <S.LinksSection
-            transition={
-              isTablet ? { type: 'tween', duration: 0 } : springMedium
-            }
+            transition={isTablet ? { type: 'tween', duration: 0 } : springMedium}
             variants={LinksSectionV}
             initial="initial"
             animate={isOpened || isTablet ? 'animate' : 'initial'}
           >
-            {links.map((navLink) => {
+            {links.map(navLink => {
               return (
                 <S.LinkWrapper key={navLink.label}>
-                  <LinkManager
-                    elHref={navLink.href}
-                    onClickFn={navLink.onClickFn}
-                  >
+                  <LinkManager elHref={navLink.href} onClickFn={navLink.onClickFn}>
                     {navLink.isRound ? (
                       <BlobButton label={navLink.label} />
                     ) : (
-                      <S.LinkItem isBold={navLink.isBold}>
-                        {navLink.label}
-                      </S.LinkItem>
+                      <S.LinkItem isBold={navLink.isBold}>{navLink.label}</S.LinkItem>
                     )}
                   </LinkManager>
                 </S.LinkWrapper>

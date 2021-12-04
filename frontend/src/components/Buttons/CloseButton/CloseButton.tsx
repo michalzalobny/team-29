@@ -1,9 +1,6 @@
 import React, { useRef } from 'react';
 
-import {
-  springQuick,
-  springMedium,
-} from 'components/Animations/framerTransitions';
+import { springQuick, springMedium } from 'components/Animations/framerTransitions';
 import { useHover } from 'hooks/useHover';
 
 import * as S from './CloseButton.styles';

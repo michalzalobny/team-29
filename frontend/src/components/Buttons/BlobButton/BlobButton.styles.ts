@@ -7,13 +7,13 @@ interface Wrapper {
 }
 
 export const Wrapper = styled.span<Wrapper>`
-  background-color: ${(props) => props.backgroundColor};
-  color: ${(props) => props.textColor};
+  background-color: ${props => props.backgroundColor};
+  color: ${props => props.textColor};
   border-radius: 50px;
   cursor: pointer;
   padding: 14px 25px;
 
-  ${(props) =>
+  ${props =>
     props.extraSidePadding &&
     css`
       padding: 14px 55px;
@@ -22,7 +22,7 @@ export const Wrapper = styled.span<Wrapper>`
   display: inline-block;
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 13px ${(props) => props.backgroundColor};
+  box-shadow: 0 0 13px ${props => props.backgroundColor};
   font-size: 15px;
   line-height: 1.6;
 

@@ -1,22 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 
 import { useLoggerContext } from 'context/LoggerContext';
-import {
-  springMedium,
-  springQuick,
-} from 'components/Animations/framerTransitions';
+import { springMedium, springQuick } from 'components/Animations/framerTransitions';
 import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 import { useElementSize } from 'hooks/useElementSize';
 import { SignInForm } from 'components/Forms/SignInForm/SignInForm';
 import { SignUpForm } from 'components/Forms/SignUpForm/SignUpForm';
 
 import * as S from './Logger.styles';
-import {
-  BackgroundV,
-  ModalWrapperV,
-  WrapperV,
-  ButtonsWrapperV,
-} from './Logger.motion';
+import { BackgroundV, ModalWrapperV, WrapperV, ButtonsWrapperV } from './Logger.motion';
 
 export interface Props {
   initial: string;
@@ -26,8 +18,7 @@ export interface Props {
 
 export const Logger = (props: Props) => {
   const { ...rest } = props;
-  const { setActiveLoggerMode, setIsLoggerOpen, activeLoggerMode } =
-    useLoggerContext();
+  const { setActiveLoggerMode, setIsLoggerOpen, activeLoggerMode } = useLoggerContext();
 
   const buttonInRef = useRef(null);
   const buttonUpRef = useRef(null);
@@ -38,10 +29,8 @@ export const Logger = (props: Props) => {
   const { size: sizeIn } = useElementSize(buttonInRef);
   const { size: sizeUp } = useElementSize(buttonUpRef);
   const { size: sizeWrapper } = useElementSize(buttonsWrapperRef);
-  const { onResize: onResizeIn, size: sizeInWrapper } =
-    useElementSize(signInRef);
-  const { onResize: onResizeUp, size: sizeUpWrapper } =
-    useElementSize(signUpRef);
+  const { onResize: onResizeIn, size: sizeInWrapper } = useElementSize(signInRef);
+  const { onResize: onResizeUp, size: sizeUpWrapper } = useElementSize(signUpRef);
 
   const BorderV = {
     initial: {
@@ -68,10 +57,7 @@ export const Logger = (props: Props) => {
               staggerChildren: 0.05,
             }}
           >
-            <S.CloseButtonWrapper
-              aria-label="close modal"
-              onClick={() => setIsLoggerOpen(false)}
-            >
+            <S.CloseButtonWrapper aria-label="close modal" onClick={() => setIsLoggerOpen(false)}>
               <CloseButton isCrossed={true} />
             </S.CloseButtonWrapper>
             <S.ContentWrapper>
@@ -85,9 +71,7 @@ export const Logger = (props: Props) => {
                     transition={springQuick}
                     variants={BorderV}
                     initial="initial"
-                    animate={
-                      activeLoggerMode === 'signup' ? 'animate' : 'initial'
-                    }
+                    animate={activeLoggerMode === 'signup' ? 'animate' : 'initial'}
                     $elWidth={
                       activeLoggerMode === 'signin'
                         ? sizeIn.clientRect.width
@@ -121,31 +105,21 @@ export const Logger = (props: Props) => {
                     : sizeInWrapper.clientRect.height
                 }
               >
-                <S.SignInWrapper
-                  isActive={activeLoggerMode === 'signin'}
-                  ref={signInRef}
-                >
+                <S.SignInWrapper isActive={activeLoggerMode === 'signin'} ref={signInRef}>
                   <S.FormContainer>
                     <SignInForm
                       resizeFn={() => onResizeIn()}
                       initial="initial"
-                      animate={
-                        activeLoggerMode === 'signin' ? 'animate' : 'initial'
-                      }
+                      animate={activeLoggerMode === 'signin' ? 'animate' : 'initial'}
                     />
                   </S.FormContainer>
                 </S.SignInWrapper>
-                <S.SignUpWrapper
-                  isActive={activeLoggerMode === 'signup'}
-                  ref={signUpRef}
-                >
+                <S.SignUpWrapper isActive={activeLoggerMode === 'signup'} ref={signUpRef}>
                   <S.FormContainer>
                     <SignUpForm
                       resizeFn={() => onResizeUp()}
                       initial="initial"
-                      animate={
-                        activeLoggerMode === 'signup' ? 'animate' : 'initial'
-                      }
+                      animate={activeLoggerMode === 'signup' ? 'animate' : 'initial'}
                     />
                   </S.FormContainer>
                 </S.SignUpWrapper>

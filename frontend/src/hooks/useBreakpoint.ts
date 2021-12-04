@@ -4,9 +4,7 @@ export const useBreakpoint = (breakpoint: number) => {
   const [isBreakpoint, setIsBreakpoint] = useState(false);
 
   const testBreakpoint = React.useCallback(() => {
-    return typeof window === 'undefined'
-      ? false
-      : window.innerWidth >= breakpoint;
+    return typeof window === 'undefined' ? false : window.innerWidth >= breakpoint;
   }, [breakpoint]);
 
   useEffect(() => {

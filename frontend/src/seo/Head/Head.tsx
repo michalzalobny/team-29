@@ -35,10 +35,7 @@ export const Head = (props: HeadProps) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
 
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
       <GoogleAnalytics />
     </NextHead>

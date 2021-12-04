@@ -31,9 +31,9 @@ export default function MyApp(props: AppProps) {
         () => {
           setIsReady(true);
           console.warn('Fonts were loading too long (over 1000ms)');
-        },
+        }
       )
-      .catch((err) => {
+      .catch(err => {
         setIsReady(true);
         console.warn('Some critical font are not available:', err);
       });
@@ -47,11 +47,7 @@ export default function MyApp(props: AppProps) {
         <AnimatePresence exitBeforeEnter={false}>
           <>
             <Layout isReady={isReady}>
-              <Component
-                key={router.route + router.locale}
-                router={router}
-                {...pageProps}
-              />
+              <Component key={router.route + router.locale} router={router} {...pageProps} />
             </Layout>
           </>
         </AnimatePresence>

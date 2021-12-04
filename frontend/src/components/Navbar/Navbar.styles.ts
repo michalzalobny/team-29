@@ -122,7 +122,7 @@ export const LinkItem = styled.span<LinkItem>`
     }
   }
 
-  ${(props) =>
+  ${props =>
     props.isBold &&
     css`
       font-weight: 800;

@@ -19,7 +19,7 @@ export const useClickOutside = (ref: Ref, handler: Handler) => {
       }
       handler(event);
     },
-    [ref, handler],
+    [ref, handler]
   );
 
   useEffect(() => {

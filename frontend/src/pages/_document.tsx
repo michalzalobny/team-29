@@ -1,10 +1,4 @@
-import NextDocument, {
-  Head,
-  Main,
-  NextScript,
-  DocumentContext,
-  Html,
-} from 'next/document';
+import NextDocument, { Head, Main, NextScript, DocumentContext, Html } from 'next/document';
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -18,8 +12,7 @@ export default class Document extends NextDocument {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: (App) => (props) =>
-            sheet.collectStyles(<App {...props} />),
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
         });
 
       const initialProps = await NextDocument.getInitialProps(ctx);
@@ -59,9 +52,7 @@ export default class Document extends NextDocument {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />{' '}
           <script
             dangerouslySetInnerHTML={{
-              __html: `(${setCssVariables.toString()})({variables:${JSON.stringify(
-                VARIABLES,
-              )}})`,
+              __html: `(${setCssVariables.toString()})({variables:${JSON.stringify(VARIABLES)}})`,
             }}
           />{' '}
         </Head>

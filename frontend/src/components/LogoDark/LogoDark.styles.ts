@@ -15,7 +15,7 @@ export const Wrapper = styled.div<Wrapper>`
 
   transition: opacity 0.2s;
 
-  ${(props) =>
+  ${props =>
     props.isLoaded &&
     css`
       opacity: 1;
