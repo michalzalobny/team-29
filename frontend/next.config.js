@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-unpublished-require
 const withPlugins = require('next-compose-plugins');
 const withOptimizedImages = require('next-optimized-images');
 
@@ -6,7 +7,7 @@ const nextConfig = {
     locales: ['en-US'],
     defaultLocale: 'en-US',
   },
-  webpack: (config) => {
+  webpack: config => {
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag)$/,
       exclude: /node_modules/,
@@ -41,7 +42,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins(
-  [[withOptimizedImages, { optimizeImages: false }]],
-  nextConfig,
-);
+module.exports = withPlugins([[withOptimizedImages, { optimizeImages: false }]], nextConfig);

@@ -23,11 +23,14 @@ export const Navbar = (props: Props) => {
 
   const isTablet = useBreakpoint(breakpoints.tablet);
 
-  const handleOpenLogger = React.useCallback((mode: ActiveLoggerMode) => {
-    setActiveLoggerMode(mode);
-    setIsLoggerOpen(true);
-    setIsOpened(false);
-  }, []);
+  const handleOpenLogger = React.useCallback(
+    (mode: ActiveLoggerMode) => {
+      setActiveLoggerMode(mode);
+      setIsLoggerOpen(true);
+      setIsOpened(false);
+    },
+    [setActiveLoggerMode, setIsLoggerOpen]
+  );
 
   useEffect(() => {
     const onResize = () => {
