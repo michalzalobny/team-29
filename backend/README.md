@@ -46,7 +46,7 @@ This is only possible if you are able to ssh tunnel into the university machine,
 if you can't access the university database. Just replace the value of `DB_URL` like
 ```
 # db username, password, and name stay the same
-DB_URL=sqlite://./team29.db"
+DB_URL=sqlite://./team29.db
 ```
 This will allow sqlalchemy to use `sqlite` instead.
 ## Running the server
