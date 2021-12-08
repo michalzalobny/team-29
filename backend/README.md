@@ -40,17 +40,25 @@ Create a file inside [backend folder](../backend) called `.env` and fill
 DB_USERNAME=csc2033_team29
 DB_PASSWORD=<insert_our_db_password>
 DB_NAME=csc2033_team29
+DB_URL=mysql+pymysql://{}:{}@127.0.0.1:3307/{}?charset=utf8mb4
 ```
-
-## Usage
+This is only possible if you are able to ssh tunnel into the university machine, using an sqlite URL is possible
+if you can't access the university database. Just replace the value of `DB_URL` like
+```
+# db username, password, and name stay the same
+DB_URL=sqlite://./team29.db"
+```
+This will allow sqlalchemy to use `sqlite` instead.
+## Running the server
 ```sh
-# assuming current directory is .../backend/
-python main.py
-
-
 # if just inside the repository but outside of backend
 # this is the preferred way
-python backend/main.py  
+
+# Non-Windows
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8080 --reload
+
+# Windows
+py -m uvicorn backend.main:app --host 127.0.0.1 --port 8080 --reload
 ```
 Doing either of the above will serve the API on `http://127.0.0.1:8080`. 
 To test if this works, you can go to that link in your browser.
