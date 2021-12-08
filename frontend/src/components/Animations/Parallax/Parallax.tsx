@@ -68,18 +68,10 @@ export const Parallax = (props: ParallaxProps) => {
     }
     lastFrameTime.current = time;
 
-    const newX = lerp(
-      currentXMv.get(),
-      targetX.current,
-      LERP_EASE * slowDownFactor,
-    );
+    const newX = lerp(currentXMv.get(), targetX.current, LERP_EASE * slowDownFactor);
     currentXMv.set(newX);
 
-    const newY = lerp(
-      currentYMv.get(),
-      targetY.current,
-      LERP_EASE * slowDownFactor,
-    );
+    const newY = lerp(currentYMv.get(), targetY.current, LERP_EASE * slowDownFactor);
     currentYMv.set(newY);
   };
 
@@ -106,10 +98,8 @@ export const Parallax = (props: ParallaxProps) => {
     if (refElement) {
       referenceElWidth = refElement.current.clientWidth;
       referenceElHeight = refElement.current.clientHeight;
-      relativeMousePositionX =
-        event.clientX - refElement.current.getBoundingClientRect().x;
-      relativeMousePositionY =
-        event.clientY - refElement.current.getBoundingClientRect().y;
+      relativeMousePositionX = event.clientX - refElement.current.getBoundingClientRect().x;
+      relativeMousePositionY = event.clientY - refElement.current.getBoundingClientRect().y;
     } else {
       referenceElWidth = windowSizeRef.current.width;
       referenceElHeight = windowSizeRef.current.height;
@@ -117,11 +107,9 @@ export const Parallax = (props: ParallaxProps) => {
       relativeMousePositionY = event.clientY;
     }
 
-    const offsetRatioX =
-      -(relativeMousePositionX - referenceElWidth / 2) * offsetXMultiplier;
+    const offsetRatioX = -(relativeMousePositionX - referenceElWidth / 2) * offsetXMultiplier;
 
-    const offsetRatioY =
-      -(relativeMousePositionY - referenceElHeight / 2) * offsetYMultiplier;
+    const offsetRatioY = -(relativeMousePositionY - referenceElHeight / 2) * offsetYMultiplier;
 
     targetX.current = offsetRatioX;
     targetY.current = offsetRatioY;

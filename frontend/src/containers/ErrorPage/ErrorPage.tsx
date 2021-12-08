@@ -9,9 +9,7 @@ export default function ErrorPage(props: ErrorPageProps) {
   return (
     <>
       <div className="error__code__wrapper">
-        <p className="error__code">
-          Something went wrong {`| ${statusCode || 'undefined code'}`}
-        </p>
+        <p className="error__code">Something went wrong {`| ${statusCode || 'undefined code'}`}</p>
       </div>
     </>
   );

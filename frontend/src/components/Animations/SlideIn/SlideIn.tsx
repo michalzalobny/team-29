@@ -13,13 +13,8 @@ interface SlideInProps {
   triggerOnce?: boolean;
 }
 
-export const SlideIn = memo<SlideInProps>((props) => {
-  const {
-    slideSize = '10vh',
-    slideDirection = 'y',
-    children,
-    triggerOnce = false,
-  } = props;
+export const SlideIn = memo<SlideInProps>(props => {
+  const { slideSize = '10vh', slideDirection = 'y', children, triggerOnce = false } = props;
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -64,11 +59,7 @@ export const SlideIn = memo<SlideInProps>((props) => {
     <>
       <Wrapper
         ref={ref}
-        variants={
-          slideDirection === 'y'
-            ? slideVerticalVariants
-            : slideHorizontalVariants
-        }
+        variants={slideDirection === 'y' ? slideVerticalVariants : slideHorizontalVariants}
         animate={!scrollValues ? '' : inView ? 'animate' : 'initial'}
       >
         {children}

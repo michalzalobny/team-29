@@ -27,9 +27,7 @@ export const Layout = (props: Props) => {
         variants={WrapperV}
       >
         <AnimatePresence>
-          {isLoggerOpen && (
-            <Logger initial="initial" animate="animate" exit="exit" />
-          )}
+          {isLoggerOpen && <Logger initial="initial" animate="animate" exit="exit" />}
         </AnimatePresence>
 
         <Navbar />

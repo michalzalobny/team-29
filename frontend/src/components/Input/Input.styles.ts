@@ -29,7 +29,7 @@ export const Label = styled.label<Label>`
 
   transition: transform 0.3s;
 
-  ${(props) =>
+  ${props =>
     props.isFocused &&
     css`
       transform: translateY(-270%) scale(0.85);
@@ -50,7 +50,7 @@ export const Input = styled.input<Input>`
     box-shadow: 0 0 12px ${sharedValues.colors.brown};
   }
 
-  ${(props) =>
+  ${props =>
     props.isError &&
     css`
       box-shadow: 0 0 12px ${sharedValues.colors.red};

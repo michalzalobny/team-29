@@ -1,7 +1,7 @@
 // https://jasonwatmore.com/post/2021/09/13/react-hook-form-display-custom-error-message-returned-from-api-request
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
 import { springMedium } from 'components/Animations/framerTransitions';
 import { sharedValues } from 'utils/sharedValues';
@@ -27,34 +27,31 @@ export const SignUpForm = (props: Props) => {
 
   const { errors, isSubmitting } = formState;
 
-  const onSubmitHandler = React.useCallback(async (data) => {
-    try {
-      const res = await SignUpPOST(data);
-    } catch (error) {
-      //Error message from server
-      setError('apiError', { message: 'Something went wrong' });
-    }
-  }, []);
+  const onSubmitHandler = React.useCallback(
+    async data => {
+      try {
+        const res = await SignUpPOST(data);
+      } catch (error) {
+        //Error message from server
+        setError('apiError', { message: 'Something went wrong' });
+      }
+    },
+    [setError]
+  );
 
   //It is used only to update modal height
   useEffect(() => {
     resizeFn();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors?.name, errors?.password, errors?.email, errors?.apiError]);
 
   return (
     <>
       <S.Wrapper {...rest} variants={WrapperV} transition={springMedium}>
         <S.Form onSubmit={handleSubmit(onSubmitHandler)}>
-          {errors.apiError?.message && (
-            <S.ApiError>{errors.apiError?.message}</S.ApiError>
-          )}
+          {errors.apiError?.message && <S.ApiError>{errors.apiError?.message}</S.ApiError>}
 
-          <Input
-            fieldName="name"
-            hookForm={hookForm}
-            label="Name"
-            inputType="text"
-          />
+          <Input fieldName="name" hookForm={hookForm} label="Name" inputType="text" />
 
           <Input
             inputAutoComplete="email"

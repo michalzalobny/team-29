@@ -107,11 +107,11 @@ export const Border = styled(motion.span)<Border>`
   border: 2px solid ${sharedValues.colors.brownDark};
   display: inline-block;
   height: 100%;
-  width: ${(props) => props.$elWidth}px;
+  width: ${props => props.$elWidth}px;
   opacity: 0;
   transition: width 0.35s, opacity 0.35s 0.35s;
 
-  ${(props) =>
+  ${props =>
     props.$isWidthReady &&
     css`
       opacity: 1;
@@ -138,7 +138,7 @@ export const Button = styled.button<Button>`
     }
   }
 
-  ${(props) =>
+  ${props =>
     props.isActive &&
     css`
       color: ${sharedValues.colors.brownDark};
@@ -155,7 +155,7 @@ export const SignInWrapper = styled.div<SignInWrapper>`
   width: 100%;
   padding-bottom: 35px;
 
-  ${(props) =>
+  ${props =>
     !props.isActive &&
     css`
       pointer-events: none;
@@ -173,7 +173,7 @@ export const SignUpWrapper = styled.div<SignUpWrapper>`
   width: 100%;
   padding-bottom: 35px;
 
-  ${(props) =>
+  ${props =>
     !props.isActive &&
     css`
       pointer-events: none;
@@ -197,6 +197,6 @@ export const FillBackground = styled.div<FillBackground>`
   position: relative;
   background-color: ${sharedValues.colors.white};
   transition: height 0.65s cubic-bezier(0.64, 0.02, 0.16, 0.97);
-  height: ${(props) => props.elHeight}px;
+  height: ${props => props.elHeight}px;
   overflow: hidden;
 `;

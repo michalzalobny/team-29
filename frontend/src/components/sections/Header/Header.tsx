@@ -5,8 +5,6 @@ import * as S from './Header.styles';
 interface Props {}
 
 export const Header = (props: Props) => {
-  const {} = props;
-
   return (
     <>
       <S.Wrapper>
