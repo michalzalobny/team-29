@@ -35,3 +35,5 @@ export const BlobButton = React.forwardRef((props: Props, ref: React.Ref<HTMLEle
     </>
   );
 });
+
+BlobButton.displayName = 'BlobButton';

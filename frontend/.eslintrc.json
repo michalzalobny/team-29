@@ -1,5 +1,5 @@
 {
-  "extends": ["./node_modules/gts/", "plugin:react-hooks/recommended"],
+  "extends": ["./node_modules/gts/", "next/core-web-vitals", "plugin:react-hooks/recommended"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "off",
     "react/react-in-jsx-scope": "off",
