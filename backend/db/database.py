@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from backend.settings import db_username, db_password, db_name, db_url, db_driver
+from settings import db_url, db_driver
 
 
 # if sqlite is used for testing, etc

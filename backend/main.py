@@ -1,12 +1,12 @@
 import uvicorn
 from fastapi import FastAPI
 
-from backend.db import models
-from backend.db.database import engine
+# from db import models
+from db.database import engine, Base
 
-from backend.routers import users
+from routers import users
 
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 app.include_router(users.router)

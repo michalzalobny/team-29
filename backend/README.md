@@ -13,6 +13,11 @@ Important dependencies are going to be listed here for brief description of thei
 ### University Database Setup (**NEEDED when running on non-university machines**)
 Anything that is enclosed by `<>` must be replaced with actual values
 
+**NOTE: If you're using PyCharm Professional Edition, [this](https://ncl.instructure.com/courses/39968/files/5003547)
+is the easier way. Make sure that you set the local port, on the SSH Tunnel section, instead of it being dynamic, 
+preferably to 3307.**
+
+
 #### Setting up a database connection
 1. ssh into your university linux machine
 ```shell
@@ -32,6 +37,7 @@ ssh -f <your_ssh_username>@linux.cs.ncl.ac.uk -L 3307:cs-db.ncl.ac.uk:3306 -N
 This should run a connection that *tunnels* from your machine to the university database **in the background**.
 Accessing `127.0.0.1:3307` now points to the university machines and then to the database
 
+
 ### Environment variables (**NEEDED**)
 Create a file inside [backend folder](../backend) called `.env` and fill 
 (anything that is enclosed by `<>` must be replaced with actual values)
@@ -46,24 +52,33 @@ This is only possible if you are able to ssh tunnel into the university machine,
 if you can't access the university database. Just replace the value of `DB_URL` like
 ```
 # db username, password, and name stay the same
-DB_URL=sqlite://./team29.db
+DB_URL=sqlite:///./team29.db
 ```
 This will allow sqlalchemy to use `sqlite` instead.
+
+
 ## Running the server
+Make sure that you're running `backend` folder as a project on your IDE/editor (it is the current working directory)
+and not the whole `team-29` repo.
 ```sh
 # if just inside the repository but outside of backend
 # this is the preferred way
 
 # Non-Windows
-python -m uvicorn backend.main:app --host 127.0.0.1 --port 8080 --reload
+python -m uvicorn main:app --host 127.0.0.1 --port 8080 --reload
+## or
+python main.py
 
 # Windows
-py -m uvicorn backend.main:app --host 127.0.0.1 --port 8080 --reload
+py -m uvicorn main:app --host 127.0.0.1 --port 8080 --reload
+## or
+py main.py
 ```
 Doing either of the above will serve the API on `http://127.0.0.1:8080`. 
 To test if this works, you can go to that link in your browser.
 
 Interactive documention will be served at `/docs`, alternative documentation will be at `/redoc`
+
 
 ### Running Tests
 Running tests will require extra dependencies that are not listed at `requirements.txt` 
@@ -73,7 +88,9 @@ pip install pytest
 pip install requests
 
 # after installing run ...
-pytest
+py -m pytest
+# or 
+python -m pytest
 ```
 
 ### Coding Guidelines (Linting and Formatting)
