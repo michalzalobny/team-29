@@ -7,7 +7,7 @@ config = Config("./.env")
 db_username = config("DB_USERNAME", default="")
 db_password = config("DB_PASSWORD", default="", cast=Secret)
 db_name = config("DB_NAME", default="")
-
+secret_key = config("SECRET_KEY")
 
 db_url = config("DB_URL", default="sqlite:///./team-29.db")
 db_driver = make_url(db_url).drivername

@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from db import schemas, crud
-from dependencies import get_db
+from dependencies import get_db, manager
 
 from typing import List
 
@@ -12,6 +13,22 @@ router = APIRouter(
     # dependencies=[Depends(get_token_header)],
     responses={404: {"description": "Not found"}},
 )
+
+
+@router.post("/login")
+def login(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    email = data.username
+    password = data.password
+
+    user = crud.get_user_by_email(db, email=email)
+
+    if not user or (password != user.password):
+        return {"Authentication": "Failed"}
+
+    access_token = manager.create_access_token(
+        data={'sub': email}
+    )
+    return {'token': access_token}
 
 
 @router.post("/", response_model=schemas.User)
