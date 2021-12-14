@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+from typing import List
+
 from db import schemas, crud
 from dependencies import get_db, manager
-
-from typing import List
+from utils import user_model_to_schema
 
 
 router = APIRouter(
@@ -17,18 +18,19 @@ router = APIRouter(
 
 @router.post("/login")
 def login(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    email = data.username
+    username = data.username
     password = data.password
 
-    user = crud.get_user_by_email(db, email=email)
+    user = crud.get_user_by_username(username, db=db)
 
     if not user or (password != user.password):
         return {"Authentication": "Failed"}
 
     access_token = manager.create_access_token(
-        data={'sub': email}
+        data={'sub': username}
     )
-    return {'token': access_token}
+
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
 @router.post("/", response_model=schemas.User)
@@ -39,10 +41,15 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return crud.create_user(db=db, user=user)
 
 
-@router.get("/users/", response_model=List[schemas.User])
+@router.get("/users/", response_model=List[schemas.User], dependencies=[Depends(manager)])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     users = crud.get_users(db, skip=skip, limit=limit)
     return users
+
+
+@router.get("/me", response_model=schemas.User)
+def read_current_user(user=Depends(manager)):
+    return user_model_to_schema(user)
 
 
 @router.get("/users/{user_id}", response_model=schemas.User)

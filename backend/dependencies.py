@@ -13,5 +13,6 @@ def get_db():
 
 
 manager = LoginManager(
-    secret_key, '/login',
-    default_expiry=timedelta(hours=12))
+    secret_key, "users/login",
+    default_expiry=timedelta(hours=12)
+)
