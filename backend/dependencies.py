@@ -1,5 +1,7 @@
 from datetime import timedelta
+
 from fastapi_login import LoginManager
+
 from db.database import SessionLocal
 from settings import secret_key
 
@@ -13,6 +15,6 @@ def get_db():
 
 
 manager = LoginManager(
-    secret_key, "users/login",
+    secret_key, "auth/login",
     default_expiry=timedelta(hours=12)
 )

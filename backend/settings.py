@@ -1,7 +1,6 @@
+from sqlalchemy.engine import make_url
 from starlette.config import Config
 from starlette.datastructures import Secret
-from sqlalchemy.engine import make_url
-
 
 config = Config("./.env")
 db_username = config("DB_USERNAME", default="")
@@ -14,3 +13,7 @@ db_driver = make_url(db_url).drivername
 
 if "sqlite" not in db_driver:
     db_url = config("DB_URL").format(db_username, str(db_password), db_name)
+
+origins = ["http://localhost:5000",
+           "https://localhost:5000",
+           "https://team-29.vercel.app/"]
