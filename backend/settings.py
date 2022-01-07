@@ -16,4 +16,4 @@ if "sqlite" not in db_driver:
 
 origins = ["http://localhost:5000",
            "https://localhost:5000",
-           "https://team-29.vercel.app/"]
+           "https://team-29.vercel.app"]
