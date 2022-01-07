@@ -34,3 +34,19 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+
+def create_animal(db: Session, animal: schemas.AnimalCreate):
+    db_animal = models.Animal(**animal.dict())
+    db.add(db_animal)
+    db.commit()
+    db.refresh(db_animal)
+    return db_animal
+
+
+def get_animal(db: Session, animal_id: int):
+    return db.query(models.Animal).filter(models.Animal.id == animal_id).first()
+
+
+def get_animals(db: Session):
+    return db.query(models.Animal).all()
