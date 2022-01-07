@@ -11,10 +11,10 @@ from settings import db_url, db_driver
 
 if "sqlite" in db_driver:
     engine = create_engine(
-        db_url, connect_args={"check_same_thread": False}
+        str(db_url), connect_args={"check_same_thread": False}
     )
 else:
-    engine = create_engine(db_url)
+    engine = create_engine(str(db_url))
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
