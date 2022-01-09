@@ -16,7 +16,7 @@ def get_user_by_username(username: str, db: Session):
     return db.query(models.User).filter(models.User.username == username).first()
 
 
-def get_user(db: Session, user_id: int):
+def get_user(db: Session, user_id: int) -> models.User:
     return db.query(models.User).filter(models.User.id == user_id).first()
 
 
@@ -50,3 +50,16 @@ def get_animal(db: Session, animal_id: int):
 
 def get_animals(db: Session):
     return db.query(models.Animal).all()
+
+
+def add_animal_to_user(db: Session, user_id: int, animal_id: int):
+    user = get_user(db, user_id=user_id)
+    animal = get_animal(db, animal_id=animal_id)
+    user.animals.append(animal)
+    db.commit()
+    return animal
+
+
+def get_all_animal_by_user(db: Session, user_id: int):
+    user = get_user(db, user_id=user_id)
+    return user.animals
