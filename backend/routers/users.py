@@ -1,5 +1,6 @@
 from typing import List
 
+from pydantic import parse_obj_as
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
@@ -30,3 +31,13 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
+
+
+@router.post("/{user_id}/{animal_id}", response_model=schemas.Animal)
+def add_animal_to_user(user_id: int, animal_id: int, db: Session = Depends(get_db)):
+    return crud.add_animal_to_user(db, user_id=user_id, animal_id=animal_id)
+
+
+@router.get("/animals/{user_id}", response_model=List[schemas.Animal])
+def read_all_animals_by_user(user_id: int, db: Session = Depends(get_db)):
+    return crud.get_all_animal_by_user(db, user_id=user_id)
