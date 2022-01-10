@@ -36,6 +36,14 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
+def update_user(db: Session, user: models.User, new_details: schemas.UserUpdate):
+    for key, val in new_details.dict(exclude_unset=True).items():
+        setattr(user, key, val)
+    db.add(user)
+    db.commit()
+    return user
+
+
 def create_animal(db: Session, animal: schemas.AnimalCreate):
     db_animal = models.Animal(**animal.dict())
     db.add(db_animal)
