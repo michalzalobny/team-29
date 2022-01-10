@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class UserBase(BaseModel):
@@ -11,6 +11,13 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str
+
+
+class UserUpdate(BaseModel):
+    """User update schema allowing for optional fields that UserBase and subclasses don't offer"""
+    email: Optional[str] = Field(None)
+    username: Optional[str] = Field(None)
+    password: Optional[str] = Field(None)
 
 
 class User(UserBase):
