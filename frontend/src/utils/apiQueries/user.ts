@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import axios from 'utils/axiosInstance';
 
 export const yupSignInSchema = yup.object().shape({
-  email: yup.string().email().required(),
+  username: yup.string().required(),
   password: yup.string().min(8).max(16).required(),
 });
 
@@ -14,7 +14,7 @@ export const yupSignUpSchema = yup.object().shape({
 });
 
 interface SignInPOST {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -24,9 +24,9 @@ interface SignUpPOST {
   password: string;
 }
 
-export const SignInPOST = ({ email, password }: SignInPOST) => {
+export const SignInPOST = ({ username, password }: SignInPOST) => {
   return axios.post('auth/login', {
-    email,
+    username,
     password,
   });
 };

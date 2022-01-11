@@ -32,6 +32,12 @@ export const SignUpForm = (props: Props) => {
       try {
         const res = await SignUpPOST(data);
 
+        if (res.status !== 200) {
+          setError('apiError', { message: 'Something went wrong' });
+        } else {
+          alert('Register completed');
+        }
+
         console.log(res);
       } catch (error) {
         //Error message from server

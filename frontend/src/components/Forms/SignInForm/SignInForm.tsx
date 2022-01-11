@@ -31,7 +31,10 @@ export const SignInForm = (props: Props) => {
     async data => {
       try {
         const res = await SignInPOST(data);
+
+        console.log(res);
       } catch (error) {
+        console.log(error);
         //Error message from server
         setError('apiError', { message: 'Something went wrong' });
       }
@@ -43,7 +46,7 @@ export const SignInForm = (props: Props) => {
   useEffect(() => {
     resizeFn();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errors?.password, errors?.email, errors?.apiError]);
+  }, [errors?.password, errors?.username, errors?.apiError]);
 
   return (
     <>
@@ -51,13 +54,7 @@ export const SignInForm = (props: Props) => {
         <S.Form onSubmit={handleSubmit(onSubmitHandler)}>
           {errors.apiError?.message && <S.ApiError>{errors.apiError?.message}</S.ApiError>}
 
-          <Input
-            inputAutoComplete="email"
-            fieldName="email"
-            hookForm={hookForm}
-            label="Email"
-            inputType="email"
-          />
+          <Input fieldName="username" hookForm={hookForm} label="Username" />
 
           <Input
             inputAutoComplete="current-password"
