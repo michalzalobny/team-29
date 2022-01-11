@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import URLSearchParams from '@ungap/url-search-params';
 
 import axios from 'utils/axiosInstance';
 
@@ -25,10 +26,10 @@ interface SignUpPOST {
 }
 
 export const SignInPOST = ({ username, password }: SignInPOST) => {
-  return axios.post('auth/login', {
-    username,
-    password,
-  });
+  const params = new URLSearchParams();
+  params.append('username', username);
+  params.append('password', password);
+  return axios.post('auth/login', params);
 };
 
 export const SignUpPOST = ({ username, email, password }: SignUpPOST) => {

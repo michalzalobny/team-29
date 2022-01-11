@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^2.8.3",
     "@tweenjs/tween.js": "^18.6.4",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@ungap/url-search-params": "^0.2.2",
     "axios": "^0.24.0",
     "focus-visible": "^5.2.0",
     "fontfaceobserver": "^2.1.0",
@@ -35,9 +36,14 @@
   "devDependencies": {
     "@types/fontfaceobserver": "^2.1.0",
     "@types/lodash": "^4.14.173",
+    "@types/node": "16.11.11",
     "@types/normalize-wheel": "^1.0.0",
+    "@types/react": "17.0.37",
     "@types/styled-components": "^5.1.15",
     "@types/three": "^0.132.0",
+    "eslint": "8.4.0",
+    "eslint-config-next": "12.0.7",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
     "glslify-loader": "^2.0.0",
     "gts": "^3.1.0",
@@ -45,11 +51,6 @@
     "prettier": "^2.4.1",
     "raw-loader": "^4.0.2",
     "sass": "^1.42.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "@types/node": "16.11.11",
-    "@types/react": "17.0.37",
-    "eslint": "8.4.0",
-    "eslint-config-next": "12.0.7",
     "typescript": "4.5.2"
   }
 }
