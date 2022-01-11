@@ -1,5 +1,5 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Security
 from sqlalchemy.orm import Session
 
 from db import schemas, crud, models
@@ -12,7 +12,11 @@ router = APIRouter(
 
 
 @router.get("/", response_model=List[schemas.User], tags=["users"])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+def read_users(
+        skip: int = 0,
+        limit: int = 100,
+        user: models.User = Security(manager, scopes=["ADMIN"]),
+        db: Session = Depends(get_db)):
     """Get all users. FOR DEBUGGING AND TESTING PURPOSES ONLY"""
     users = crud.get_users(db, skip=skip, limit=limit)
     return users
