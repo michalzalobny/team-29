@@ -16,7 +16,7 @@ def get_user_by_username(username: str, db: Session):
     return db.query(models.User).filter(models.User.username == username).first()
 
 
-def get_user(db: Session, user_id: int):
+def get_user(db: Session, user_id: int) -> models.User:
     return db.query(models.User).filter(models.User.id == user_id).first()
 
 
@@ -34,3 +34,40 @@ def create_user(db: Session, user: schemas.UserCreate):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+
+def update_user(db: Session, user: models.User, new_details: schemas.UserUpdate):
+    for key, val in new_details.dict(exclude_unset=True).items():
+        setattr(user, key, val)
+    db.add(user)
+    db.commit()
+    return user
+
+
+def create_animal(db: Session, animal: schemas.AnimalCreate):
+    db_animal = models.Animal(**animal.dict())
+    db.add(db_animal)
+    db.commit()
+    db.refresh(db_animal)
+    return db_animal
+
+
+def get_animal(db: Session, animal_id: int):
+    return db.query(models.Animal).filter(models.Animal.id == animal_id).first()
+
+
+def get_animals(db: Session):
+    return db.query(models.Animal).all()
+
+
+def add_animal_to_user(db: Session, user_id: int, animal_id: int):
+    user = get_user(db, user_id=user_id)
+    animal = get_animal(db, animal_id=animal_id)
+    user.animals.append(animal)
+    db.commit()
+    return animal
+
+
+def get_all_animal_by_user(db: Session, user_id: int):
+    user = get_user(db, user_id=user_id)
+    return user.animals
