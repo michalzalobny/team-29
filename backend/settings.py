@@ -14,6 +14,8 @@ db_driver = make_url(str(db_url)).drivername
 # if "sqlite" not in db_driver:
 #     db_url = config("DB_URL").format(db_username, str(db_password), db_name)
 
-origins = ["http://localhost:5000",
+origins = ["http://localhost:3000",
+           "https://localhost:3000",
+           "http://localhost:5000",
            "https://localhost:5000",
            "https://team-29.vercel.app"]
