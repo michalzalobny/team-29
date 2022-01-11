@@ -31,6 +31,8 @@ export const SignUpForm = (props: Props) => {
     async data => {
       try {
         const res = await SignUpPOST(data);
+
+        console.log(res);
       } catch (error) {
         //Error message from server
         setError('apiError', { message: 'Something went wrong' });
@@ -43,7 +45,7 @@ export const SignUpForm = (props: Props) => {
   useEffect(() => {
     resizeFn();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [errors?.name, errors?.password, errors?.email, errors?.apiError]);
+  }, [errors?.username, errors?.password, errors?.email, errors?.apiError]);
 
   return (
     <>
@@ -51,7 +53,7 @@ export const SignUpForm = (props: Props) => {
         <S.Form onSubmit={handleSubmit(onSubmitHandler)}>
           {errors.apiError?.message && <S.ApiError>{errors.apiError?.message}</S.ApiError>}
 
-          <Input fieldName="name" hookForm={hookForm} label="Name" inputType="text" />
+          <Input fieldName="username" hookForm={hookForm} label="Username" inputType="text" />
 
           <Input
             inputAutoComplete="email"

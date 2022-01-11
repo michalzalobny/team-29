@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://www.google.com/',
+  baseURL: 'https://fast-api-tanimals.herokuapp.com/',
   headers: {
     'Cache-Control': 'no-cache',
   },
