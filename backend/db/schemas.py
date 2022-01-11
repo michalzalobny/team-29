@@ -44,8 +44,7 @@ class AnimalBase(BaseModel):
     scientific_name: str
     description: str
     category: Category = Category.LEAST_CONCERN
-    population_low_est: Optional[int] = None
-    population_high_est: Optional[int] = None
+    population: Optional[int] = None
 
 
 class AnimalCreate(AnimalBase):

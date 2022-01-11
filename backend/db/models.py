@@ -7,7 +7,7 @@ from .schemas import Category
 
 user_animal = Table("user_animal", Base.metadata,
                     Column("user_id", ForeignKey("users.id"), primary_key=True),
-                    Column("right_id", ForeignKey("animals.id"), primary_key=True)
+                    Column("animal_id", ForeignKey("animals.id"), primary_key=True)
                     )
 
 
@@ -36,8 +36,7 @@ class Animal(Base):
     scientific_name = Column(String(100), unique=True, nullable=False, index=True)
     description = Column(Text)
     category = Column(Enum(Category, validate_strings=True), nullable=False, default=Category.LEAST_CONCERN)
-    population_low_est = Column(Integer, default=None)
-    population_high_est = Column(Integer, default=None)
+    population = Column(Integer, default=None)
 
     users = relationship(
         "User",
