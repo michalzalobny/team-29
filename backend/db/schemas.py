@@ -1,7 +1,12 @@
 from enum import Enum
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import BaseModel, Field
+
+
+class Role(str, Enum):
+    ADMIN = "ADMIN"
+    USER = "USER"
 
 
 class UserBase(BaseModel):
@@ -23,6 +28,7 @@ class UserUpdate(BaseModel):
 class User(UserBase):
     id: int
     is_active: bool
+    role: Role = Role.USER
 
     class Config:
         orm_mode = True

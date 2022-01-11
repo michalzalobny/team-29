@@ -2,8 +2,7 @@ from sqlalchemy import Boolean, Column, Integer, String, Text, Enum, Table, Fore
 from sqlalchemy.orm import relationship
 
 from .database import Base
-from .schemas import Category
-
+from .schemas import Category, Role
 
 user_animal = Table("user_animal", Base.metadata,
                     Column("user_id", ForeignKey("users.id"), primary_key=True),
@@ -20,6 +19,7 @@ class User(Base):
     email = Column(String(100), unique=True, nullable=False, index=True)
     password = Column(String(200), nullable=False)
     is_active = Column(Boolean, default=True)
+    role = Column(Enum(Role, validate_strings=True), nullable=False, default=Role.USER)
     animals = relationship(
         "Animal",
         secondary=user_animal,
