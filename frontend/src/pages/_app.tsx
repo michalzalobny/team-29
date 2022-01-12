@@ -8,6 +8,9 @@ import FontFaceObserver from 'fontfaceobserver';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { LoggerContextProvider } from 'context/LoggerContext';
 import { GlobalStyles } from 'styles/GlobalStyles';
 import { Layout } from 'components/Layout/Layout';
@@ -51,6 +54,7 @@ export default function MyApp(props: AppProps) {
             </Layout>
           </>
         </AnimatePresence>
+        <ToastContainer style={{ fontSize: 15 }} position="bottom-right" />
       </LoggerContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

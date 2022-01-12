@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import { toast } from 'react-toastify';
 
 import { useLoggerContext } from 'context/LoggerContext';
 import { springMedium } from 'components/Animations/framerTransitions';
@@ -35,10 +36,8 @@ export const SignUpForm = (props: Props) => {
           setError('apiError', { message: 'Something went wrong' });
         } else {
           setActiveLoggerMode('signin');
-          alert('Register completed');
+          toast.success('User registered!');
         }
-
-        console.log(res);
       } catch (error) {
         //Error message from server
         setError('apiError', { message: 'Something went wrong' });

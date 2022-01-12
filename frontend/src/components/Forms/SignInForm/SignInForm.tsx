@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import { toast } from 'react-toastify';
 
 import { useLoggerContext } from 'context/LoggerContext';
 import { springMedium } from 'components/Animations/framerTransitions';
@@ -35,10 +36,9 @@ export const SignInForm = (props: Props) => {
           setError('apiError', { message: 'Something went wrong' });
         } else {
           setIsLoggerOpen(false);
-          alert('Logged in');
+          toast.success('Login successful!');
         }
       } catch (error) {
-        console.log(error);
         //Error message from server
         setError('apiError', { message: 'Something went wrong' });
       }
