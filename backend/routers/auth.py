@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from db import schemas, crud, models
 from dependencies import get_db, manager
+from utils import verify_password, get_password_hash
 
 router = APIRouter(
     prefix="/auth",
@@ -23,7 +24,7 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 
     # either the input username doesn't exist or
     # the username exists but the password is wrong
-    if not user or (password != user.password):
+    if not user or not verify_password(password, user.password):
         raise HTTPException(status_code=401, detail="Wrong details for authentication")
 
     # enforce scoping roles
@@ -45,4 +46,7 @@ def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
+
+    user.password = get_password_hash(user.password)
+
     return crud.create_user(db=db, user=user)

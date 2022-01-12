@@ -1,5 +1,7 @@
 from db import schemas, models
 
+from passlib.context import CryptContext
+
 
 def user_model_to_schema(user: models.User) -> schemas.User:
     """
@@ -16,3 +18,14 @@ def user_model_to_schema(user: models.User) -> schemas.User:
         username=user.username,
         is_active=user.is_active
     )
+
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
+
+def get_password_hash(password):
+    return pwd_context.hash(password)
