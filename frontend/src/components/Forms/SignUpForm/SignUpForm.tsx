@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
+import { useLoggerContext } from 'context/LoggerContext';
 import { springMedium } from 'components/Animations/framerTransitions';
 import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
@@ -20,12 +21,10 @@ interface Props {
 
 export const SignUpForm = (props: Props) => {
   const { resizeFn, ...rest } = props;
-
   const hookForm = useForm({ resolver: yupResolver(yupSignUpSchema) });
-
   const { setError, handleSubmit, formState } = hookForm;
-
   const { errors, isSubmitting } = formState;
+  const { setActiveLoggerMode } = useLoggerContext();
 
   const onSubmitHandler = React.useCallback(
     async data => {
@@ -35,6 +34,7 @@ export const SignUpForm = (props: Props) => {
         if (res.status !== 200) {
           setError('apiError', { message: 'Something went wrong' });
         } else {
+          setActiveLoggerMode('signin');
           alert('Register completed');
         }
 
@@ -44,7 +44,7 @@ export const SignUpForm = (props: Props) => {
         setError('apiError', { message: 'Something went wrong' });
       }
     },
-    [setError]
+    [setActiveLoggerMode, setError]
   );
 
   //It is used only to update modal height
@@ -78,11 +78,13 @@ export const SignUpForm = (props: Props) => {
           />
 
           <S.Center>
-            <S.SubmitWrapper disabled={isSubmitting} type="submit">
+            <S.SubmitWrapper isSubmitting={isSubmitting} disabled={isSubmitting} type="submit">
               <BlobButton
                 extraSidePadding={true}
-                backgroundColor={sharedValues.colors.brownDark}
-                label="Sign up"
+                backgroundColor={
+                  isSubmitting ? sharedValues.colors.brown : sharedValues.colors.brownDark
+                }
+                label={'Sign up'}
               />
             </S.SubmitWrapper>
           </S.Center>

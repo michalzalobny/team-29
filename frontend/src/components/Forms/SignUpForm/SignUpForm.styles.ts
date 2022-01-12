@@ -1,7 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
 import { sharedValues } from 'utils/sharedValues';
+
+interface SubmitWrapper {
+  isSubmitting: boolean;
+}
 
 export const Wrapper = styled(motion.div)`
   backface-visibility: hidden;
@@ -9,9 +13,15 @@ export const Wrapper = styled(motion.div)`
 
 export const Form = styled.form``;
 
-export const SubmitWrapper = styled.button`
-  cursor: pointer;
+export const SubmitWrapper = styled.button<SubmitWrapper>`
   margin-top: 35px;
+  cursor: pointer;
+
+  ${props =>
+    props.isSubmitting &&
+    css`
+      cursor: not-allowed;
+    `}
 `;
 
 export const Center = styled.span`

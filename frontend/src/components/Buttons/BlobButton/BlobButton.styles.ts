@@ -10,7 +10,6 @@ export const Wrapper = styled.span<Wrapper>`
   background-color: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   border-radius: 50px;
-  cursor: pointer;
   padding: 14px 25px;
 
   ${props =>
