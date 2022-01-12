@@ -40,7 +40,7 @@ export const SignInForm = (props: Props) => {
         }
       } catch (error) {
         //Error message from server
-        setError('apiError', { message: 'Something went wrong' });
+        setError('apiError', { message: 'Incorrect username or password' });
       }
     },
     [setError, setIsLoggerOpen]
