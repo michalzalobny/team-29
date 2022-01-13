@@ -39,3 +39,7 @@ export const SignUpPOST = ({ username, email, password }: SignUpPOST) => {
     username,
   });
 };
+
+export const usersGet = () => {
+  // return axios.get('users', {}, { headers: {} });
+};

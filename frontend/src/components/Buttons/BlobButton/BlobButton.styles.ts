@@ -11,6 +11,7 @@ export const Wrapper = styled.span<Wrapper>`
   color: ${props => props.textColor};
   border-radius: 50px;
   padding: 14px 25px;
+  transition: background-color 0.35s;
 
   ${props =>
     props.extraSidePadding &&

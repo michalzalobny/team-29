@@ -19,7 +19,7 @@ export interface LoginJWT {
   sub: string;
 }
 
-type Scope = 'ADMIN' | 'USER';
+export type Scope = 'ADMIN' | 'USER';
 
 export interface User {
   username: string | null;
