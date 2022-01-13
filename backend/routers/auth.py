@@ -28,7 +28,7 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 
     # enforce scoping roles
     if "ADMIN" == user.role:
-        scopes = ["ADMIN", "USER"]
+        scopes = ["ADMIN"]
     else:
         scopes = ["USER"]
 
