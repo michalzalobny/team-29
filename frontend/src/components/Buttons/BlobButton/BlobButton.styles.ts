@@ -10,20 +10,20 @@ export const Wrapper = styled.span<Wrapper>`
   background-color: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   border-radius: 50px;
-  padding: 14px 25px;
+  padding: 10px 25px;
   transition: background-color 0.35s;
 
   ${props =>
     props.extraSidePadding &&
     css`
-      padding: 14px 55px;
+      padding: 10px 55px;
     `}
 
   display: inline-block;
   position: relative;
   z-index: 1;
   box-shadow: 0 0 13px ${props => props.backgroundColor};
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
 
   &::before {

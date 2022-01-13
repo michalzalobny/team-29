@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { sharedValues } from 'utils/sharedValues';
+import { media } from 'styles/media';
 
 export const Wrapper = styled.div`
   border-radius: 10px;
@@ -18,6 +19,7 @@ export const Text = styled.div`
   font-size: 16px;
   color: ${sharedValues.colors.black};
   font-weight: 800;
+  line-height: 1.5;
 `;
 
 export const Label = styled.span`
@@ -33,6 +35,16 @@ export const Label = styled.span`
 export const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
-  /* display: flex;
-  flex-direction: column; */
+`;
+
+export const DeleteWrapper = styled.button`
+  cursor: pointer;
+
+  ${media.tablet} {
+    margin-left: auto;
+  }
+`;
+
+export const ConfirmationWrapper = styled.div`
+  margin-bottom: 3rem;
 `;
