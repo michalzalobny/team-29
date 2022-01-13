@@ -40,8 +40,7 @@ export const signUpPOST = ({ username, email, password }: SignUpPOST) => {
   });
 };
 
-export const usersGet = (token: string) => {
-  console.log(token);
+export const getUsers = (token: string) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };

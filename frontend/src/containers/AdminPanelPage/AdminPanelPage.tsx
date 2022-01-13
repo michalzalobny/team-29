@@ -44,7 +44,7 @@ export default function AdminPanelPage(props: Props) {
                 />
               </S.ButtonContainer>
             </S.ButtonsWrapper>
-            {currentView === 'users' && <UsersManager />}
+            <S.PanelsWrapper>{currentView === 'users' && <UsersManager />}</S.PanelsWrapper>
           </S.Container>
         </S.Wrapper>
       </AuthGuard>

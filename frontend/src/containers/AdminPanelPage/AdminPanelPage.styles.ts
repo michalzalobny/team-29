@@ -30,3 +30,8 @@ export const ButtonContainer = styled.button`
     margin-right: 3rem;
   }
 `;
+
+export const PanelsWrapper = styled.div`
+  width: 100%;
+  margin-top: 10rem;
+`;

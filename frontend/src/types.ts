@@ -17,3 +17,8 @@ export interface DomRectSSR {
   x: number;
   y: number;
 }
+
+export interface BackendUser {
+  username: string;
+  id: number;
+}
