@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useGetUsers } from 'hooks/useQueries';
 import { useAuthContext } from 'context/AuthContext';
@@ -9,12 +9,7 @@ import * as S from './UsersManager.styles';
 
 export const UsersManager = () => {
   const { user } = useAuthContext();
-  const { data, status } = useGetUsers(user.accessToken as string);
-
-  useEffect(() => {
-    console.log(data);
-    console.log(status);
-  }, [data, status]);
+  const { refetch, data, status } = useGetUsers(user.accessToken as string);
 
   return (
     <>
@@ -24,7 +19,12 @@ export const UsersManager = () => {
         ) : (
           data &&
           data.data.map((user: BackendUser) => (
-            <UserTile key={user.username} userId={user.id} username={user.username} />
+            <UserTile
+              refetchUsers={refetch}
+              key={user.username}
+              userId={user.id}
+              username={user.username}
+            />
           ))
         )}
       </S.Wrapper>

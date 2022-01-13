@@ -47,3 +47,16 @@ export const getUsers = (token: string) => {
 
   return axios.get('users', config);
 };
+
+interface DeleteUser {
+  token: unknown;
+  userId: number;
+}
+
+export const deleteUser = ({ token, userId }: DeleteUser) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  return axios.delete(`users/${userId}`, config);
+};
