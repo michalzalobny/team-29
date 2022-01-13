@@ -20,5 +20,5 @@ def read_animals(db: Session = Depends(get_db)):
 
 @router.post("", response_model=schemas.Animal)
 def create_animals(animal: schemas.AnimalCreate, db: Session = Depends(get_db)):
-    db_animal = crud.create_animal(db, animal)
+    db_animal = crud.create_animal(animal, db)
     return schemas.Animal.from_orm(db_animal)
