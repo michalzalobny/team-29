@@ -2,16 +2,14 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import { toast } from 'react-toastify';
-import jwt_decode from 'jwt-decode';
 
 import { useLoggerContext } from 'context/LoggerContext';
 import { springMedium } from 'components/Animations/framerTransitions';
 import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { Input } from 'components/Input/Input';
-import { SignInPOST, yupSignInSchema } from 'utils/apiQueries/user';
-import { LoginJWT, useAuthContext } from 'context/AuthContext';
+import { signInPOST, yupSignInSchema } from 'utils/apiQueries/user';
+import { useAuthContext } from 'context/AuthContext';
 
 import { WrapperV } from './SignInForm.motion';
 import * as S from './SignInForm.styles';
@@ -33,7 +31,7 @@ export const SignInForm = (props: Props) => {
   const onSubmitHandler = React.useCallback(
     async data => {
       try {
-        const res = await SignInPOST(data);
+        const res = await signInPOST(data);
 
         if (res.status !== 200) {
           setError('apiError', { message: 'Something went wrong' });
