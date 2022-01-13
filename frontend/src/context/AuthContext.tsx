@@ -50,29 +50,32 @@ export const AuthContextProvider = React.memo<Props>(props => {
     toast.info('You have been logged out');
   }, []);
 
-  const serializeUser = React.useCallback((userToken: string) => {
-    //Handle logged in user context
-    const decoded = jwt_decode(userToken) as LoginJWT;
+  const serializeUser = React.useCallback(
+    (userToken: string) => {
+      //Handle logged in user context
+      const decoded = jwt_decode(userToken) as LoginJWT;
 
-    //Check if token is not expired
-    const endDate = new Date(decoded.exp * 1000);
-    const startDate = new Date();
-    const miliSecondsDifference = endDate.getTime() - startDate.getTime();
-    if (miliSecondsDifference <= 0) return logoutUser();
+      //Check if token is not expired
+      const endDate = new Date(decoded.exp * 1000);
+      const startDate = new Date();
+      const miliSecondsDifference = endDate.getTime() - startDate.getTime();
+      if (miliSecondsDifference <= 0) return logoutUser();
 
-    //Add token to local storage (first remove it)
-    localStorage.removeItem('JWT');
-    localStorage.setItem('JWT', userToken);
+      //Add token to local storage (first remove it)
+      localStorage.removeItem('JWT');
+      localStorage.setItem('JWT', userToken);
 
-    setUser({
-      accessToken: userToken,
-      scope: decoded.scopes[0],
-      username: decoded.sub,
-      tokenExpiration: decoded.exp,
-    });
+      setUser({
+        accessToken: userToken,
+        scope: decoded.scopes[0].toUpperCase() as Scope,
+        username: decoded.sub,
+        tokenExpiration: decoded.exp,
+      });
 
-    toast.success('Login successful!');
-  }, []);
+      toast.success('Login successful!');
+    },
+    [logoutUser]
+  );
 
   //Handles auto log out if token expires
   useEffect(() => {
