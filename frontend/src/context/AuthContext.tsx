@@ -10,6 +10,7 @@ type AuthContextTypes = {
   user: User;
   setUser: React.Dispatch<React.SetStateAction<User>>;
   serializeUser: (userToken: string) => void;
+  logoutUser: () => void;
 };
 
 export interface LoginJWT {
@@ -43,7 +44,7 @@ export const AuthContextProvider = React.memo<Props>(props => {
 
   const [user, setUser] = useState<User>(userDefault);
 
-  const logOut = React.useCallback(() => {
+  const logoutUser = React.useCallback(() => {
     setUser(userDefault);
     localStorage.removeItem('JWT');
     toast.info('You have been logged out');
@@ -57,7 +58,7 @@ export const AuthContextProvider = React.memo<Props>(props => {
     const endDate = new Date(decoded.exp * 1000);
     const startDate = new Date();
     const miliSecondsDifference = endDate.getTime() - startDate.getTime();
-    if (miliSecondsDifference <= 0) return logOut();
+    if (miliSecondsDifference <= 0) return logoutUser();
 
     //Add token to local storage (first remove it)
     localStorage.removeItem('JWT');
@@ -84,14 +85,14 @@ export const AuthContextProvider = React.memo<Props>(props => {
 
       //Log out the user after the time has expired
       logoutTimeoutId.current = setTimeout(() => {
-        logOut();
+        logoutUser();
       }, miliSecondsDifference);
     }
 
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-  }, [logOut, user]);
+  }, [logoutUser, user]);
 
   return (
     <AuthContext.Provider
@@ -99,6 +100,7 @@ export const AuthContextProvider = React.memo<Props>(props => {
         user,
         setUser,
         serializeUser,
+        logoutUser,
       }}
     >
       {children}

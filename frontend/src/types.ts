@@ -4,6 +4,7 @@ export interface NavbarLink {
   isRound?: boolean;
   isBold?: boolean;
   onClickFn?: () => void;
+  shouldHide?: boolean;
 }
 
 export interface DomRectSSR {
