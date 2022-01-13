@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[schemas.User], tags=["users"])
+@router.get("/", response_model=List[schemas.User], tags=["_admin"])
 def read_users(
         skip: int = 0,
         limit: int = 100,
@@ -44,3 +44,17 @@ def read_all_animals_by_user(user: models.User = Depends(manager), db: Session =
 @router.patch("/me/animals", response_model=schemas.Animal, tags=["user to animal"])
 def add_animal_to_user(animal_id: int, user: models.User = Depends(manager), db: Session = Depends(get_db)):
     return crud.add_animal_to_user(user_id=user.id, animal_id=animal_id, db=db)
+
+
+@router.delete(
+    "/{user_id}",
+    response_model=schemas.User,
+    dependencies=[Security(manager, scopes=["ADMIN"])], tags=["_admin"]
+)
+def delete_user(user_id, db: Session = Depends(get_db)):
+
+    user_to_delete = crud.delete_user(user_id=user_id, db=db)
+    if user_to_delete:
+        return user_to_delete
+    else:
+        raise HTTPException(status_code=404, detail=f"User with id {user_id} does not exist")

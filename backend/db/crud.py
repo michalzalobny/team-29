@@ -57,6 +57,15 @@ def update_user(user: models.User, new_details: schemas.UserUpdate, db: Session)
     return user
 
 
+def delete_user(user_id: int, db: Session):
+    user_to_delete = db.query(models.User).filter(models.User.id == user_id).first()
+    if user_to_delete:
+        db.delete(user_to_delete)
+        db.commit()
+        return user_to_delete
+    return None
+
+
 def create_animal(animal: schemas.AnimalCreate, db: Session):
     db_animal = models.Animal(**animal.dict())
     db.add(db_animal)
