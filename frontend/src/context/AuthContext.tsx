@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import jwt_decode from 'jwt-decode';
 
 type Props = {
   children: React.ReactNode;
@@ -8,6 +9,7 @@ type Props = {
 type AuthContextTypes = {
   user: User;
   setUser: React.Dispatch<React.SetStateAction<User>>;
+  serializeUser: (userToken: string) => void;
 };
 
 export interface LoginJWT {
@@ -43,22 +45,47 @@ export const AuthContextProvider = React.memo<Props>(props => {
 
   const logOut = React.useCallback(() => {
     setUser(userDefault);
+    localStorage.removeItem('JWT');
     toast.info('You have been logged out');
   }, []);
 
-  //Handles auto log out
+  const serializeUser = React.useCallback((userToken: string) => {
+    //Handle logged in user context
+    const decoded = jwt_decode(userToken) as LoginJWT;
+
+    //Check if token is not expired
+    const endDate = new Date(decoded.exp * 1000);
+    const startDate = new Date();
+    const miliSecondsDifference = endDate.getTime() - startDate.getTime();
+    if (miliSecondsDifference <= 0) return logOut();
+
+    //Add token to local storage (first remove it)
+    localStorage.removeItem('JWT');
+    localStorage.setItem('JWT', userToken);
+
+    setUser({
+      accessToken: userToken,
+      scope: decoded.scopes[0],
+      username: decoded.sub,
+      tokenExpiration: decoded.exp,
+    });
+
+    toast.success('Login successful!');
+  }, []);
+
+  //Handles auto log out if token expires
   useEffect(() => {
     const timeout = logoutTimeoutId.current;
 
     if (user.tokenExpiration) {
       const endDate = new Date(user.tokenExpiration * 1000);
       const startDate = new Date();
-      const miliSeconds = endDate.getTime() - startDate.getTime();
+      const miliSecondsDifference = endDate.getTime() - startDate.getTime();
 
       //Log out the user after the time has expired
       logoutTimeoutId.current = setTimeout(() => {
         logOut();
-      }, miliSeconds);
+      }, miliSecondsDifference);
     }
 
     return () => {
@@ -71,6 +98,7 @@ export const AuthContextProvider = React.memo<Props>(props => {
       value={{
         user,
         setUser,
+        serializeUser,
       }}
     >
       {children}

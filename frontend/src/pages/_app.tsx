@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import FontFaceObserver from 'fontfaceobserver';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,6 +14,7 @@ import { LoggerContextProvider } from 'context/LoggerContext';
 import { AuthContextProvider } from 'context/AuthContext';
 import { GlobalStyles } from 'styles/GlobalStyles';
 import { Layout } from 'components/Layout/Layout';
+import { AuthWrapper } from 'components/AuthWrapper/AuthWrapper';
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -45,21 +45,22 @@ export default function MyApp(props: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <GlobalStyles />
       <AuthContextProvider>
         <LoggerContextProvider>
-          <GlobalStyles />
-
-          <AnimatePresence exitBeforeEnter={false}>
-            <>
-              <Layout isReady={isReady}>
-                <Component key={router.route + router.locale} router={router} {...pageProps} />
-              </Layout>
-            </>
-          </AnimatePresence>
-          <ToastContainer style={{ fontSize: 15 }} position="bottom-right" />
+          <AuthWrapper>
+            <AnimatePresence exitBeforeEnter={false}>
+              <>
+                <Layout isReady={isReady}>
+                  <Component key={router.route + router.locale} router={router} {...pageProps} />
+                </Layout>
+              </>
+            </AnimatePresence>
+            <ToastContainer style={{ fontSize: 15 }} position="bottom-right" />
+          </AuthWrapper>
         </LoggerContextProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
       </AuthContextProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

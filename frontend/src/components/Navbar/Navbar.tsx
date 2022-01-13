@@ -104,6 +104,7 @@ export const Navbar = (props: Props) => {
               );
             })}
           </S.LinksSection>
+          <S.BottomImg />
         </S.SectionsWrapper>
       </S.Wrapper>
     </>

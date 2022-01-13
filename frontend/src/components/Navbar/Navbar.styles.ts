@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { sharedValues } from 'utils/sharedValues';
 import { media } from 'styles/media';
 
+import { BottomSvg } from './svg/BottomSvg';
+
 interface LinkItem {
   isBold?: boolean;
 }
@@ -18,14 +20,14 @@ export const Wrapper = styled.nav`
 `;
 
 export const SectionsWrapper = styled.div`
-  padding: 2rem 1rem;
+  padding: 1.8rem 1rem;
   display: flex;
   align-items: center;
 
   ${media.tablet} {
     width: 140rem;
     margin: 0 auto;
-    padding: 3rem 0;
+    padding: 2.2rem 0;
   }
 `;
 
@@ -59,12 +61,12 @@ export const LinksSection = styled(motion.ul)`
   top: 100%;
   display: flex;
   flex-direction: column;
-  padding: 2rem 3rem;
+  padding: 1.5rem 3rem;
   background-color: ${sharedValues.colors.blue};
   width: 100%;
 
   ${media.tablet} {
-    padding: 3rem;
+    padding: 2rem;
     position: initial;
     top: initial;
     left: initial;
@@ -93,6 +95,14 @@ export const LinkWrapper = styled.li`
       margin-bottom: 0;
     }
   }
+`;
+
+export const BottomImg = styled(BottomSvg)`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-4%);
 `;
 
 export const LinkItem = styled.span<LinkItem>`

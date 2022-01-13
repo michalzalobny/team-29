@@ -11,7 +11,7 @@ import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { Input } from 'components/Input/Input';
 import { SignInPOST, yupSignInSchema } from 'utils/apiQueries/user';
-import { LoginJWT, User, useAuthContext } from 'context/AuthContext';
+import { LoginJWT, useAuthContext } from 'context/AuthContext';
 
 import { WrapperV } from './SignInForm.motion';
 import * as S from './SignInForm.styles';
@@ -28,7 +28,7 @@ export const SignInForm = (props: Props) => {
   const { setError, handleSubmit, formState } = hookForm;
   const { errors, isSubmitting } = formState;
   const { setIsLoggerOpen } = useLoggerContext();
-  const { setUser } = useAuthContext();
+  const { serializeUser } = useAuthContext();
 
   const onSubmitHandler = React.useCallback(
     async data => {
@@ -39,27 +39,14 @@ export const SignInForm = (props: Props) => {
           setError('apiError', { message: 'Something went wrong' });
         } else {
           setIsLoggerOpen(false);
-          toast.success('Login successful!');
-
-          //Handle logged in user context
-          const decoded = jwt_decode(res.data.access_token) as LoginJWT;
-          const scope = decoded.scopes[0];
-          const username = decoded.sub;
-          const tokenExpiration = decoded.exp;
-
-          setUser({
-            accessToken: res.data.access_token,
-            scope,
-            username,
-            tokenExpiration,
-          });
+          serializeUser(res.data.access_token);
         }
       } catch (error) {
         //Error message from server
         setError('apiError', { message: 'Incorrect username or password' });
       }
     },
-    [setError, setIsLoggerOpen, setUser]
+    [serializeUser, setError, setIsLoggerOpen]
   );
 
   //It is used only to update modal height
