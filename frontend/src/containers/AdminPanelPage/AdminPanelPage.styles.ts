@@ -27,7 +27,7 @@ export const ButtonContainer = styled.button`
   cursor: pointer;
 
   &:not(:last-child) {
-    margin-right: 3rem;
+    margin-right: 1.2rem;
   }
 `;
 

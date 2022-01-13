@@ -4,16 +4,16 @@ import { media } from 'styles/media';
 import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled.div`
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 
   ${media.tablet} {
-    width: 80%;
+    width: 85%;
   }
 
-  ${media.tabletLand} {
+  ${media.desktop} {
     width: 60%;
   }
 `;

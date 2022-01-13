@@ -8,22 +8,29 @@ export const Wrapper = styled.div`
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   padding: 30px;
   display: flex;
-  align-items: center;
+
   flex-wrap: wrap;
+  flex-direction: column;
+
   &:not(:last-child) {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
+  }
+
+  ${media.tablet} {
+    align-items: center;
+    flex-direction: initial;
   }
 `;
 
 export const Text = styled.div`
-  font-size: 16px;
+  font-size: 15px;
   color: ${sharedValues.colors.black};
   font-weight: 800;
   line-height: 1.5;
 `;
 
 export const Label = styled.span`
-  font-size: 14px;
+  font-size: 13px;
   color: ${sharedValues.colors.white};
   font-weight: 800;
   padding: 10px;
@@ -39,8 +46,11 @@ export const InfoWrapper = styled.div`
 
 export const DeleteWrapper = styled.button`
   cursor: pointer;
+  display: flex;
+  margin-top: 1rem;
 
   ${media.tablet} {
+    margin-top: 0;
     margin-left: auto;
   }
 `;
