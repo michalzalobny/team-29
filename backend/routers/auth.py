@@ -27,10 +27,7 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         raise HTTPException(status_code=401, detail="Wrong details for authentication")
 
     # enforce scoping roles
-    if "ADMIN" == user.role:
-        scopes = ["ADMIN"]
-    else:
-        scopes = ["USER"]
+    scopes = [user.role.value]
 
     access_token = manager.create_access_token(
         data={"sub": username},
