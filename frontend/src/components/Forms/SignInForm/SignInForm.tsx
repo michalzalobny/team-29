@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { toast } from 'react-toastify';
+import jwt_decode from 'jwt-decode';
 
 import { useLoggerContext } from 'context/LoggerContext';
 import { springMedium } from 'components/Animations/framerTransitions';
@@ -10,6 +11,7 @@ import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { Input } from 'components/Input/Input';
 import { SignInPOST, yupSignInSchema } from 'utils/apiQueries/user';
+import { LoginJWT, User, useAuthContext } from 'context/AuthContext';
 
 import { WrapperV } from './SignInForm.motion';
 import * as S from './SignInForm.styles';
@@ -26,6 +28,7 @@ export const SignInForm = (props: Props) => {
   const { setError, handleSubmit, formState } = hookForm;
   const { errors, isSubmitting } = formState;
   const { setIsLoggerOpen } = useLoggerContext();
+  const { setUser } = useAuthContext();
 
   const onSubmitHandler = React.useCallback(
     async data => {
@@ -37,13 +40,26 @@ export const SignInForm = (props: Props) => {
         } else {
           setIsLoggerOpen(false);
           toast.success('Login successful!');
+
+          //Handle logged in user context
+          const decoded = jwt_decode(res.data.access_token) as LoginJWT;
+          const scope = decoded.scopes[0];
+          const username = decoded.sub;
+          const tokenExpiration = decoded.exp;
+
+          setUser({
+            accessToken: res.data.access_token,
+            scope,
+            username,
+            tokenExpiration,
+          });
         }
       } catch (error) {
         //Error message from server
         setError('apiError', { message: 'Incorrect username or password' });
       }
     },
-    [setError, setIsLoggerOpen]
+    [setError, setIsLoggerOpen, setUser]
   );
 
   //It is used only to update modal height
@@ -58,9 +74,15 @@ export const SignInForm = (props: Props) => {
         <S.Form onSubmit={handleSubmit(onSubmitHandler)}>
           {errors.apiError?.message && <S.ApiError>{errors.apiError?.message}</S.ApiError>}
 
-          <Input fieldName="username" hookForm={hookForm} label="Username" />
+          <Input
+            customId="usernamelogin"
+            fieldName="username"
+            hookForm={hookForm}
+            label="Username"
+          />
 
           <Input
+            customId="usernamepassword"
             inputAutoComplete="current-password"
             fieldName="password"
             hookForm={hookForm}

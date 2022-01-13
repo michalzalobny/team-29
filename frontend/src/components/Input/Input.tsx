@@ -8,13 +8,21 @@ import * as S from './Input.styles';
 interface Props {
   label: string;
   fieldName: string;
+  customId?: string;
   inputType?: 'text' | 'password' | 'email';
   hookForm: UseFormReturn<FieldValues, object>;
   inputAutoComplete?: 'current-password' | 'new-password' | 'cc-number' | 'email';
 }
 
 export const Input = (props: Props) => {
-  const { inputAutoComplete, label, fieldName, hookForm, inputType = 'text' } = props;
+  const {
+    customId = '',
+    inputAutoComplete,
+    label,
+    fieldName,
+    hookForm,
+    inputType = 'text',
+  } = props;
 
   const { watch, register, formState } = hookForm;
 
@@ -36,7 +44,7 @@ export const Input = (props: Props) => {
             autoComplete={inputAutoComplete && inputAutoComplete}
             isError={errors[fieldName]}
             {...register(fieldName, { onBlur })}
-            id={fieldName}
+            id={fieldName + customId}
             type={inputType}
             onFocus={onFocus}
           />

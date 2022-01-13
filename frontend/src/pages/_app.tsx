@@ -12,6 +12,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { LoggerContextProvider } from 'context/LoggerContext';
+import { AuthContextProvider } from 'context/AuthContext';
 import { GlobalStyles } from 'styles/GlobalStyles';
 import { Layout } from 'components/Layout/Layout';
 
@@ -44,19 +45,21 @@ export default function MyApp(props: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LoggerContextProvider>
-        <GlobalStyles />
+      <AuthContextProvider>
+        <LoggerContextProvider>
+          <GlobalStyles />
 
-        <AnimatePresence exitBeforeEnter={false}>
-          <>
-            <Layout isReady={isReady}>
-              <Component key={router.route + router.locale} router={router} {...pageProps} />
-            </Layout>
-          </>
-        </AnimatePresence>
-        <ToastContainer style={{ fontSize: 15 }} position="bottom-right" />
-      </LoggerContextProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+          <AnimatePresence exitBeforeEnter={false}>
+            <>
+              <Layout isReady={isReady}>
+                <Component key={router.route + router.locale} router={router} {...pageProps} />
+              </Layout>
+            </>
+          </AnimatePresence>
+          <ToastContainer style={{ fontSize: 15 }} position="bottom-right" />
+        </LoggerContextProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </AuthContextProvider>
     </QueryClientProvider>
   );
 }
