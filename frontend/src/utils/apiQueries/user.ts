@@ -25,14 +25,14 @@ interface SignUpPOST {
   password: string;
 }
 
-export const SignInPOST = ({ username, password }: SignInPOST) => {
+export const signInPOST = ({ username, password }: SignInPOST) => {
   const params = new URLSearchParams();
   params.append('username', username);
   params.append('password', password);
   return axios.post('auth/login', params);
 };
 
-export const SignUpPOST = ({ username, email, password }: SignUpPOST) => {
+export const signUpPOST = ({ username, email, password }: SignUpPOST) => {
   return axios.post('auth/register', {
     email,
     password,
@@ -40,6 +40,11 @@ export const SignUpPOST = ({ username, email, password }: SignUpPOST) => {
   });
 };
 
-export const usersGet = () => {
-  // return axios.get('users', {}, { headers: {} });
+export const usersGet = (token: string) => {
+  console.log(token);
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  return axios.get('users', config);
 };

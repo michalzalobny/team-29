@@ -4,6 +4,7 @@ import { sharedValues } from 'utils/sharedValues';
 import { Head } from 'seo/Head/Head';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { AuthGuard } from 'components/AuthGuard/AuthGuard';
+import { UsersManager } from 'components/UsersManager/UsersManager';
 
 import { Props } from './data';
 import * as S from './AdminPanelPage.styles';
@@ -43,6 +44,7 @@ export default function AdminPanelPage(props: Props) {
                 />
               </S.ButtonContainer>
             </S.ButtonsWrapper>
+            {currentView === 'users' && <UsersManager />}
           </S.Container>
         </S.Wrapper>
       </AuthGuard>

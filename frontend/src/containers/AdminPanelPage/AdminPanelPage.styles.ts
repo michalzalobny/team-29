@@ -6,7 +6,7 @@ export const Wrapper = styled.div``;
 export const Container = styled.div`
   padding: 1.8rem 1rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
   ${media.tablet} {
     width: 140rem;

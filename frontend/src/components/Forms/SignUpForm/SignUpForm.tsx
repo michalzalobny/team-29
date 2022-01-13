@@ -9,7 +9,7 @@ import { springMedium } from 'components/Animations/framerTransitions';
 import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { Input } from 'components/Input/Input';
-import { SignUpPOST, yupSignUpSchema } from 'utils/apiQueries/user';
+import { signUpPOST, yupSignUpSchema } from 'utils/apiQueries/user';
 
 import { WrapperV } from './SignUpForm.motion';
 import * as S from './SignUpForm.styles';
@@ -30,7 +30,7 @@ export const SignUpForm = (props: Props) => {
   const onSubmitHandler = React.useCallback(
     async data => {
       try {
-        const res = await SignUpPOST(data);
+        const res = await signUpPOST(data);
 
         if (res.status !== 200) {
           setError('apiError', { message: 'Something went wrong' });
