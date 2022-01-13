@@ -13,6 +13,7 @@ export default function SpeciesListPage(props: Props) {
       <Head {...head} />
       <S.Wrapper>
         <Header />
+        <div></div>
       </S.Wrapper>
     </>
   );
