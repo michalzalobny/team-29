@@ -1,7 +1,7 @@
+import logging
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-
 from db import schemas, crud, models
 from dependencies import get_db, manager
 from utils import verify_password, get_password_hash
@@ -25,6 +25,7 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     # either the input username doesn't exist or
     # the username exists but the password is wrong
     if not user or not verify_password(password, user.password):
+        logging.warning('SECURITY - Failed Log in [%s, %s]', user.id, user.email)
         raise HTTPException(status_code=401, detail="Wrong details for authentication")
 
     # enforce scoping roles
@@ -38,6 +39,7 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         scopes=scopes
     )
 
+    logging.warning('SECURITY - Log in [%s, %s]', user.id, user.email)
     return {"access_token": access_token, "token_type": "bearer"}
 
 
@@ -45,8 +47,10 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:
+        logging.warning('SECURITY - Failed register (Email exists) [%s]', user.email)
         raise HTTPException(status_code=400, detail="Email already registered")
 
     user.password = get_password_hash(user.password)
 
+    logging.warning('SECURITY - User registration [%s, %s]', user.username, user.email)
     return crud.create_user(db=db, user=user)
