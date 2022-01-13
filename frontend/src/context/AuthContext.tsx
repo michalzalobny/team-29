@@ -46,6 +46,7 @@ export const AuthContextProvider = React.memo<Props>(props => {
     toast.info('You have been logged out');
   }, []);
 
+  //Handles auto log out
   useEffect(() => {
     const timeout = logoutTimeoutId.current;
 
