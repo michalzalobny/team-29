@@ -1,8 +1,6 @@
 import logging
-
-from db import schemas, models
-
 from passlib.context import CryptContext
+from db import schemas, models
 
 
 def user_model_to_schema(user: models.User) -> schemas.User:
