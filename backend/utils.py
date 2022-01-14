@@ -14,11 +14,11 @@ def get_password_hash(password):
 
 class SecurityFilter(logging.Filter):
     def filter(self, record):
-        return "SECURITY" in record.getMessage()
+        return "SECURITY" or "INFO" in record.getMessage()
 
 
 fh = logging.FileHandler('logs.log', 'a')
-fh.setLevel(logging.WARNING)
+fh.setLevel(logging.INFO)
 fh.addFilter(SecurityFilter())
 formatter = logging.Formatter('%(asctime)s : %(message)s', '%m/%d/%Y %I:%M:%S %p')
 fh.setFormatter(formatter)
