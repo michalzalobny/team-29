@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 from typing import Optional, List
 
@@ -63,3 +64,18 @@ class Animal(AnimalBase):
     class Config:
         orm_mode = True
 
+
+class GameBase(BaseModel):
+    score: int
+
+
+class GameCreate(GameBase):
+    ...
+
+
+class Game(GameBase):
+    id: int
+    date: datetime
+
+    class Config:
+        orm_mode = True
