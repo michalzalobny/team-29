@@ -93,3 +93,21 @@ def add_animal_to_user(user_id: int, animal_id: int, db: Session):
 def get_all_animal_by_user(user_id: int, db: Session):
     user = get_user(user_id=user_id, db=db)
     return user.animals
+
+
+def get_all_games(db: Session):
+    games = db.query(models.Game).all()
+    return games
+
+
+def get_all_games_by_user(user_id: int, db: Session):
+    user = get_user(user_id=user_id, db=db)
+    return user.games
+
+
+def add_game_to_user(game: schemas.GameCreate, user_id: int, db: Session):
+    user = get_user(user_id=user_id, db=db)
+    game = models.Game(**game.dict())
+    user.games.append(game)
+    db.commit()
+    return game
