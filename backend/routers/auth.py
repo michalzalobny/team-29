@@ -39,7 +39,7 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         scopes=scopes
     )
 
-    logging.warning('SECURITY - Log in [%s, %s]', user.id, user.email)
+    logging.info('SECURITY - Log in [%s, %s]', user.id, user.email)
     return {"access_token": access_token, "token_type": "bearer"}
 
 
@@ -52,5 +52,5 @@ def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
     user.password = get_password_hash(user.password)
 
-    logging.warning('SECURITY - User registration [%s, %s]', user.username, user.email)
+    logging.info('SECURITY - User registration [%s, %s]', user.username, user.email)
     return crud.create_user(db=db, user=user)
