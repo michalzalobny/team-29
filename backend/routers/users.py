@@ -46,6 +46,16 @@ def add_animal_to_user(animal_id: int, user: models.User = Depends(manager), db:
     return crud.add_animal_to_user(user_id=user.id, animal_id=animal_id, db=db)
 
 
+@router.get("/me/games", response_model=List[schemas.Animal], tags=["user to games"])
+def read_all_games_by_user(user: models.User = Depends(manager), db: Session = Depends(get_db)):
+    return crud.get_all_games_by_user(user_id=user.id, db=db)
+
+
+@router.post("/me/games", response_model=schemas.Game, tags=["user to games"])
+def create_user_game(game: schemas.GameCreate, user: schemas.User = Depends(manager), db: Session = Depends(get_db)):
+    return crud.add_game_to_user(game, user_id=user.id, db=db)
+
+
 @router.delete(
     "/{user_id}",
     response_model=schemas.User,
