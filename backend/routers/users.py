@@ -46,7 +46,7 @@ def add_animal_to_user(animal_id: int, user: models.User = Depends(manager), db:
     return crud.add_animal_to_user(user_id=user.id, animal_id=animal_id, db=db)
 
 
-@router.get("/me/games", response_model=List[schemas.Animal], tags=["current user to games"])
+@router.get("/me/games", response_model=List[schemas.Game], tags=["current user to games"])
 def read_all_games_by_user(user: models.User = Depends(manager), db: Session = Depends(get_db)):
     return crud.get_all_games_by_user(user_id=user.id, db=db)
 

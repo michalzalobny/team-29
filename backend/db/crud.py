@@ -95,9 +95,10 @@ def get_all_animal_by_user(user_id: int, db: Session):
     return user.animals
 
 
-def get_all_games(db: Session):
-    games = db.query(models.Game).all()
-    return games
+def get_all_games(db: Session, limit: int, desc: bool):
+    return db.query(models.Game).order_by(models.Game.score.desc()) \
+        .limit(limit) \
+        .all()
 
 
 def get_all_games_by_user(user_id: int, db: Session):

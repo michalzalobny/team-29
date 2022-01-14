@@ -54,6 +54,6 @@ class Game(Base):
     __tablename__ = "games"
 
     id = Column(Integer, primary_key=True)
-    score = Column(Integer, CheckConstraint("score > 0"))
+    score = Column(Integer, CheckConstraint("score >= 0"))
     user_id = Column(Integer, ForeignKey("users.id"))
     date = Column(TIMESTAMP, default=current_timestamp())
