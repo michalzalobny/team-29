@@ -58,6 +58,13 @@ class AnimalCreate(AnimalBase):
     ...
 
 
+class AnimalUpdate(BaseModel):
+    name: Optional[str] = Field(None)
+    scientific_name: Optional[str] = Field(None)
+    description: Optional[str] = Field(None)
+    category: Optional[Category] = Field(None)
+    population: Optional[int] = Field(None)
+
 class Animal(AnimalBase):
     id: int
 

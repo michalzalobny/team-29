@@ -95,6 +95,14 @@ def get_all_animal_by_user(user_id: int, db: Session):
     return user.animals
 
 
+def update_animal(animal: models.Animal, new_details: schemas.AnimalUpdate, db: Session):
+    for key, val in new_details.dict(exclude_unset=True).items():
+        setattr(animal, key, val)
+    db.add(animal)
+    db.commit()
+    return animal
+
+
 def delete_animal(animal_id: int, db: Session):
     animal_to_delete = db.query(models.Animal).filter(models.Animal.id == animal_id).first()
     if animal_to_delete:

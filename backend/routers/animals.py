@@ -24,7 +24,18 @@ def create_animals(animal: schemas.AnimalCreate, db: Session = Depends(get_db)):
     return schemas.Animal.from_orm(db_animal)
 
 
-@router.delete("/{animal_id}", response_model=schemas.Animal)
+@router.patch("/{animal_id}", response_model=schemas.Animal, dependencies=[Security(manager, scopes=["ADMIN"])])
+def update_animal(animal_id: int, new_details: schemas.AnimalUpdate, db: Session = Depends(get_db)):
+    db_animal = crud.get_animal(animal_id, db)
+
+    if db_animal:
+        crud.update_animal(db_animal, new_details, db)
+        return db_animal
+    else:
+        raise HTTPException(status_code=404, detail="Animal does not exist")
+
+
+@router.delete("/{animal_id}", response_model=schemas.Animal, dependencies=[Security(manager, scopes=["ADMIN"])])
 def delete_animal(animal_id: int, db: Session = Depends(get_db)):
     animal_to_delete = crud.delete_animal(animal_id, db)
     if animal_to_delete:
