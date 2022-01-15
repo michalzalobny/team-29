@@ -24,13 +24,16 @@ export const LoadingInfo = styled.span`
   color: ${sharedValues.colors.black};
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 5rem;
+`;
+
 export const AddButtonWrapper = styled.button`
   cursor: pointer;
   display: flex;
-  margin-bottom: 5rem;
-
-  ${media.tablet} {
-  }
 `;
 
 export const Text = styled.div`

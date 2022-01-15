@@ -23,9 +23,11 @@ export const AnimalsManager = () => {
         ) : (
           <>
             <>
-              <S.AddButtonWrapper onClick={() => setIsOpened(true)}>
-                <BlobButton label="Add animal" backgroundColor={sharedValues.colors.lightBlue} />
-              </S.AddButtonWrapper>
+              <S.ButtonContainer>
+                <S.AddButtonWrapper onClick={() => setIsOpened(true)}>
+                  <BlobButton label="Add animal" backgroundColor={sharedValues.colors.lightBlue} />
+                </S.AddButtonWrapper>
+              </S.ButtonContainer>
             </>
             {data &&
               data.data.map((animal: BackendAnimal) => (
