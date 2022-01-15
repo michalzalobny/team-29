@@ -23,3 +23,19 @@ export const LoadingInfo = styled.span`
   font-weight: 800;
   color: ${sharedValues.colors.black};
 `;
+
+export const AddButtonWrapper = styled.button`
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 5rem;
+
+  ${media.tablet} {
+  }
+`;
+
+export const Text = styled.div`
+  font-size: 15px;
+  color: ${sharedValues.colors.black};
+  font-weight: 800;
+  line-height: 1.5;
+`;

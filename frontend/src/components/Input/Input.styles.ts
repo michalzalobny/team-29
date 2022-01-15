@@ -36,6 +36,27 @@ export const Label = styled.label<Label>`
     `}
 `;
 
+export const Select = styled.select`
+  width: 100%;
+  font-size: 16px;
+  border-radius: 50px;
+  padding: 14px 25px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  border: 0;
+  transition: box-shadow 0.3s;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 12px ${sharedValues.colors.brown};
+  }
+
+  /* Remove arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+`;
+
 export const Input = styled.input<Input>`
   width: 100%;
   font-size: 16px;

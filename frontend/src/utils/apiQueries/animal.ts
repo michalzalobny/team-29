@@ -3,13 +3,23 @@ import * as yup from 'yup';
 import axios from 'utils/axiosInstance';
 
 export const animalsCategories = {
-  LEAST_CONCERN: 'least_concern',
-  NEAR_THREATENED: 'near_threatened',
-  VULNERABLE: 'vulnerable',
-  ENDANGERED: 'endangered',
-  CRITICALLY_ENDANGERED: 'critic,ally_endangered',
-  EXTINCT_IN_WILD: 'extinct_in_wild',
-  EXTINCT: 'extinct',
+  LEAST_CONCERN: 'LEAST_CONCERN',
+  NEAR_THREATENED: 'NEAR_THREATENED',
+  VULNERABLE: 'VULNERABLE',
+  ENDANGERED: 'ENDANGERED',
+  CRITICALLY_ENDANGERED: 'CRITICALLY_ENDANGERED',
+  EXTINCT_IN_WILD: 'EXTINCT_IN_WILD',
+  EXTINCT: 'EXTINCT',
+};
+
+export const animalsCategoriesNormal = {
+  LEAST_CONCERN: 'Least concern',
+  NEAR_THREATENED: 'Near threatened',
+  VULNERABLE: 'Vulnerable',
+  ENDANGERED: 'Endangered',
+  CRITICALLY_ENDANGERED: 'Critically endangered',
+  EXTINCT_IN_WILD: 'Extinct in wild',
+  EXTINCT: 'Extinct',
 };
 
 export const yupAddAnimalSchema = yup.object().shape({
