@@ -22,3 +22,12 @@ export interface BackendUser {
   username: string;
   id: number;
 }
+
+export interface BackendAnimal {
+  name: string;
+  scientific_name: string;
+  description: string;
+  category: string;
+  population: number;
+  id: number;
+}
