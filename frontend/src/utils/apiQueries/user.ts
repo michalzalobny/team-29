@@ -44,7 +44,6 @@ export const getUsers = (token: string) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
-
   return axios.get('users', config);
 };
 
@@ -57,6 +56,5 @@ export const deleteUser = ({ token, userId }: DeleteUser) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
-
   return axios.delete(`users/${userId}`, config);
 };
