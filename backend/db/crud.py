@@ -95,6 +95,15 @@ def get_all_animal_by_user(user_id: int, db: Session):
     return user.animals
 
 
+def delete_animal(animal_id: int, db: Session):
+    animal_to_delete = db.query(models.Animal).filter(models.Animal.id == animal_id).first()
+    if animal_to_delete:
+        db.delete(animal_to_delete)
+        db.commit()
+        return animal_to_delete
+    return None
+
+
 def get_all_games(db: Session, limit: int, desc: bool):
     return db.query(models.Game).order_by(models.Game.score.desc()) \
         .limit(limit) \

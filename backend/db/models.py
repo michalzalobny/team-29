@@ -39,7 +39,7 @@ class Animal(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(50), unique=True, nullable=False, index=True)
     scientific_name = Column(String(100), unique=True, nullable=False, index=True)
-    description = Column(Text)
+    description = Column(Text, default="")
     category = Column(Enum(Category, validate_strings=True), nullable=False, default=Category.LEAST_CONCERN)
     population = Column(Integer, default=None)
 
