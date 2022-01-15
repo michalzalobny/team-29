@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { springMedium, springQuick } from 'components/Animations/framerTransitions';
+import { springMedium } from 'components/Animations/framerTransitions';
 import { CloseButton } from 'components/Buttons/CloseButton/CloseButton';
 
-import { BackgroundV, ModalWrapperV, WrapperV, ButtonsWrapperV } from './Modal.motion';
+import { BackgroundV, ModalWrapperV, WrapperV } from './Modal.motion';
 import * as S from './Modal.styles';
 
 interface Props {

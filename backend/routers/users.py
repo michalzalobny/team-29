@@ -22,12 +22,12 @@ def read_users(
     return users
 
 
-@router.get("/me", response_model=schemas.User, tags=["users"])
+@router.get("/me", response_model=schemas.User, tags=["current user"])
 def read_current_user(user: models.User = Depends(manager)):
     return schemas.User.from_orm(user)
 
 
-@router.patch("/me", response_model=schemas.User, tags=["users"])
+@router.patch("/me", response_model=schemas.User, tags=["current user"])
 def update_user_details(
         new_user_details: schemas.UserUpdate,
         user: models.User = Depends(manager),
@@ -36,14 +36,24 @@ def update_user_details(
     return crud.update_user(user=user, new_details=new_user_details, db=db)
 
 
-@router.get("/me/animals", response_model=List[schemas.Animal], tags=["user to animal"])
+@router.get("/me/animals", response_model=List[schemas.Animal], tags=["current user to animal"])
 def read_all_animals_by_user(user: models.User = Depends(manager), db: Session = Depends(get_db)):
     return crud.get_all_animal_by_user(user_id=user.id, db=db)
 
 
-@router.patch("/me/animals", response_model=schemas.Animal, tags=["user to animal"])
+@router.patch("/me/animals", response_model=schemas.Animal, tags=["current user to animal"])
 def add_animal_to_user(animal_id: int, user: models.User = Depends(manager), db: Session = Depends(get_db)):
     return crud.add_animal_to_user(user_id=user.id, animal_id=animal_id, db=db)
+
+
+@router.get("/me/games", response_model=List[schemas.Game], tags=["current user to games"])
+def read_all_games_by_user(user: models.User = Depends(manager), db: Session = Depends(get_db)):
+    return crud.get_all_games_by_user(user_id=user.id, db=db)
+
+
+@router.post("/me/games", response_model=schemas.Game, tags=["current user to games"])
+def create_user_game(game: schemas.GameCreate, user: schemas.User = Depends(manager), db: Session = Depends(get_db)):
+    return crud.add_game_to_user(game, user_id=user.id, db=db)
 
 
 @router.delete(

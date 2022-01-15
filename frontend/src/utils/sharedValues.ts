@@ -9,5 +9,7 @@ export const sharedValues = {
     brown: '#e2a583',
     brownDark: '#bf7855',
     red: '#db1616',
+    lightBlue: '#42b1ed',
+    lightBlueDark: '#2a92c9',
   },
 };

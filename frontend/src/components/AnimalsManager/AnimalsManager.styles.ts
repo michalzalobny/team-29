@@ -23,3 +23,22 @@ export const LoadingInfo = styled.span`
   font-weight: 800;
   color: ${sharedValues.colors.black};
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 5rem;
+`;
+
+export const AddButtonWrapper = styled.button`
+  cursor: pointer;
+  display: flex;
+`;
+
+export const Text = styled.div`
+  font-size: 15px;
+  color: ${sharedValues.colors.black};
+  font-weight: 800;
+  line-height: 1.5;
+`;

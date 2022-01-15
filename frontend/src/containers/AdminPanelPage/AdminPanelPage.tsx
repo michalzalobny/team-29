@@ -5,6 +5,7 @@ import { Head } from 'seo/Head/Head';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { AuthGuard } from 'components/AuthGuard/AuthGuard';
 import { UsersManager } from 'components/UsersManager/UsersManager';
+import { AnimalsManager } from 'components/AnimalsManager/AnimalsManager';
 
 import { Props } from './data';
 import * as S from './AdminPanelPage.styles';
@@ -44,7 +45,10 @@ export default function AdminPanelPage(props: Props) {
                 />
               </S.ButtonContainer>
             </S.ButtonsWrapper>
-            <S.PanelsWrapper>{currentView === 'users' && <UsersManager />}</S.PanelsWrapper>
+            <S.PanelsWrapper>
+              {currentView === 'users' && <UsersManager />}
+              {currentView === 'animals' && <AnimalsManager />}
+            </S.PanelsWrapper>
           </S.Container>
         </S.Wrapper>
       </AuthGuard>

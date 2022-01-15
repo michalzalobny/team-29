@@ -9,7 +9,7 @@ interface Props {
   label: string;
   fieldName: string;
   customId?: string;
-  inputType?: 'text' | 'password' | 'email';
+  inputType?: 'text' | 'password' | 'email' | 'textarea' | 'number';
   hookForm: UseFormReturn<FieldValues, object>;
   inputAutoComplete?: 'current-password' | 'new-password' | 'cc-number' | 'email';
 }
