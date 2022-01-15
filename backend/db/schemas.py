@@ -37,13 +37,13 @@ class User(UserBase):
 
 class Category(str, Enum):
     """Category for an animal's population status"""
-    LEAST_CONCERN = "least_concern"
-    NEAR_THREATENED = "near_threatened"
-    VULNERABLE = "vulnerable"
-    ENDANGERED = "endangered"
-    CRITICALLY_ENDANGERED = "critically_endangered"
-    EXTINCT_IN_WILD = "extinct_in_wild"
-    EXTINCT = "extinct"
+    LEAST_CONCERN = "LEAST_CONCERN"
+    NEAR_THREATENED = "NEAR_THREATENED"
+    VULNERABLE = "VULNERABLE"
+    ENDANGERED = "ENDANGERED"
+    CRITICALLY_ENDANGERED = "CRITICALLY_ENDANGERED"
+    EXTINCT_IN_WILD = "EXTINCT_IN_WILD"
+    EXTINCT = "EXTINCT"
 
 
 class AnimalBase(BaseModel):
