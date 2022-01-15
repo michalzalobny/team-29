@@ -53,6 +53,12 @@ export const Navbar = (props: Props) => {
     {
       label: 'Species List',
       href: '/species-list',
+      shouldHide: user.scope === null,
+    },
+    {
+      label: 'Species List',
+      href: '/logged-out-species',
+      shouldHide: user.scope !== null,
     },
     {
       label: 'Ranking',
