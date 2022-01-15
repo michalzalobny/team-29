@@ -42,9 +42,9 @@ async def add_process_time_header(request: Request, call_next):
 
     process_time = (time.time() - start_time) * 1000
     formatted_process_time = '{0:.2f}'.format(process_time)
-    logger.warning(
-        "INFO - " + f"rid={idem}, start request path={request.url.path}, completed_in={formatted_process_time}ms, "
-                    f"status_code={response.status_code}")
+
+    logger.info(f"rid={idem}, start request path={request.url.path}, completed_in={formatted_process_time}ms, " +
+                f"status_code={response.status_code}")
 
     return response
 
