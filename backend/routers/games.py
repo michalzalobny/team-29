@@ -26,7 +26,7 @@ def read_all_games(limit: int = 10, db: Session = Depends(get_db)):
 
         List[schemas.Game]: List of Game objects
     """
-    return crud.get_all_games(db=db, limit=limit)
+    return crud.get_all_games(limit=limit, db=db)
 
 
 @router.delete("", tags=["_admin"], dependencies=[Security(manager, scopes=["ADMIN"])])
