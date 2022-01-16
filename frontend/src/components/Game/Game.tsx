@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import shuffle from 'lodash.shuffle';
 
 import { BackendAnimal } from 'types';
 
@@ -14,10 +15,16 @@ interface Props {
 
 export const Game = (props: Props) => {
   const { animals } = props;
+  const [animalsShuffled, setAnimalsShuffled] = useState<BackendAnimal[]>([]);
 
   useEffect(() => {
-    console.log(animals);
+    const shuffled = shuffle(animals);
+    setAnimalsShuffled(shuffled);
   }, [animals]);
+
+  useEffect(() => {
+    console.log(animalsShuffled);
+  }, [animalsShuffled]);
 
   return (
     <>
