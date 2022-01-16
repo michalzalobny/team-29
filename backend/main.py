@@ -30,11 +30,13 @@ app.add_middleware(CORSMiddleware,
 
 @app.get("/")
 async def root() -> dict:
+    """Test endpoint"""
     return {"message": "Hello Team 29!"}
 
 
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
+    """Middleware for auto logging requests"""
     idem = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
 
     start_time = time.time()

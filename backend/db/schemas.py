@@ -10,16 +10,19 @@ from pydantic import BaseModel, Field
 
 
 class Role(str, Enum):
+    """Roles for users"""
     ADMIN = "ADMIN"
     USER = "USER"
 
 
 class UserBase(BaseModel):
+    """Base schema for users"""
     email: str
     username: str
 
 
 class UserCreate(UserBase):
+    """Schema for creating users"""
     password: str
 
 
@@ -31,11 +34,12 @@ class UserUpdate(BaseModel):
 
 
 class User(UserBase):
+    """User schema as a response model"""
     id: int
     is_active: bool
     role: Role = Role.USER
 
-    class Config:
+    class Config:   # pylint: disable=C0115
         orm_mode = True
 
 
@@ -51,6 +55,7 @@ class Category(str, Enum):
 
 
 class AnimalBase(BaseModel):
+    """Base schema for Animals"""
     name: str
     scientific_name: str
     description: str
@@ -59,10 +64,12 @@ class AnimalBase(BaseModel):
 
 
 class AnimalCreate(AnimalBase):
+    """Schema for creating animals"""
     ...
 
 
 class AnimalUpdate(BaseModel):
+    """Schema for updating animals. Allows optional fields."""
     name: Optional[str] = Field(None)
     scientific_name: Optional[str] = Field(None)
     description: Optional[str] = Field(None)
@@ -71,23 +78,27 @@ class AnimalUpdate(BaseModel):
 
 
 class Animal(AnimalBase):
+    """Animal schema as a response model"""
     id: int
 
-    class Config:
+    class Config:   # pylint: disable=C0115
         orm_mode = True
 
 
 class GameBase(BaseModel):
+    """Base schema for Games"""
     score: int
 
 
 class GameCreate(GameBase):
+    """Schema for creating games"""
     ...
 
 
 class Game(GameBase):
+    """Response model for games"""
     id: int
     date: datetime
 
-    class Config:
+    class Config:   # pylint: disable=C0115
         orm_mode = True

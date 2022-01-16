@@ -16,6 +16,7 @@ router = APIRouter(
 
 @router.post("/login")
 def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    """Login route for generating JSON Web Tokens"""
     # details from the form
     username = data.username
     password = data.password
@@ -43,6 +44,7 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 
 @router.post("/register", response_model=schemas.User)
 def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    """Register as a user"""
     db_user = crud.get_user_by_email(email=user.email, db=db)
     if db_user:
         logger.warning('SECURITY - Failed register (Email exists) [%s]', user.email)
