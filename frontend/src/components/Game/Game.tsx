@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import shuffle from 'lodash.shuffle';
 
 import { BackendAnimal } from 'types';
@@ -17,25 +17,70 @@ export const Game = (props: Props) => {
   const { animals } = props;
   const [animalsShuffled, setAnimalsShuffled] = useState<BackendAnimal[]>([]);
   const [roundNumber, setRoundNumber] = useState(0);
-  const [currentWinner, setCurrentWinner] = useState<null | number>(null);
+  const [winningIndex, setWinningIndex] = useState<number>(0);
 
+  //Shuffle animals array
   useEffect(() => {
     const shuffled = shuffle(animals);
     setAnimalsShuffled(shuffled);
   }, [animals]);
 
-  useEffect(() => {
-    console.log(animalsShuffled);
-  }, [animalsShuffled]);
+  const handleGameFinish = useCallback(
+    (state: 'lost' | 'won') => {
+      if (state === 'won') console.log('congrats, you have ' + state);
+
+      setWinningIndex(0);
+      setRoundNumber(0);
+      const shuffled = shuffle(animals);
+      setAnimalsShuffled(shuffled);
+    },
+    [animals]
+  );
+
+  const handleCardChange = useCallback(
+    (cardIndex: number) => {
+      if (roundNumber + 2 >= animalsShuffled.length) {
+        return handleGameFinish('won');
+      }
+
+      setRoundNumber(prev => prev + 1);
+      setWinningIndex(cardIndex);
+    },
+    [animalsShuffled.length, handleGameFinish, roundNumber]
+  );
+
+  const handleCardClick = useCallback(
+    (side: 'dark' | 'light') => {
+      let clickedCardIndex;
+      let otherCardIndex;
+
+      if (side === 'dark') {
+        clickedCardIndex = winningIndex;
+        otherCardIndex = roundNumber + 1;
+      } else {
+        clickedCardIndex = roundNumber + 1;
+        otherCardIndex = winningIndex;
+      }
+
+      if (
+        animalsShuffled[clickedCardIndex].population >= animalsShuffled[otherCardIndex].population
+      ) {
+        handleCardChange(clickedCardIndex);
+      } else {
+        handleGameFinish('lost');
+      }
+    },
+    [animalsShuffled, handleCardChange, handleGameFinish, roundNumber, winningIndex]
+  );
 
   return (
     <>
       <S.Wrapper>
         <S.ElementsWrapper>
           <S.DarkCardWrapper>
-            <S.Card type="dark">
+            <S.Card onClick={() => handleCardClick('dark')} type="dark">
               <S.CardContent>
-                <S.Title>Dolphins</S.Title>
+                <S.Title>{animalsShuffled[winningIndex]?.name || winningIndex}</S.Title>
               </S.CardContent>
             </S.Card>
             <S.PawWrapper position={1}>
@@ -60,11 +105,17 @@ export const Game = (props: Props) => {
             <S.BottomTextWrapper>
               <S.Text>Pick by clicking the card.</S.Text>
             </S.BottomTextWrapper>
+
+            <S.BottomTextWrapper>
+              <S.Text>
+                Current round: <S.Text bold>{roundNumber + 1}</S.Text>
+              </S.Text>
+            </S.BottomTextWrapper>
           </S.InfoWrapper>
           <S.LightCardWrapper>
-            <S.Card type="light">
+            <S.Card onClick={() => handleCardClick('light')} type="light">
               <S.CardContent>
-                <S.Title>Test</S.Title>
+                <S.Title>{animalsShuffled[roundNumber + 1]?.name || roundNumber + 1}</S.Title>
               </S.CardContent>
             </S.Card>
             <S.PawWrapper position={4}>
