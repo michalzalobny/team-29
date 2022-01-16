@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import shuffle from 'lodash.shuffle';
 
 import { BackendAnimal } from 'types';
+import { SlideItemWithKey } from 'components/Animations/SlideItemWithKey/SlideItemWithKey';
 
 import vsSrc from './images/vs.svg';
 import pawSrc from './images/paw.svg';
@@ -80,7 +81,13 @@ export const Game = (props: Props) => {
           <S.DarkCardWrapper>
             <S.Card onClick={() => handleCardClick('dark')} type="dark">
               <S.CardContent>
-                <S.Title>{animalsShuffled[winningIndex]?.name || winningIndex}</S.Title>
+                <S.Title>
+                  <SlideItemWithKey itemKey={animalsShuffled[winningIndex]?.name || winningIndex}>
+                    <span style={{ width: '100%' }}>
+                      {animalsShuffled[winningIndex]?.name || winningIndex}
+                    </span>
+                  </SlideItemWithKey>
+                </S.Title>
               </S.CardContent>
             </S.Card>
             <S.PawWrapper position={1}>
@@ -115,7 +122,15 @@ export const Game = (props: Props) => {
           <S.LightCardWrapper>
             <S.Card onClick={() => handleCardClick('light')} type="light">
               <S.CardContent>
-                <S.Title>{animalsShuffled[roundNumber + 1]?.name || roundNumber + 1}</S.Title>
+                <S.Title>
+                  <SlideItemWithKey
+                    itemKey={animalsShuffled[roundNumber + 1]?.name || roundNumber + 1}
+                  >
+                    <span style={{ width: '100%' }}>
+                      {animalsShuffled[roundNumber + 1]?.name || roundNumber + 1}
+                    </span>
+                  </SlideItemWithKey>
+                </S.Title>
               </S.CardContent>
             </S.Card>
             <S.PawWrapper position={4}>

@@ -127,6 +127,7 @@ export const CardContent = styled.div`
 `;
 
 export const Title = styled.p`
+  width: 100%;
   text-align: center;
   font-size: 2.5rem;
   font-weight: 800;
