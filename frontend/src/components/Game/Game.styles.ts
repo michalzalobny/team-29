@@ -79,7 +79,7 @@ export const Card = styled.div<Card>`
   height: 100%;
   background-color: ${sharedValues.colors.blue};
   border-radius: 1.5rem;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   padding: 2rem;
 
   ${props =>
@@ -98,6 +98,7 @@ export const CardContent = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -113,6 +114,15 @@ export const CardContent = styled.div`
     ${media.tablet} {
       border-radius: 1.5rem;
     }
+  }
+
+  transition-duration: 0.55s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97);
+  backface-visibility: hidden;
+
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 
@@ -177,4 +187,68 @@ export const BottomTextWrapper = styled.p`
   width: 70%;
   text-align: center;
   margin-top: 1.4rem;
+`;
+
+interface PawWrapper {
+  position: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+export const PawWrapper = styled.div<PawWrapper>`
+  width: 15%;
+  position: absolute;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  ${props =>
+    props.position === 1 &&
+    css`
+      left: 5%;
+      top: 90%;
+      transform: rotate(10deg);
+    `}
+
+  ${props =>
+    props.position === 2 &&
+    css`
+      left: 23%;
+      top: 80%;
+      transform: rotate(-25deg);
+    `}
+
+    ${props =>
+    props.position === 3 &&
+    css`
+      left: 10%;
+      top: 63%;
+      transform: rotate(-45deg);
+    `}
+
+    ${props =>
+    props.position === 4 &&
+    css`
+      right: 10%;
+      top: 70%;
+      transform: rotate(15deg);
+    `}
+
+    ${props =>
+    props.position === 5 &&
+    css`
+      right: 15%;
+      top: 90%;
+      transform: rotate(-25deg);
+    `}
+
+    
+    ${props =>
+    props.position === 6 &&
+    css`
+      right: 90%;
+      top: 22%;
+      transform: rotate(-45deg);
+    `}
 `;
