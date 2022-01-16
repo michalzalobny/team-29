@@ -9,11 +9,14 @@ export const GameWrapper = styled.div`
   margin-top: 10rem;
   display: flex;
   align-items: center;
+  margin-top: -2rem;
+  margin-bottom: 5rem;
 
   ${media.tablet} {
     padding: 0;
     width: 100rem;
     margin: 0 auto;
     margin-top: -10rem;
+    margin-bottom: 8rem;
   }
 `;
