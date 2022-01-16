@@ -19,7 +19,7 @@ def read_users(
         limit: int = 100,
         db: Session = Depends(get_db),
 ):
-    """Get all users. FOR DEBUGGING AND TESTING PURPOSES ONLY"""
+    """Get all users."""
     users = crud.get_users(db, skip=skip, limit=limit, exclude_admin=True)
     return users
 
