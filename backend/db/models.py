@@ -3,8 +3,8 @@ from sqlalchemy import Boolean, Column, Integer, String, Text, Enum, Table, Fore
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.functions import current_timestamp
 
-from .database import Base
-from .schemas import Category, Role
+from db.database import Base
+from db.schemas import Category, Role
 
 user_animal = Table("user_animal", Base.metadata,
                     Column("user_id", ForeignKey("users.id"), primary_key=True),

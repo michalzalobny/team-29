@@ -2,6 +2,7 @@
 from typing import List, Optional
 
 from sqlalchemy.orm import Session
+from sqlalchemy.sql.expression import func
 
 from db import models, schemas
 from db.database import engine
@@ -146,9 +147,33 @@ def delete_animal(animal_id: int, db: Session) -> Optional[models.Animal]:
     return None
 
 
-def get_all_games(limit: int, db: Session) -> List[models.Game]:
-    """Get all game records with limit"""
-    return db.query(models.Game).order_by(models.Game.score.desc()) \
+def get_game(game_id: int, db: Session) -> models.Game:
+    """Fetch Game object by `id` from database"""
+    return db.query(models.Game).filter(models.Game.id == game_id).first()
+
+
+def get_all_games(limit: int, distinct: bool, db: Session) -> List[models.Game]:
+    """Return all games with limit and distinct-highest flag
+
+    Args:
+
+        limit (int): limit to game numbers (10 by default)
+        distinct (bool): flag for getting only the highest score for each user (True by default)
+        db (Session, optional): Database session to be used (dependency injected by default)
+
+    Returns:
+        List[schemas.Game]: Only `limit` number of records in descending order if distinct is False.
+        If distinct is True, return only the max score for each user.
+    """
+    if distinct:
+        return db.query(models.Game) \
+            .group_by(models.Game.user_id) \
+            .order_by(func.max(models.Game.score)) \
+            .limit(limit) \
+            .all()
+
+    return db.query(models.Game) \
+        .order_by(models.Game.score.desc()) \
         .limit(limit) \
         .all()
 

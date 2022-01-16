@@ -99,6 +99,7 @@ class Game(GameBase):
     """Response model for games"""
     id: int
     date: datetime
+    user_id: int
 
     class Config:   # pylint: disable=C0115
         orm_mode = True
