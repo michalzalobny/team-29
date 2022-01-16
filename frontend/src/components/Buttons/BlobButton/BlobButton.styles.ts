@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 
-interface Wrapper {
+interface WrapperProps {
   backgroundColor: string;
   textColor: string;
   extraSidePadding: boolean;
 }
 
-export const Wrapper = styled.span<Wrapper>`
+export const Wrapper = styled.span<WrapperProps>`
   background-color: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   border-radius: 50px;

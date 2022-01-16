@@ -5,9 +5,7 @@ import { useMediaPreload } from 'hooks/useMediaPreload';
 import logoSrc from './img/logodark.svg';
 import * as S from './LogoDark.styles';
 
-interface Props {}
-
-export const LogoDark = (props: Props) => {
+export const LogoDark = () => {
   const { isLoaded } = useMediaPreload({ isImage: true, mediaSrc: logoSrc });
 
   return (

@@ -6,7 +6,7 @@ import { media } from 'styles/media';
 
 import { BottomSvg } from './svg/BottomSvg';
 
-interface LinkItem {
+interface LinkItemProps {
   isBold?: boolean;
 }
 
@@ -105,7 +105,7 @@ export const BottomImg = styled(BottomSvg)`
   transform: translateY(-4%);
 `;
 
-export const LinkItem = styled.span<LinkItem>`
+export const LinkItem = styled.span<LinkItemProps>`
   display: inline-block;
   color: ${sharedValues.colors.white};
   line-height: 1.6;

@@ -67,11 +67,11 @@ export const LightCardWrapper = styled.div`
   }
 `;
 
-interface Card {
+interface CardProps {
   type: 'light' | 'dark';
 }
 
-export const Card = styled.div<Card>`
+export const Card = styled.div<CardProps>`
   position: absolute;
   top: 0;
   left: 0;
@@ -150,12 +150,12 @@ export const VsImageWrapper = styled.div`
   }
 `;
 
-interface Text {
+interface TextProps {
   light?: boolean;
   bold?: boolean;
 }
 
-export const Text = styled.span<Text>`
+export const Text = styled.span<TextProps>`
   font-size: 1.5rem;
   color: ${sharedValues.colors.black};
 
@@ -188,11 +188,11 @@ export const BottomTextWrapper = styled.p`
   margin-top: 1.4rem;
 `;
 
-interface PawWrapper {
+interface PawWrapperProps {
   position: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
-export const PawWrapper = styled.div<PawWrapper>`
+export const PawWrapper = styled.div<PawWrapperProps>`
   width: 15%;
   position: absolute;
 

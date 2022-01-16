@@ -15,9 +15,7 @@ import { useAuthContext } from 'context/AuthContext';
 import * as S from './Navbar.styles';
 import { LinksSectionV } from './Navbar.motion';
 
-interface Props {}
-
-export const Navbar = (props: Props) => {
+export const Navbar = () => {
   const [isOpened, setIsOpened] = useState(false);
   const { setActiveLoggerMode, setIsLoggerOpen } = useLoggerContext();
   const isTablet = useBreakpoint(breakpoints.tablet);

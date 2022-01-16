@@ -1,8 +1,6 @@
 import React from 'react';
 import { UseFormReturn, FieldValues } from 'react-hook-form';
 
-import { useInput } from 'hooks/useInput';
-
 import * as S from './Input.styles';
 
 interface Props {
