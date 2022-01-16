@@ -7,10 +7,12 @@ export const Container = styled.div`
   padding: 1.8rem 1rem;
   display: flex;
   flex-direction: column;
+  margin-top: 10rem;
 
   ${media.tablet} {
     width: 140rem;
     margin: 0 auto;
+    margin-top: 20rem;
     padding: 2.2rem 0;
   }
 `;
