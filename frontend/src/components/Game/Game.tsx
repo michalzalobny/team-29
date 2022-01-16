@@ -3,12 +3,13 @@ import shuffle from 'lodash.shuffle';
 
 import { BackendAnimal } from 'types';
 import { SlideItemWithKey } from 'components/Animations/SlideItemWithKey/SlideItemWithKey';
+import { PreloadImage } from 'components/PreloadImage/PreloadImage';
 
 import vsSrc from './images/vs.svg';
 import pawSrc from './images/paw.svg';
 import paw2Src from './images/paw2.svg';
 import * as S from './Game.styles';
-import { PreloadImage } from 'components/PreloadImage/PreloadImage';
+import { CardInfoV } from './Game.motion';
 
 interface Props {
   animals: BackendAnimal[];
@@ -66,13 +67,21 @@ export const Game = (props: Props) => {
       if (
         animalsShuffled[clickedCardIndex].population >= animalsShuffled[otherCardIndex].population
       ) {
+        if (side === 'dark') setCardStatusDark('success');
+        if (side === 'light') setCardStatusLight('success');
         handleCardChange(clickedCardIndex);
       } else {
+        if (side === 'dark') setCardStatusDark('fail');
+        if (side === 'light') setCardStatusLight('fail');
         handleGameFinish('lost');
       }
     },
     [animalsShuffled, handleCardChange, handleGameFinish, roundNumber, winningIndex]
   );
+
+  type CardStatus = 'initial' | 'fail' | 'success';
+  const [cardStatusDark, setCardStatusDark] = useState<CardStatus>('initial');
+  const [cardStatusLight, setCardStatusLight] = useState<CardStatus>('initial');
 
   return (
     <>
@@ -80,6 +89,14 @@ export const Game = (props: Props) => {
         <S.ElementsWrapper>
           <S.DarkCardWrapper>
             <S.Card onClick={() => handleCardClick('dark')} type="dark">
+              <S.CardInfo
+                initial="initial"
+                animate={cardStatusDark}
+                onAnimationComplete={() =>
+                  cardStatusDark !== 'initial' && setCardStatusDark('initial')
+                }
+                variants={CardInfoV}
+              />
               <S.CardContent>
                 <S.CardBorder />
                 <S.Title>
@@ -126,6 +143,14 @@ export const Game = (props: Props) => {
           </S.InfoWrapper>
           <S.LightCardWrapper>
             <S.Card onClick={() => handleCardClick('light')} type="light">
+              <S.CardInfo
+                initial="initial"
+                animate={cardStatusLight}
+                onAnimationComplete={() =>
+                  cardStatusLight !== 'initial' && setCardStatusLight('initial')
+                }
+                variants={CardInfoV}
+              />
               <S.CardContent>
                 <S.CardBorder />
                 <S.Title>

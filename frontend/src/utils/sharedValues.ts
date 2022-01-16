@@ -11,5 +11,6 @@ export const sharedValues = {
     red: '#db1616',
     lightBlue: '#42b1ed',
     lightBlueDark: '#2a92c9',
+    green: '#46cf2b',
   },
 };

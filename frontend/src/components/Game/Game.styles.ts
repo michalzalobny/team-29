@@ -71,6 +71,21 @@ interface CardProps {
   type: 'light' | 'dark';
 }
 
+export const CardInfo = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: ${sharedValues.colors.green};
+  border-radius: 1.5rem;
+
+  ${media.tablet} {
+    border-radius: 2.5rem;
+  }
+`;
+
 export const Card = styled.div<CardProps>`
   position: absolute;
   top: 0;
