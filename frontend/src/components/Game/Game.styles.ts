@@ -25,7 +25,12 @@ export const DarkCardWrapper = styled.div`
   }
 `;
 
-export const InfoWrapper = styled.div``;
+export const InfoWrapper = styled.div`
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const LightCardWrapper = styled.div`
   width: 35rem;
@@ -92,4 +97,38 @@ export const VsImageWrapper = styled.div`
   width: 9rem;
   height: 9rem;
   position: relative;
+`;
+
+interface Text {
+  light?: boolean;
+  bold?: boolean;
+}
+
+export const Text = styled.span<Text>`
+  font-size: 1.8rem;
+  color: ${sharedValues.colors.black};
+
+  ${props =>
+    props.light &&
+    css`
+      color: ${sharedValues.colors.brown};
+    `}
+
+  ${props =>
+    props.bold &&
+    css`
+      font-weight: 800;
+    `}
+`;
+
+export const TopTextWrapper = styled.p`
+  width: 70%;
+  text-align: center;
+  margin-bottom: 1.4rem;
+`;
+
+export const BottomTextWrapper = styled.p`
+  width: 70%;
+  text-align: center;
+  margin-top: 1.4rem;
 `;

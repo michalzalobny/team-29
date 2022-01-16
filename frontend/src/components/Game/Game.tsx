@@ -29,9 +29,17 @@ export const Game = (props: Props) => {
             </S.Card>
           </S.DarkCardWrapper>
           <S.InfoWrapper>
+            <S.TopTextWrapper>
+              <S.Text bold>
+                Which animals are... <S.Text light>more</S.Text> endangered?
+              </S.Text>
+            </S.TopTextWrapper>
             <S.VsImageWrapper>
               <PreloadImage altText="vs icon" imageSrc={vsSrc} />
             </S.VsImageWrapper>
+            <S.BottomTextWrapper>
+              <S.Text>Pick by clicking on the right card.</S.Text>
+            </S.BottomTextWrapper>
           </S.InfoWrapper>
           <S.LightCardWrapper>
             <S.Card type="light">
