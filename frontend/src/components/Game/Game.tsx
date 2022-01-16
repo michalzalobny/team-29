@@ -81,6 +81,7 @@ export const Game = (props: Props) => {
           <S.DarkCardWrapper>
             <S.Card onClick={() => handleCardClick('dark')} type="dark">
               <S.CardContent>
+                <S.CardBorder />
                 <S.Title>
                   <SlideItemWithKey itemKey={animalsShuffled[winningIndex]?.name || winningIndex}>
                     <span style={{ width: '100%' }}>
@@ -122,6 +123,7 @@ export const Game = (props: Props) => {
           <S.LightCardWrapper>
             <S.Card onClick={() => handleCardClick('light')} type="light">
               <S.CardContent>
+                <S.CardBorder />
                 <S.Title>
                   <SlideItemWithKey
                     itemKey={animalsShuffled[roundNumber + 1]?.name || roundNumber + 1}

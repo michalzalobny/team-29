@@ -94,34 +94,31 @@ export const Card = styled.div<Card>`
   }
 `;
 
-export const CardContent = styled.div`
-  position: relative;
+export const CardBorder = styled.div`
+  top: 50%;
+  left: 50%;
   width: 100%;
   height: 100%;
-  cursor: pointer;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    border-radius: 1rem;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-
-    ${media.tablet} {
-      border-radius: 1.5rem;
-    }
-  }
+  border-radius: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.25);
 
   transition-duration: 0.55s;
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97);
   backface-visibility: hidden;
 
-  &:hover {
+  ${media.tablet} {
+    border-radius: 1.5rem;
+  }
+`;
+
+export const CardContent = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  &:hover > div {
     transform: scale(1.1);
   }
 `;
