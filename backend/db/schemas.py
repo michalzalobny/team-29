@@ -105,6 +105,7 @@ class Game(GameBase):
 
 
 class TemplateEmailSchema(BaseModel):
+    """Schema for sending Emails using Template"""
     email: List[EmailStr]
     subject: str
     body: Dict[str, Any]
