@@ -1,6 +1,8 @@
 {
-  "extends": ["./node_modules/gts/", "next/core-web-vitals", "plugin:react-hooks/recommended"],
+  "extends": ["eslint:recommended", "next/core-web-vitals", "plugin:react-hooks/recommended"],
+  "plugins": ["prettier"],
   "rules": {
+    "prettier/prettier": "error",
     "@typescript-eslint/no-unused-vars": "off",
     "react/react-in-jsx-scope": "off",
     "@next/next/no-document-import-in-page": "off",
