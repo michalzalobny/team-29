@@ -16,17 +16,35 @@ router = APIRouter(
 
 @router.get("", response_model=List[schemas.Animal])
 def read_animals(db: Session = Depends(get_db)):
+    """Get all animals"""
     return crud.get_animals(db)
 
 
 @router.post("", response_model=schemas.Animal)
-def create_animals(animal: schemas.AnimalCreate, db: Session = Depends(get_db)):
+def create_animal(animal: schemas.AnimalCreate, db: Session = Depends(get_db)):
+    """Create new animal record"""
     db_animal = crud.create_animal(animal, db)
     return schemas.Animal.from_orm(db_animal)
 
 
 @router.patch("/{animal_id}", response_model=schemas.Animal, dependencies=[Security(manager, scopes=["ADMIN"])])
 def update_animal(animal_id: int, new_details: schemas.AnimalUpdate, db: Session = Depends(get_db)):
+    """Update an existing animal
+
+    Args:
+
+        animal_id (int): ID of the animal
+        new_details (schemas.AnimalUpdate): AnimalUpdate object for new animal details
+        db (Session, optional): Database session to be used (dependency injected by default)
+
+    Returns:
+
+        schemas.Animal: Object that contains the updated animal details
+
+    Raises:
+
+        HTTPException 404: Animal doesn't exist
+    """
     db_animal = crud.get_animal(animal_id, db)
 
     if not db_animal:
@@ -38,6 +56,21 @@ def update_animal(animal_id: int, new_details: schemas.AnimalUpdate, db: Session
 
 @router.delete("/{animal_id}", response_model=schemas.Animal, dependencies=[Security(manager, scopes=["ADMIN"])])
 def delete_animal(animal_id: int, db: Session = Depends(get_db)):
+    """Delete an existing animal
+
+    Args:
+
+        animal_id (int): ID of the animal to be fetched
+        db (Session, optional): Database session to be used (dependency injected by default)
+
+    Returns:
+
+        schemas.Animal: Object that was deleted
+
+    Raises:
+
+        HTTPException 404: Animal doesn't exist
+    """
     animal_to_delete = crud.delete_animal(animal_id, db)
     if not animal_to_delete:
         raise HTTPException(status_code=404, detail="Animal does not exist")

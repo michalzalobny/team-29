@@ -20,5 +20,5 @@ uvicorn==0.15.0
 PyMySQL==1.0.2
 python-dotenv==0.19.2
 psycopg2==2.9.3
-bcrypt
+bcrypt==3.2.0
 fastapi-mail==1.0.2

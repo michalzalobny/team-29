@@ -13,6 +13,7 @@ user_animal = Table("user_animal", Base.metadata,
 
 
 class User(Base):
+    """User model for database"""
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -35,6 +36,7 @@ class User(Base):
 
 
 class Animal(Base):
+    """Animal model for database"""
     __tablename__ = "animals"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -52,6 +54,7 @@ class Animal(Base):
 
 
 class Game(Base):
+    """Game model for database"""
     __tablename__ = "games"
 
     id = Column(Integer, primary_key=True)
