@@ -21,7 +21,6 @@ export const Wrapper = styled.span<WrapperProps>`
 
   display: inline-block;
   position: relative;
-  z-index: 1;
   box-shadow: 0 0 13px ${props => props.backgroundColor};
   font-size: 14px;
   line-height: 1.6;

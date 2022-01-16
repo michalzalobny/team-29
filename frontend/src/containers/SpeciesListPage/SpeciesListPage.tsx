@@ -1,18 +1,21 @@
 import React from 'react';
 
 import { Head } from 'seo/Head/Head';
-import { Header } from 'components/sections/Header/Header';
 
-import { Props } from 'containers/IndexPage/data';
+import { Props } from './data';
 import * as S from './SpeciesListPage.styles';
 
 export default function SpeciesListPage(props: Props) {
-  const { head } = props;
+  const { animals, head } = props;
   return (
     <>
       <Head {...head} />
       <S.Wrapper>
-        <Header />
+        <S.ContentWrapper>
+          <S.TilesWrapper>
+            <h1>dasd</h1>
+          </S.TilesWrapper>
+        </S.ContentWrapper>
       </S.Wrapper>
     </>
   );

@@ -6,7 +6,6 @@ import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled(motion.div)`
   width: 100%;
-  z-index: 1;
 `;
 
 export const ElementsWrapper = styled.div`
@@ -70,6 +69,33 @@ export const LightCardWrapper = styled.div`
 interface CardProps {
   type: 'light' | 'dark';
 }
+
+export const CardInfo = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: ${sharedValues.colors.green};
+  border-radius: 1.5rem;
+
+  ${media.tablet} {
+    border-radius: 2.5rem;
+  }
+`;
+
+export const DonateInfoWrapper = styled.div`
+  margin-bottom: 2.5rem;
+`;
+
+export const DonateContainer = styled.div`
+  display: flex;
+`;
+
+export const DonateWrapper = styled.a`
+  cursor: pointer;
+`;
 
 export const Card = styled.div<CardProps>`
   position: absolute;
@@ -153,7 +179,28 @@ export const VsImageWrapper = styled.div`
 interface TextProps {
   light?: boolean;
   bold?: boolean;
+  biggerLineHeight?: boolean;
 }
+
+interface ScoreProps {
+  bold?: boolean;
+}
+
+export const ScoreWrapper = styled.div`
+  margin-bottom: 2.5rem;
+  display: flex;
+`;
+
+export const Score = styled.span<ScoreProps>`
+  font-size: 30px;
+  color: ${sharedValues.colors.blue};
+  font-weight: 800;
+  ${props =>
+    props.bold &&
+    css`
+      color: ${sharedValues.colors.brown};
+    `}
+`;
 
 export const Text = styled.span<TextProps>`
   font-size: 1.5rem;
@@ -174,6 +221,12 @@ export const Text = styled.span<TextProps>`
     ${media.tablet} {
     font-size: 1.8rem;
   }
+
+  ${props =>
+    props.biggerLineHeight &&
+    css`
+      line-height: 1.5;
+    `}
 `;
 
 export const TopTextWrapper = styled.p`
