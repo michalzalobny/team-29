@@ -1,11 +1,10 @@
 """Sending Emails"""
 from fastapi import APIRouter, Security
 from fastapi_mail import FastMail, MessageSchema
-from starlette.responses import JSONResponse
 
 from db.schemas import TemplateEmailSchema
 from dependencies import manager
-from settings import conf
+from settings import email_conf
 
 router = APIRouter(
     prefix="/email",
@@ -14,11 +13,12 @@ router = APIRouter(
 
 
 @router.post("/send_with_template", tags=["_admin"], dependencies=[Security(manager, scopes=["ADMIN"])])
-async def send_with_template(email: TemplateEmailSchema) -> JSONResponse:
+async def send_with_template(email: TemplateEmailSchema) -> dict:
     """
     Send Email using `.html` Template (provided example in backend/email-templates)
 
     Args:
+
         email:
             email: List[EmailStr] - Array of Emails
             subject: str - Subject Title
@@ -34,6 +34,6 @@ async def send_with_template(email: TemplateEmailSchema) -> JSONResponse:
         template_body=email.dict().get("body"),
     )
 
-    fastmail = FastMail(conf)
+    fastmail = FastMail(email_conf)
     await fastmail.send_message(message, template_name=email.dict().get("template_name"))
-    return JSONResponse(status_code=200, content={"message": "email has been sent"})
+    return {"message": "email has been sent"}
