@@ -1,5 +1,10 @@
 {
-  "extends": ["eslint:recommended", "next/core-web-vitals", "plugin:react-hooks/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "next/core-web-vitals",
+    "plugin:react-hooks/recommended"
+  ],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
