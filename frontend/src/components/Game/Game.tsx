@@ -115,9 +115,13 @@ export const Game = (props: Props) => {
             </S.BottomTextWrapper>
 
             <S.BottomTextWrapper>
-              <S.Text>
-                Current round: <S.Text bold>{roundNumber + 1}</S.Text>
-              </S.Text>
+              <SlideItemWithKey itemKey={roundNumber + 1}>
+                <span style={{ width: '100%' }}>
+                  <S.Text>
+                    Current round: <S.Text bold>{roundNumber + 1}</S.Text>
+                  </S.Text>
+                </span>
+              </SlideItemWithKey>
             </S.BottomTextWrapper>
           </S.InfoWrapper>
           <S.LightCardWrapper>
