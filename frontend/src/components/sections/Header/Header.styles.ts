@@ -7,14 +7,17 @@ import { CloudSvg } from './svg/CloudSvg';
 export const Wrapper = styled.header`
   background-color: ${sharedValues.colors.blue};
   position: relative;
+  z-index: -1;
 `;
 
 export const HeadingWrapper = styled.div`
   padding: 0 6rem;
+  padding-top: 130px;
 
   ${media.tablet} {
     width: 100rem;
     margin: 0 auto;
+    padding-top: 120px;
   }
 `;
 

@@ -6,7 +6,6 @@ import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled(motion.div)`
   width: 100%;
-  z-index: 1;
 `;
 
 export const ElementsWrapper = styled.div`
