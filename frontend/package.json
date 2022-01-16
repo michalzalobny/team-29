@@ -45,7 +45,7 @@
     "@types/styled-components": "^5.1.15",
     "eslint": "8.4.0",
     "eslint-config-next": "12.0.7",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-hooks": "^4.2.1-rc.0-next-51947a14b-20220113",
     "file-loader": "^6.2.0",
     "glslify-loader": "^2.0.0",
     "gts": "^3.1.0",
