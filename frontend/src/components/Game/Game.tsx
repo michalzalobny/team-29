@@ -121,7 +121,7 @@ export const Game = (props: Props) => {
           <S.InfoWrapper>
             <S.TopTextWrapper>
               <S.Text bold>
-                Which animals are... <S.Text light>more</S.Text> endangered ?
+                Which animal is... <S.Text light>more</S.Text> endangered?
               </S.Text>
             </S.TopTextWrapper>
             <S.VsImageWrapper>
