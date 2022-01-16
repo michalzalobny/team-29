@@ -42,4 +42,4 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         cd ./backend
-        pylint `ls -R|grep .py$|xargs`
+        pylint ../backend
