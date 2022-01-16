@@ -49,7 +49,7 @@ export const Game = (props: Props) => {
               <PreloadImage altText="vs icon" imageSrc={vsSrc} />
             </S.VsImageWrapper>
             <S.BottomTextWrapper>
-              <S.Text>Pick by clicking on the right card.</S.Text>
+              <S.Text>Pick by clicking the card.</S.Text>
             </S.BottomTextWrapper>
           </S.InfoWrapper>
           <S.LightCardWrapper>
