@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { BackendAnimal } from 'types';
 
 import vsSrc from './images/vs.svg';
+import pawSrc from './images/paw.svg';
+import paw2Src from './images/paw2.svg';
 import * as S from './Game.styles';
 import { PreloadImage } from 'components/PreloadImage/PreloadImage';
 
@@ -27,6 +29,15 @@ export const Game = (props: Props) => {
                 <S.Title>Dolphins</S.Title>
               </S.CardContent>
             </S.Card>
+            <S.PawWrapper position={1}>
+              <PreloadImage imageSrc={pawSrc} altText="paw" />
+            </S.PawWrapper>
+            <S.PawWrapper position={2}>
+              <PreloadImage imageSrc={pawSrc} altText="paw" />
+            </S.PawWrapper>
+            <S.PawWrapper position={3}>
+              <PreloadImage imageSrc={pawSrc} altText="paw" />
+            </S.PawWrapper>
           </S.DarkCardWrapper>
           <S.InfoWrapper>
             <S.TopTextWrapper>
@@ -47,6 +58,15 @@ export const Game = (props: Props) => {
                 <S.Title>Test</S.Title>
               </S.CardContent>
             </S.Card>
+            <S.PawWrapper position={4}>
+              <PreloadImage imageSrc={paw2Src} altText="paw" />
+            </S.PawWrapper>
+            <S.PawWrapper position={5}>
+              <PreloadImage imageSrc={paw2Src} altText="paw" />
+            </S.PawWrapper>
+            <S.PawWrapper position={6}>
+              <PreloadImage imageSrc={paw2Src} altText="paw" />
+            </S.PawWrapper>
           </S.LightCardWrapper>
         </S.ElementsWrapper>
       </S.Wrapper>

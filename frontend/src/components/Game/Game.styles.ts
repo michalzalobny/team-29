@@ -178,3 +178,67 @@ export const BottomTextWrapper = styled.p`
   text-align: center;
   margin-top: 1.4rem;
 `;
+
+interface PawWrapper {
+  position: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+export const PawWrapper = styled.div<PawWrapper>`
+  width: 15%;
+  position: absolute;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  ${props =>
+    props.position === 1 &&
+    css`
+      left: 5%;
+      top: 90%;
+      transform: rotate(10deg);
+    `}
+
+  ${props =>
+    props.position === 2 &&
+    css`
+      left: 23%;
+      top: 80%;
+      transform: rotate(-25deg);
+    `}
+
+    ${props =>
+    props.position === 3 &&
+    css`
+      left: 10%;
+      top: 63%;
+      transform: rotate(-45deg);
+    `}
+
+    ${props =>
+    props.position === 4 &&
+    css`
+      right: 10%;
+      top: 70%;
+      transform: rotate(15deg);
+    `}
+
+    ${props =>
+    props.position === 5 &&
+    css`
+      right: 15%;
+      top: 90%;
+      transform: rotate(-25deg);
+    `}
+
+    
+    ${props =>
+    props.position === 6 &&
+    css`
+      right: 90%;
+      top: 22%;
+      transform: rotate(-45deg);
+    `}
+`;
