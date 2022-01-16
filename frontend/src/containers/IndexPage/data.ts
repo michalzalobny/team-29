@@ -1,11 +1,14 @@
 import { GetStaticProps } from 'next';
 
 import { HeadProps } from 'seo/Head/Head';
+import { getAnimals } from 'utils/apiQueries/animal';
+import { BackendAnimal } from 'types';
 
 import { ISR_TIMEOUT } from 'utils/functions/getIsrTimeout';
 
 export interface Props {
   head: HeadProps;
+  animals: BackendAnimal[];
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -17,9 +20,12 @@ export const getStaticProps: GetStaticProps = async () => {
     title: 'Save the animals | Game',
   };
 
+  const animals = await getAnimals();
+
   return {
     props: {
       head,
+      animals: animals.data,
     },
     revalidate: ISR_TIMEOUT,
   };
