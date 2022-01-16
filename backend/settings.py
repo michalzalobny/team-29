@@ -11,6 +11,7 @@ config = Config("./.env")
 # db_name = config("DB_NAME", default="")
 secret_key = config("SECRET_KEY")
 email_password = config("EMAIL_PASSWORD")
+email_from = config("EMAIL_FROM")
 
 db_url = config("DB_URL", cast=Secret)
 db_driver = make_url(str(db_url)).drivername
@@ -24,10 +25,10 @@ origins = ["http://localhost:3000",
            "https://localhost:5000",
            "https://team-29.vercel.app"]
 
-conf = ConnectionConfig(
+email_conf = ConnectionConfig(
     MAIL_USERNAME="team29.csc2033",
     MAIL_PASSWORD=email_password,
-    MAIL_FROM="team29.csc2033@gmail.com",
+    MAIL_FROM=email_from,
     MAIL_PORT=587,
     MAIL_SERVER="smtp.gmail.com",
     MAIL_FROM_NAME="TeamAnimals",
