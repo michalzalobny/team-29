@@ -68,3 +68,11 @@ export const deleteAnimal = ({ token, animalId }: DeleteAnimal) => {
   };
   return axios.delete(`animals/${animalId}`, config);
 };
+
+export const getUserAnimals = () => {
+  return axios.get('users/me/animals');
+};
+
+export const addUserAnimal = (animalId: number) => {
+  return axios.patch('users/me/animals');
+};

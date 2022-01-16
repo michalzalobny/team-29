@@ -30,13 +30,23 @@ export const Text = styled.div`
 `;
 
 export const Label = styled.span`
-  font-size: 13px;
+  font-size: 15px;
   color: ${sharedValues.colors.white};
   font-weight: 800;
   padding: 10px;
   background-color: ${sharedValues.colors.brown};
   border-radius: 10px;
   margin-right: 10px;
+`;
+
+export const Label2 = styled.span`
+  font-size: 20px;
+  color: ${sharedValues.colors.white};
+  font-weight: 800;
+  padding: 10px;
+  background-color: ${sharedValues.colors.brown};
+  border-radius: 10px;
+  margin-right: 20px;
 `;
 
 export const InfoWrapper = styled.div`
@@ -52,6 +62,17 @@ export const DeleteWrapper = styled.button`
   ${media.tablet} {
     margin-top: 0;
     margin-left: auto;
+  }
+`;
+
+export const MiddleWrapper = styled.button`
+  cursor: pointer;
+  display: flex;
+  margin-top: 1rem;
+
+  ${media.tablet} {
+    margin-top: 0;
+    margin: left;
   }
 `;
 

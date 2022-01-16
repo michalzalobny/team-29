@@ -5,34 +5,13 @@ import { toast } from 'react-toastify';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { sharedValues } from 'utils/sharedValues';
 import { Modal } from 'components/Modal/Modal';
-<<<<<<< HEAD
-=======
 import { deleteAnimal } from 'utils/apiQueries/animal';
 import { useAuthContext } from 'context/AuthContext';
 import { BackendAnimal } from 'types';
->>>>>>> e36ac0c59983177fa637e02a71a2bfb7ce206589
 
 import * as S from './AnimalTile.styles';
 
 interface Props {
-<<<<<<< HEAD
-  name: string;
-}
-
-export const animalTile = (props: Props) => {
-  const name = props;
-  return (
-    <S.Wrapper>
-      <S.InfoWrapper>
-        <S.DeleteWrapper>
-          <BlobButton label="name" backgroundColor={sharedValues.colors.brown} />
-        </S.DeleteWrapper>
-        <S.DeleteWrapper>
-          <BlobButton label="Favourite" backgroundColor={sharedValues.colors.brown} />
-        </S.DeleteWrapper>
-      </S.InfoWrapper>
-    </S.Wrapper>
-=======
   animal: BackendAnimal;
   refetchAnimals: () => void;
 }
@@ -86,6 +65,42 @@ export const AnimalTile = (props: Props) => {
         )}
       </AnimatePresence>
     </>
->>>>>>> e36ac0c59983177fa637e02a71a2bfb7ce206589
+  );
+};
+
+export const AnimalTileMain = (props: Props) => {
+  const { refetchAnimals, animal } = props;
+  return (
+    <S.Wrapper>
+      <S.InfoWrapper>
+        <S.Label2>Name</S.Label2>
+      </S.InfoWrapper>
+      <BlobButton label={animal.name} backgroundColor={sharedValues.colors.blue} />
+      <S.DeleteWrapper>
+        <BlobButton label="Favourite" backgroundColor={sharedValues.colors.brown} />
+      </S.DeleteWrapper>
+    </S.Wrapper>
+  );
+};
+
+export const LoggedOutAnimalTile = (props: Props) => {
+  const { refetchAnimals, animal } = props;
+
+  //  const handleOnClick: (arg0: string) => void(animalName: string) => {
+  //onClick={() => handleOnClick(animal.name)}
+  // };
+
+  return (
+    <>
+      <S.Wrapper>
+        <S.InfoWrapper>
+          <S.Label2>Name</S.Label2>
+        </S.InfoWrapper>
+
+        <S.MiddleWrapper>
+          <BlobButton label={animal.name} backgroundColor={sharedValues.colors.blue} />
+        </S.MiddleWrapper>
+      </S.Wrapper>
+    </>
   );
 };

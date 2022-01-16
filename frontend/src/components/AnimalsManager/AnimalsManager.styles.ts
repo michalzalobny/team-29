@@ -42,3 +42,8 @@ export const Text = styled.div`
   font-weight: 800;
   line-height: 1.5;
 `;
+
+export const PanelsWrapper = styled.div`
+  width: 100%;
+  margin-top: 10rem;
+`;
