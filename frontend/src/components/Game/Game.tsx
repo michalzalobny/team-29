@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { BackendAnimal } from 'types';
 
@@ -11,12 +11,32 @@ interface Props {
 export const Game = (props: Props) => {
   const { animals } = props;
 
-  console.log(animals);
+  useEffect(() => {
+    console.log(animals);
+  }, [animals]);
 
   return (
     <>
       <S.Wrapper>
-        <div>Animals</div>
+        <S.ElementsWrapper>
+          <S.DarkCardWrapper>
+            <S.Card type="dark">
+              <S.CardContent>
+                <S.Title>Dolphins</S.Title>
+              </S.CardContent>
+            </S.Card>
+          </S.DarkCardWrapper>
+          <S.InfoWrapper>
+            <h1>WTF!</h1>
+          </S.InfoWrapper>
+          <S.LightCardWrapper>
+            <S.Card type="light">
+              <S.CardContent>
+                <S.Title>Test</S.Title>
+              </S.CardContent>
+            </S.Card>
+          </S.LightCardWrapper>
+        </S.ElementsWrapper>
       </S.Wrapper>
     </>
   );

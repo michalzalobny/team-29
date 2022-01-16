@@ -12,8 +12,8 @@ export const GameWrapper = styled.div`
 
   ${media.tablet} {
     padding: 0;
-    width: 140rem;
+    width: 100rem;
     margin: 0 auto;
-    margin-top: 10rem;
+    margin-top: -10rem;
   }
 `;
