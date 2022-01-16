@@ -65,7 +65,7 @@ export const Game = (props: Props) => {
       }
 
       if (
-        animalsShuffled[clickedCardIndex].population >= animalsShuffled[otherCardIndex].population
+        animalsShuffled[clickedCardIndex].population < animalsShuffled[otherCardIndex].population
       ) {
         if (side === 'dark') setCardStatusDark('success');
         if (side === 'light') setCardStatusLight('success');
