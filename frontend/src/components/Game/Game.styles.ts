@@ -86,6 +86,18 @@ export const CardInfo = styled(motion.div)`
   }
 `;
 
+export const DonateInfoWrapper = styled.div`
+  margin-bottom: 2.5rem;
+`;
+
+export const DonateContainer = styled.div`
+  display: flex;
+`;
+
+export const DonateWrapper = styled.a`
+  cursor: pointer;
+`;
+
 export const Card = styled.div<CardProps>`
   position: absolute;
   top: 0;
@@ -168,7 +180,28 @@ export const VsImageWrapper = styled.div`
 interface TextProps {
   light?: boolean;
   bold?: boolean;
+  biggerLineHeight?: boolean;
 }
+
+interface ScoreProps {
+  bold?: boolean;
+}
+
+export const ScoreWrapper = styled.div`
+  margin-bottom: 2.5rem;
+  display: flex;
+`;
+
+export const Score = styled.span<ScoreProps>`
+  font-size: 30px;
+  color: ${sharedValues.colors.blue};
+  font-weight: 800;
+  ${props =>
+    props.bold &&
+    css`
+      color: ${sharedValues.colors.brown};
+    `}
+`;
 
 export const Text = styled.span<TextProps>`
   font-size: 1.5rem;
@@ -189,6 +222,12 @@ export const Text = styled.span<TextProps>`
     ${media.tablet} {
     font-size: 1.8rem;
   }
+
+  ${props =>
+    props.biggerLineHeight &&
+    css`
+      line-height: 1.5;
+    `}
 `;
 
 export const TopTextWrapper = styled.p`

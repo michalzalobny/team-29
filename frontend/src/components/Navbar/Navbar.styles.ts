@@ -12,7 +12,7 @@ interface LinkItemProps {
 
 export const Wrapper = styled.nav`
   position: sticky;
-  z-index: 5;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
