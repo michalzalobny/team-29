@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 
 import { BackendAnimal } from 'types';
 
+import vsSrc from './images/vs.svg';
 import * as S from './Game.styles';
+import { PreloadImage } from 'components/PreloadImage/PreloadImage';
 
 interface Props {
   animals: BackendAnimal[];
@@ -27,7 +29,9 @@ export const Game = (props: Props) => {
             </S.Card>
           </S.DarkCardWrapper>
           <S.InfoWrapper>
-            <h1>WTF!</h1>
+            <S.VsImageWrapper>
+              <PreloadImage altText="vs icon" imageSrc={vsSrc} />
+            </S.VsImageWrapper>
           </S.InfoWrapper>
           <S.LightCardWrapper>
             <S.Card type="light">

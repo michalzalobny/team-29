@@ -5,6 +5,7 @@ import { sharedValues } from 'utils/sharedValues';
 
 export const Wrapper = styled(motion.div)`
   width: 100%;
+  z-index: 1;
 `;
 
 export const ElementsWrapper = styled.div`
@@ -85,4 +86,10 @@ export const Title = styled.p`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+export const VsImageWrapper = styled.div`
+  width: 9rem;
+  height: 9rem;
+  position: relative;
 `;
