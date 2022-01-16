@@ -1,3 +1,4 @@
+"""Configurations for the project"""
 from sqlalchemy.engine import make_url
 from starlette.config import Config
 from starlette.datastructures import Secret

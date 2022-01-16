@@ -1,3 +1,4 @@
+"""Database tables modeled using classes"""
 from sqlalchemy import Boolean, Column, Integer, String, Text, Enum, Table, ForeignKey, CheckConstraint, TIMESTAMP
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.functions import current_timestamp

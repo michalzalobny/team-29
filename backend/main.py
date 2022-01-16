@@ -1,8 +1,9 @@
+"""Contains the FastAPI application to serve the whole backend"""
 import random
 import string
 import time
-import uvicorn
 
+import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -41,10 +42,9 @@ async def add_process_time_header(request: Request, call_next):
     response = await call_next(request)
 
     process_time = (time.time() - start_time) * 1000
-    formatted_process_time = '{0:.2f}'.format(process_time)
 
-    logger.info(f"rid={idem}, start request path={request.url.path}, completed_in={formatted_process_time}ms, " +
-                f"status_code={response.status_code}")
+    logger.info("rid=%s, start request %s path=%s completed_in=%.2f ms status_code=%d",
+                idem, request.method, request.url.path, process_time, response.status_code)
 
     return response
 

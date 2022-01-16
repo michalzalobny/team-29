@@ -1,4 +1,6 @@
+"""Utilities for the project in general"""
 import logging
+
 from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

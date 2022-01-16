@@ -1,9 +1,9 @@
+"""Database setup"""
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 from settings import db_url, db_driver
-
 
 # if sqlite is used for testing, etc
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./db.db"

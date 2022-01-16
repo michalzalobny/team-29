@@ -1,6 +1,10 @@
+"""
+Schemas needed for data transmission. This is different
+to models as this deals with the shape of input from the user
+"""
 from datetime import datetime
 from enum import Enum
-from typing import Optional, List
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -64,6 +68,7 @@ class AnimalUpdate(BaseModel):
     description: Optional[str] = Field(None)
     category: Optional[Category] = Field(None)
     population: Optional[int] = Field(None)
+
 
 class Animal(AnimalBase):
     id: int

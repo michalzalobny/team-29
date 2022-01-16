@@ -1,10 +1,10 @@
-from db.database import engine
+"""CRUD operations to be used by endpoints"""
 from sqlalchemy.orm import Session
-from . import models, schemas
-from dependencies import manager, get_db
-from fastapi import Depends
 
-from .schemas import Role
+from db import models, schemas
+from db.database import engine
+from db.schemas import Role
+from dependencies import manager
 
 
 @manager.user_loader()
@@ -34,11 +34,11 @@ def get_users(db: Session, skip: int = 0, limit: int = 100, exclude_admin: bool 
             .offset(skip) \
             .limit(limit) \
             .all()
-    else:
-        return db.query(models.User) \
-            .offset(skip) \
-            .limit(limit) \
-            .all()
+
+    return db.query(models.User) \
+        .offset(skip) \
+        .limit(limit) \
+        .all()
 
 
 def create_user(user: schemas.UserCreate, db: Session):
@@ -112,7 +112,7 @@ def delete_animal(animal_id: int, db: Session):
     return None
 
 
-def get_all_games(db: Session, limit: int, desc: bool):
+def get_all_games(db: Session, limit: int):
     return db.query(models.Game).order_by(models.Game.score.desc()) \
         .limit(limit) \
         .all()

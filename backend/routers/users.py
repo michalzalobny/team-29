@@ -1,4 +1,6 @@
+"""Endpoints for user related resource"""
 from typing import List
+
 from fastapi import APIRouter, Depends, HTTPException, Security
 from sqlalchemy.orm import Session
 
@@ -11,11 +13,10 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[schemas.User], tags=["_admin"])
+@router.get("/", response_model=List[schemas.User], tags=["_admin"], dependencies=[Security(manager, scopes=["ADMIN"])])
 def read_users(
         skip: int = 0,
         limit: int = 100,
-        user: models.User = Security(manager, scopes=["ADMIN"]),
         db: Session = Depends(get_db)):
     """Get all users. FOR DEBUGGING AND TESTING PURPOSES ONLY"""
     users = crud.get_users(db, skip=skip, limit=limit, exclude_admin=True)
@@ -62,9 +63,7 @@ def create_user_game(game: schemas.GameCreate, user: schemas.User = Depends(mana
     dependencies=[Security(manager, scopes=["ADMIN"])], tags=["_admin"]
 )
 def delete_user(user_id, db: Session = Depends(get_db)):
-
     user_to_delete = crud.delete_user(user_id=user_id, db=db)
-    if user_to_delete:
-        return user_to_delete
-    else:
+    if not user_to_delete:
         raise HTTPException(status_code=404, detail=f"User with id {user_id} does not exist")
+    return user_to_delete

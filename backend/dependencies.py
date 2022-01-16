@@ -1,3 +1,4 @@
+"""Utilities for dependency injection"""
 from datetime import timedelta
 
 from fastapi_login import LoginManager
@@ -7,6 +8,7 @@ from settings import secret_key
 
 
 def get_db():
+    """Create a database session"""
     db = SessionLocal()
     try:
         yield db
