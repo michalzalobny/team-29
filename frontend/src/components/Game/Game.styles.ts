@@ -116,7 +116,7 @@ export const CardContent = styled.div`
     }
   }
 
-  transition-duration: 0.65s;
+  transition-duration: 0.55s;
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97);
   backface-visibility: hidden;
