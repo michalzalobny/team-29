@@ -4,9 +4,9 @@ to models as this deals with the shape of input from the user
 """
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Optional, List, Dict, Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 
 
 class Role(str, Enum):
@@ -91,3 +91,10 @@ class Game(GameBase):
 
     class Config:
         orm_mode = True
+
+
+class TemplateEmailSchema(BaseModel):
+    email: List[EmailStr]
+    subject: str
+    body: Dict[str, Any]
+    template_name: str
