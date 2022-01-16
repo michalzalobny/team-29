@@ -16,6 +16,8 @@ interface Props {
 export const Game = (props: Props) => {
   const { animals } = props;
   const [animalsShuffled, setAnimalsShuffled] = useState<BackendAnimal[]>([]);
+  const [roundNumber, setRoundNumber] = useState(0);
+  const [currentWinner, setCurrentWinner] = useState<null | number>(null);
 
   useEffect(() => {
     const shuffled = shuffle(animals);

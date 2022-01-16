@@ -79,7 +79,7 @@ export const Card = styled.div<Card>`
   height: 100%;
   background-color: ${sharedValues.colors.blue};
   border-radius: 1.5rem;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   padding: 2rem;
 
   ${props =>
@@ -98,6 +98,7 @@ export const CardContent = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -113,6 +114,15 @@ export const CardContent = styled.div`
     ${media.tablet} {
       border-radius: 1.5rem;
     }
+  }
+
+  transition-duration: 0.65s;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.64, 0.02, 0.16, 0.97);
+  backface-visibility: hidden;
+
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 
