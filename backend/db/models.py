@@ -31,7 +31,8 @@ class User(Base):
 
     games = relationship(
         "Game",
-        backref="users"
+        backref="users",
+        cascade="all,delete"
     )
 
 
@@ -59,5 +60,5 @@ class Game(Base):
 
     id = Column(Integer, primary_key=True)
     score = Column(Integer, CheckConstraint("score >= 0"))
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     date = Column(TIMESTAMP, default=current_timestamp())
