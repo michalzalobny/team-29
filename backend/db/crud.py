@@ -2,7 +2,6 @@
 from typing import List, Optional
 
 from sqlalchemy.orm import Session
-from sqlalchemy.sql.expression import func, select
 
 from db import models, schemas
 from db.database import engine
@@ -152,7 +151,7 @@ def get_game(game_id: int, db: Session) -> models.Game:
     return db.query(models.Game).filter(models.Game.id == game_id).first()
 
 
-def get_all_games(limit: int, distinct: bool, db: Session) -> List[models.Game]:
+def get_all_games(db: Session) -> List[models.Game]:
     """Return all games with limit and distinct-highest flag
 
     Args:
@@ -165,23 +164,9 @@ def get_all_games(limit: int, distinct: bool, db: Session) -> List[models.Game]:
         List[schemas.Game]: Only `limit` number of records in descending order if distinct is False.
         If distinct is True, return only the max score for each user.
     """
-    stmt = (
-        select(models.Game, func.max(models.Game.score))
-            .group_by(models.Game.user_id)
-            .limit(10)
-    )
-
-    if distinct:
-        # return only max score for each user
-        # return db.query(models.Game, func.max(models.Game.score)) \
-        #     .group_by(models.Game.user_id) \
-        #     .limit(limit) \
-        #     .all()
-        return list(db.scalars(stmt))
 
     return db.query(models.Game) \
         .order_by(models.Game.score.desc()) \
-        .limit(limit) \
         .all()
 
 
