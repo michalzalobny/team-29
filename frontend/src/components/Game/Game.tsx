@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import shuffle from 'lodash.shuffle';
 import { AnimatePresence } from 'framer-motion';
+import { toast } from 'react-toastify';
 
 import { BackendAnimal } from 'types';
 import { SlideItemWithKey } from 'components/Animations/SlideItemWithKey/SlideItemWithKey';
@@ -9,6 +10,7 @@ import { Modal } from 'components/Modal/Modal';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { sharedValues } from 'utils/sharedValues';
 import { useAuthContext } from 'context/AuthContext';
+import { saveUserScore } from 'utils/apiQueries/user';
 
 import vsSrc from './images/vs.svg';
 import pawSrc from './images/paw.svg';
@@ -45,9 +47,29 @@ export const Game = (props: Props) => {
     setAnimalsShuffled(shuffled);
   }, [animals]);
 
+  const handleUserScoreUpdate = React.useCallback(async () => {
+    try {
+      const res = await saveUserScore({ score: roundNumber + 1, token: user.accessToken });
+
+      if (res.status !== 200) {
+        toast.error('Something went wrong.');
+      } else {
+        toast.success('Your score has been saved!');
+      }
+    } catch (error) {
+      toast.error('Something went wrong.');
+    }
+  }, [roundNumber, user.accessToken]);
+
   const handleGameFinish = useCallback(
     ({ correctAnimal, state, wrongAnimal }: HandleGameFinish) => {
       setIsOpened(true);
+
+      //Save user score if logged in
+      if (user.scope === 'USER') {
+        handleUserScoreUpdate();
+      }
+
       if (state === 'won') {
         const text =
           'Congrats! You answered all the questions correctly. As a reward you can send a donation to your favorite animal';
@@ -60,7 +82,7 @@ export const Game = (props: Props) => {
         setModalText(text);
       }
     },
-    []
+    [handleUserScoreUpdate, user.scope]
   );
 
   //Reset the game state only when the modal is being closed

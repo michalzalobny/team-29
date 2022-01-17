@@ -58,3 +58,15 @@ export const deleteUser = ({ token, userId }: DeleteUser) => {
   };
   return axios.delete(`users/${userId}`, config);
 };
+
+interface SaveUserScore {
+  token: unknown;
+  score: number;
+}
+
+export const saveUserScore = ({ token, score }: SaveUserScore) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  return axios.post(`users/me/games`, { score }, config);
+};
