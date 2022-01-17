@@ -28,3 +28,33 @@ export const Title = styled.h1`
   position: relative;
   margin-bottom: 4rem;
 `;
+
+export const DeleteWrapper = styled.button`
+  cursor: pointer;
+  display: flex;
+  margin-top: 1rem;
+
+  ${media.tablet} {
+    margin-top: 0;
+    margin-left: auto;
+  }
+`;
+
+export const ConfirmationWrapper = styled.div`
+  margin-bottom: 3rem;
+`;
+
+export const Text = styled.div`
+  font-size: 15px;
+  color: ${sharedValues.colors.black};
+  font-weight: 800;
+  line-height: 1.5;
+`;
+
+export const ClearRankingButtonWrapper = styled.button`
+  position: fixed;
+  z-index: 1;
+  bottom: 3rem;
+  left: 3rem;
+  cursor: pointer;
+`;

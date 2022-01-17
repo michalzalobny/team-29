@@ -59,6 +59,17 @@ export const deleteUser = ({ token, userId }: DeleteUser) => {
   return axios.delete(`users/${userId}`, config);
 };
 
+interface DeleteLeaderboard {
+  token: unknown;
+}
+
+export const deleteLeaderboard = ({ token }: DeleteLeaderboard) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+  return axios.delete('/games', config);
+};
+
 interface SaveUserScore {
   token: unknown;
   score: number;
