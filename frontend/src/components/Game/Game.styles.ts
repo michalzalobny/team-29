@@ -89,6 +89,10 @@ export const DonateInfoWrapper = styled.div`
   margin-bottom: 2.5rem;
 `;
 
+export const HighscoreInfoWrapper = styled.div`
+  margin-bottom: 2.5rem;
+`;
+
 export const DonateContainer = styled.div`
   display: flex;
 `;

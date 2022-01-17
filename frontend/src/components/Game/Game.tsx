@@ -8,6 +8,7 @@ import { PreloadImage } from 'components/PreloadImage/PreloadImage';
 import { Modal } from 'components/Modal/Modal';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { sharedValues } from 'utils/sharedValues';
+import { useAuthContext } from 'context/AuthContext';
 
 import vsSrc from './images/vs.svg';
 import pawSrc from './images/paw.svg';
@@ -35,6 +36,7 @@ export const Game = (props: Props) => {
   const [cardStatusLight, setCardStatusLight] = useState<CardStatus>('initial');
   const [isOpened, setIsOpened] = useState(false);
   const [modalText, setModalText] = useState('');
+  const { user } = useAuthContext();
 
   const resetGame = useCallback(() => {
     setWinningIndex(0);
@@ -126,6 +128,23 @@ export const Game = (props: Props) => {
               <S.DonateInfoWrapper>
                 <S.Text biggerLineHeight>{modalText}</S.Text>
               </S.DonateInfoWrapper>
+
+              {user.scope === 'USER' && (
+                <S.HighscoreInfoWrapper>
+                  <S.Text biggerLineHeight>
+                    Your score has been updated. Go to ranking page and see the results.
+                  </S.Text>
+                </S.HighscoreInfoWrapper>
+              )}
+
+              {user.scope === null && (
+                <S.HighscoreInfoWrapper>
+                  <S.Text biggerLineHeight>
+                    Sign in to #teamAnimals to save your score on the ranking page.
+                  </S.Text>
+                </S.HighscoreInfoWrapper>
+              )}
+
               <S.DonateContainer>
                 <S.DonateWrapper href="https://www.worldanimalprotection.org.uk/" target="_blank">
                   <BlobButton
