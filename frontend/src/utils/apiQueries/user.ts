@@ -70,3 +70,7 @@ export const saveUserScore = ({ token, score }: SaveUserScore) => {
   };
   return axios.post(`users/me/games`, { score }, config);
 };
+
+export const getUsersScores = () => {
+  return axios.get('games');
+};

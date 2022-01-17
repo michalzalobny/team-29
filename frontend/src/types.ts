@@ -31,3 +31,9 @@ export interface BackendAnimal {
   population: number;
   id: number;
 }
+
+export interface BackendScore {
+  score: number;
+  username: string;
+  id: string;
+}
