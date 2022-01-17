@@ -2,6 +2,7 @@
 from typing import List
 
 from fastapi import APIRouter, Depends, Security, HTTPException
+from pydantic import parse_obj_as
 from sqlalchemy.orm import Session
 
 from db import schemas, crud, models
@@ -32,7 +33,8 @@ def read_all_games(limit: int = 10, distinct: bool = True, db: Session = Depends
         List[schemas.Game]: Only `limit` number of records in descending order if distinct is False.
         If distinct is True, return only the max score for each user.
     """
-    return crud.get_all_games(limit=limit, distinct=distinct, db=db)
+    game_list = crud.get_all_games(limit=limit, distinct=distinct, db=db)
+    return parse_obj_as(List[schemas.Game], [game._data[0] for game in game_list])  # pylint: disable=W0212
 
 
 @router.get(

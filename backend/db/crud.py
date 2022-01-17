@@ -166,9 +166,9 @@ def get_all_games(limit: int, distinct: bool, db: Session) -> List[models.Game]:
         If distinct is True, return only the max score for each user.
     """
     if distinct:
-        return db.query(models.Game) \
+        # return only max score for each user
+        return db.query(models.Game, func.max(models.Game.score)) \
             .group_by(models.Game.user_id) \
-            .order_by(func.max(models.Game.score)) \
             .limit(limit) \
             .all()
 
