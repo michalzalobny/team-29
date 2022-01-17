@@ -55,6 +55,7 @@ export const Navbar = () => {
     {
       label: 'Ranking',
       href: '/ranking',
+      shouldHide: user.scope === null,
     },
     {
       label: 'Admin panel',
