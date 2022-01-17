@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
   ${media.tablet} {
     width: 100rem;
     margin: 30rem auto;
+    margin-bottom: 10rem;
   }
 `;
 
