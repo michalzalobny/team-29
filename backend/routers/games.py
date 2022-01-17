@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, Security, HTTPException
 from sqlalchemy.orm import Session
 
 from db import schemas, crud, models
+from db.enums import Role
 from dependencies import get_db, manager
 
 router = APIRouter(
@@ -18,7 +19,7 @@ router = APIRouter(
     response_model_exclude={"user_id"},
     tags=["games"]
 )
-def read_all_games(limit: int = 10, distinct: bool = True, db: Session = Depends(get_db)):
+def read_all_games(distinct: bool = True, db: Session = Depends(get_db)):
     """Return all games with max score for each player
 
     Args:
@@ -32,7 +33,21 @@ def read_all_games(limit: int = 10, distinct: bool = True, db: Session = Depends
         List[schemas.Game]: Only `limit` number of records in descending order if distinct is False.
         If distinct is True, return only the max score for each user.
     """
-    game_list = crud.get_all_games(limit=limit, distinct=distinct, db=db)
+
+    game_list: List[schemas.Game] = []
+
+    if distinct:
+
+        all_users = db.query(models.User).filter(models.User.role == Role.USER).all()
+
+        for user in all_users:
+            # get highest scoring game for user
+            best_game = max(crud.get_all_games_by_user(user_id=user.id, db=db),
+                            key=lambda u: u.score)
+            game_list.append(best_game)
+    else:
+        game_list = crud.get_all_games(db=db)
+
     return game_list
 
 
