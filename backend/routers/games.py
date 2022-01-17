@@ -41,10 +41,14 @@ def read_all_games(distinct: bool = True, db: Session = Depends(get_db)):
         all_users = db.query(models.User).filter(models.User.role == Role.USER).all()
 
         for user in all_users:
-            # get highest scoring game for user
-            best_game = max(crud.get_all_games_by_user(user_id=user.id, db=db),
-                            key=lambda u: u.score)
-            game_list.append(best_game)
+            # get all games by the user
+            user_games = crud.get_all_games_by_user(user_id=user.id, db=db)
+
+            # if user has existing game records
+            # find the one with highest score
+            if user_games:
+                best_game = max(user_games, key=lambda u: u.score)
+                game_list.append(best_game)
     else:
         game_list = crud.get_all_games(db=db)
 
