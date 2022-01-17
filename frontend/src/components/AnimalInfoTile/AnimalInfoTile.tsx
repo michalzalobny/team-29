@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { BackendAnimal } from 'types';
+import { animalsCategoriesNormal } from 'utils/apiQueries/animal';
 
 import * as S from './AnimalInfoTile.styles';
 
@@ -26,7 +27,8 @@ export const AnimalInfoTile = (props: Props) => {
 
           <S.ContentWrapper>
             <S.Label>Category</S.Label>
-            <S.Text>{animal.category}</S.Text>
+            {/* @ts-ignore */}
+            <S.Text>{animalsCategoriesNormal[animal.category] || ''}</S.Text>
           </S.ContentWrapper>
 
           <S.ContentWrapper>
