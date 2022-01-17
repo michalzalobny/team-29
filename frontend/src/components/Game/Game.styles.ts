@@ -157,6 +157,7 @@ export const Title = styled.p`
   width: 100%;
   text-align: center;
   font-size: 2.5rem;
+  line-height: 1.2;
   font-weight: 800;
   color: ${sharedValues.colors.white};
   position: absolute;
