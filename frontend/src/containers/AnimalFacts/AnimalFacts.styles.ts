@@ -32,11 +32,18 @@ export const ButtonContainer = styled.button`
     margin-right: 1.2rem;
   }
 `;
+export const Text = styled.div`
+  padding-top: 30px;
+  font-size: 30px;
+  color: ${sharedValues.colors.black};
+  font-weight: 800;
+  line-height: 1.5;
+`;
 
-export const Heading = styled.h3`
+export const Heading = styled.div`
   width: 80%;
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 10px;
   line-height: 1.4;
   color: ${sharedValues.colors.blue};
   padding: 2.5rem 0 5rem 0;
@@ -50,4 +57,17 @@ export const Heading = styled.h3`
     font-size: 5.2rem;
     padding: 5rem 0 18rem 0;
   }
+`;
+
+export const bigDiv = styled.div`
+  padding-top: 100px;
+`;
+
+export const link = styled.text`
+  text-decoration: underline;
+  color: ${sharedValues.colors.brown};
+`;
+
+export const Info = styled.text`
+  color: ${sharedValues.colors.brownDark};
 `;

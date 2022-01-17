@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
-
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { sharedValues } from 'utils/sharedValues';
 import { Modal } from 'components/Modal/Modal';
 import { deleteAnimal } from 'utils/apiQueries/animal';
 import { useAuthContext } from 'context/AuthContext';
 import { BackendAnimal } from 'types';
+import AnimalFacts from 'containers/AnimalFacts/AnimalFacts';
+import Link from 'next/link';
 
 import * as S from './AnimalTile.styles';
 
@@ -86,9 +87,16 @@ export const AnimalTileMain = (props: Props) => {
 export const LoggedOutAnimalTile = (props: Props) => {
   const { refetchAnimals, animal } = props;
 
-  //  const handleOnClick: (arg0: string) => void(animalName: string) => {
-  //onClick={() => handleOnClick(animal.name)}
-  // };
+  const handleOnClick = React.useCallback(async () => {
+    alert('I have been clicked');
+    AnimalFacts({
+      animalName: animal.name,
+      scientificName: animal.scientific_name,
+      description: animal.description,
+      category: animal.category,
+      population: animal.population,
+    });
+  }, [animal.category, animal.description, animal.name, animal.population, animal.scientific_name]);
 
   return (
     <>
@@ -97,7 +105,7 @@ export const LoggedOutAnimalTile = (props: Props) => {
           <S.Label2>Name</S.Label2>
         </S.InfoWrapper>
 
-        <S.MiddleWrapper>
+        <S.MiddleWrapper onClick={() => handleOnClick()}>
           <BlobButton label={animal.name} backgroundColor={sharedValues.colors.blue} />
         </S.MiddleWrapper>
       </S.Wrapper>
