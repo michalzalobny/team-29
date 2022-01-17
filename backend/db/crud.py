@@ -6,7 +6,7 @@ from sqlalchemy.sql.expression import func
 
 from db import models, schemas
 from db.database import engine
-from db.schemas import Role
+from db.enums import Role
 from dependencies import manager
 
 

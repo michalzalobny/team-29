@@ -78,13 +78,23 @@ def add_animal_to_user(
     return crud.add_animal_to_user(user_id=user.id, animal_id=animal_id, db=db)
 
 
-@router.get("/me/games", response_model=List[schemas.Game], tags=["current user to games"])
+@router.get(
+    "/me/games",
+    response_model=List[schemas.Game],
+    response_model_exclude={"user_id"},
+    tags=["current user to games"],
+)
 def read_all_games_by_user(user: models.User = Depends(manager), db: Session = Depends(get_db)):
     """Fetch all game records of the current user"""
     return crud.get_all_games_by_user(user_id=user.id, db=db)
 
 
-@router.post("/me/games", response_model=schemas.Game, tags=["current user to games"])
+@router.post(
+    "/me/games",
+    response_model=schemas.Game,
+    response_model_exclude={"user_id"},
+    tags=["current user to games"],
+)
 def create_user_game(game: schemas.GameCreate, user: schemas.User = Depends(manager), db: Session = Depends(get_db)):
     """Create a new game record for the current user"""
     return crud.add_game_to_user(game, user_id=user.id, db=db)

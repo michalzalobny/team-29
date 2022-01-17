@@ -13,7 +13,11 @@ router = APIRouter(
 )
 
 
-@router.get("", response_model=List[schemas.Game], tags=["games"])
+@router.get(
+    "", response_model=List[schemas.Game],
+    response_model_exclude={"user_id"},
+    tags=["games"]
+)
 def read_all_games(limit: int = 10, distinct: bool = True, db: Session = Depends(get_db)):
     """Return all games with max score for each player
 
@@ -31,7 +35,11 @@ def read_all_games(limit: int = 10, distinct: bool = True, db: Session = Depends
     return crud.get_all_games(limit=limit, distinct=distinct, db=db)
 
 
-@router.get("/{game_id}", response_model=schemas.Game, tags=["games"])
+@router.get(
+    "/{game_id}", response_model=schemas.Game,
+    response_model_exclude={"user_id"},
+    tags=["games"]
+)
 def read_game(game_id: int, db: Session = Depends(get_db)):
     """Get specific game details by game_id"""
     db_game = crud.get_game(game_id, db)

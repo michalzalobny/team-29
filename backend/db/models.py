@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.functions import current_timestamp
 
 from db.database import Base
-from db.schemas import Category, Role
+from db.enums import Category, Role
 
 user_animal = Table("user_animal", Base.metadata,
                     Column("user_id", ForeignKey("users.id"), primary_key=True),

@@ -3,16 +3,13 @@ Schemas needed for data transmission. This is different
 to models as this deals with the shape of input from the user
 """
 from datetime import datetime
-from enum import Enum
 from typing import Optional, List, Dict, Any
 
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr, root_validator
 
-
-class Role(str, Enum):
-    """Roles for users"""
-    ADMIN = "ADMIN"
-    USER = "USER"
+from db import models
+from db.database import SessionLocal
+from db.enums import Category, Role
 
 
 class UserBase(BaseModel):
@@ -41,17 +38,6 @@ class User(UserBase):
 
     class Config:   # pylint: disable=C0115
         orm_mode = True
-
-
-class Category(str, Enum):
-    """Category for an animal's population status"""
-    LEAST_CONCERN = "LEAST_CONCERN"
-    NEAR_THREATENED = "NEAR_THREATENED"
-    VULNERABLE = "VULNERABLE"
-    ENDANGERED = "ENDANGERED"
-    CRITICALLY_ENDANGERED = "CRITICALLY_ENDANGERED"
-    EXTINCT_IN_WILD = "EXTINCT_IN_WILD"
-    EXTINCT = "EXTINCT"
 
 
 class AnimalBase(BaseModel):
@@ -100,6 +86,18 @@ class Game(GameBase):
     id: int
     date: datetime
     user_id: int
+    username: Optional[str]
+
+    @root_validator(allow_reuse=True)
+    def compute_user(cls, values) -> Dict:      # pylint: disable=E0213,R0201
+        """Populate user field by fetching models.User using `user_id` from db"""
+        with SessionLocal() as db:
+            user_obj = db.query(models.User).filter(models.User.id == values["user_id"]).first()
+
+        if user_obj:
+            values["username"] = user_obj.username
+
+        return values
 
     class Config:   # pylint: disable=C0115
         orm_mode = True
