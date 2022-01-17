@@ -51,7 +51,10 @@ export const Game = (props: Props) => {
           'Congrats! You answered all the questions correctly. As a reward you can send a donation to your favorite animal';
         setModalText(text);
       } else {
-        const text = `You were so close! The population of ${wrongAnimal?.name} is ${wrongAnimal?.population}, whereas there is only ${correctAnimal?.population} of ${correctAnimal?.name}. Win the next time, by donating to your favourite animals making their population bigger!`;
+        const text = `You were so close! The population of ${wrongAnimal?.name} is 
+        ${wrongAnimal?.population}, whereas there is only ${correctAnimal?.population} of 
+        ${correctAnimal?.name}. Win the next time, by donating to your favourite animals 
+        making their population bigger!`;
         setModalText(text);
       }
     },
