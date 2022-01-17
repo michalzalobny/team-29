@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { sharedValues } from 'utils/sharedValues';
 import { media } from 'styles/media';
@@ -8,13 +8,8 @@ export const Wrapper = styled.div`
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   padding: 30px;
   display: flex;
-
   flex-wrap: wrap;
   flex-direction: column;
-
-  &:not(:last-child) {
-    margin-bottom: 2.5rem;
-  }
 
   ${media.tablet} {
     align-items: center;
@@ -41,5 +36,24 @@ export const Label = styled.span`
 
 export const InfoWrapper = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+interface ContentWrapperProps {
+  alignTop?: boolean;
+}
+
+export const ContentWrapper = styled.div<ContentWrapperProps>`
+  display: flex;
   align-items: center;
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  ${props =>
+    props.alignTop &&
+    css`
+      align-items: flex-start;
+    `}
 `;
