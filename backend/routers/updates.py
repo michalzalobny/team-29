@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, Response, Depends
 from feedgen.feed import FeedGenerator
-from requests import Session
+from sqlalchemy.orm import Session
 
 from db import crud
 from db.enums import Channels
