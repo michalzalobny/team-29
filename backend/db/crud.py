@@ -1,11 +1,12 @@
 """CRUD operations to be used by endpoints"""
 from typing import List, Optional
+from datetime import datetime, timezone
 
 from sqlalchemy.orm import Session
 
 from db import models, schemas
 from db.database import SessionLocal
-from db.enums import Role
+from db.enums import Role, Channels
 from dependencies import manager
 
 
@@ -158,7 +159,7 @@ def get_all_games(db: Session) -> List[models.Game]:
 
         limit (int): limit to game numbers (10 by default)
         distinct (bool): flag for getting only the highest score for each user (True by default)
-        db (Session, optional): Database session to be used (dependency injected by default)
+        db (Session): Database session to be used
 
     Returns:
         List[db.schemas.game.Game]: Only `limit` number of records in descending order if distinct is False.
@@ -183,3 +184,42 @@ def add_game_to_user(game: schemas.GameCreate, user_id: int, db: Session) -> mod
     user.games.append(game)
     db.commit()
     return game
+
+
+def get_build(channel: Channels, db: Session) -> models.BuildTimes:
+    """Gets the last build time of a channel. A channel refers to the resource the backend has.
+     Only ANIMALS Channel is available at the moment
+
+    Args:
+        channel (enums.Channels): Channel variant to get the last build of
+        db (Session): Database session to be used
+
+    Returns:
+        BuildTimes object that contains the channel name and last_build_time
+    """
+    assert isinstance(channel, Channels), "channel must be a Channels variant"
+
+    build_obj = db.query(models.BuildTimes).filter(models.BuildTimes.channel_name == channel.value).first()
+
+    if not build_obj:
+        return update_or_create_last_build(channel, db)
+
+    return build_obj
+
+
+def update_or_create_last_build(channel: Channels, db: Session) -> models.BuildTimes:
+    """Update the last build time of a channel. If the object with the channel name does not exist, create it."""
+    assert isinstance(channel, Channels), "channel must be a Channels variant"
+    build_obj = db.query(models.BuildTimes).filter(models.BuildTimes.channel_name == channel.value).first()
+
+    if not build_obj:
+        build_obj = models.BuildTimes(channel_name=channel.value)
+        db.add(build_obj)
+        db.commit()
+
+    if not build_obj.last_build_date:
+        build_obj.last_build_date = datetime.now(tz=timezone.utc)
+        db.add(build_obj)
+        build_obj.commit()
+
+    return build_obj
