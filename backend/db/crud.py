@@ -214,12 +214,9 @@ def update_or_create_last_build(channel: Channels, db: Session) -> models.BuildT
 
     if not build_obj:
         build_obj = models.BuildTimes(channel_name=channel.value)
-        db.add(build_obj)
-        db.commit()
 
-    if not build_obj.last_build_date:
-        build_obj.last_build_date = datetime.now(tz=timezone.utc)
-        db.add(build_obj)
-        build_obj.commit()
+    build_obj.last_build_date = datetime.now(tz=timezone.utc)
+    db.add(build_obj)
+    build_obj.commit()
 
     return build_obj
