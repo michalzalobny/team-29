@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 
   ${media.tablet} {
-    width: 100rem;
+    width: 60rem;
     margin: 30rem auto;
     margin-bottom: 10rem;
   }
@@ -24,7 +24,7 @@ export const TilesWrapper = styled.div`
 
   ${media.tablet} {
     grid-gap: 2rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     margin-bottom: 15rem;
   }
 `;
