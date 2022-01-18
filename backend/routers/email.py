@@ -19,13 +19,14 @@ async def send_with_template(email: TemplateEmailSchema) -> dict:
 
     Args:
 
-        email:
+        email (TemplateEmailSchema):
             email: List[EmailStr] - Array of Emails
             subject: str - Subject Title
             body: Dict[str, Any] - Variables
             template_name: str - Email template
 
     Returns:
+
         On Success - email recipients.
     """
     message = MessageSchema(

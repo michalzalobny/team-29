@@ -4,7 +4,7 @@ from typing import List, Optional
 from sqlalchemy.orm import Session
 
 from db import models, schemas
-from db.database import engine
+from db.database import SessionLocal
 from db.enums import Role
 from dependencies import manager
 
@@ -14,8 +14,8 @@ def loader(username: str) -> models.User:
     """User loader for login manager. This is similar to `crud.get_user_by_username`
      but doesn't rely on dependency injection
      """
-    with Session(engine) as db:
-        user = db.query(models.User).filter(models.User.username == username).first()
+    with SessionLocal() as session:
+        user = session.query(models.User).filter(models.User.username == username).first()
     return user
 
 
@@ -161,7 +161,7 @@ def get_all_games(db: Session) -> List[models.Game]:
         db (Session, optional): Database session to be used (dependency injected by default)
 
     Returns:
-        List[schemas.Game]: Only `limit` number of records in descending order if distinct is False.
+        List[db.schemas.game.Game]: Only `limit` number of records in descending order if distinct is False.
         If distinct is True, return only the max score for each user.
     """
 

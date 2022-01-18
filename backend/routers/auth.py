@@ -15,14 +15,14 @@ router = APIRouter(
 
 
 @router.post("/login")
-def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login_user(data: OAuth2PasswordRequestForm = Depends(), session: Session = Depends(get_db)):
     """Login route for generating JSON Web Tokens"""
     # details from the form
     username = data.username
     password = data.password
 
     # fetch user from the database
-    user: models.User = crud.get_user_by_username(username, db=db)
+    user: models.User = crud.get_user_by_username(username, db=session)
 
     # either the input username doesn't exist or
     # the username exists but the password is wrong
@@ -43,9 +43,9 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 
 
 @router.post("/register", response_model=schemas.User)
-def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+def register_user(user: schemas.UserCreate, session: Session = Depends(get_db)):
     """Register as a user"""
-    db_user = crud.get_user_by_email(email=user.email, db=db)
+    db_user = crud.get_user_by_email(email=user.email, db=session)
     if db_user:
         logger.warning('SECURITY - Failed register (Email exists) [%s]', user.email)
         raise HTTPException(status_code=400, detail="Email already registered")
@@ -53,4 +53,4 @@ def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     user.password = get_password_hash(user.password)
 
     logger.info('SECURITY - User registration [%s, %s]', user.username, user.email)
-    return crud.create_user(user=user, db=db)
+    return crud.create_user(user=user, db=session)
