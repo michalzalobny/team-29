@@ -1,4 +1,4 @@
-"""Utility enums"""
+"""Utility enums for database models and schemas"""
 from enum import Enum
 
 
