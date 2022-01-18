@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const Modal = (props: Props) => {
-  const { setIsOpened, children, isOpened } = props;
+  const { setIsOpened, children } = props;
 
   return (
     <>

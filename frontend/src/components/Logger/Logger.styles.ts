@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import { media } from 'styles/media';
 import { sharedValues } from 'utils/sharedValues';
 
-interface Button {
+interface ButtonProps {
   isActive: boolean;
 }
 
-interface Border {
+interface BorderProps {
   $elWidth: number;
   $isWidthReady: boolean;
 }
@@ -17,7 +17,7 @@ export const Wrapper = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 30;
   width: 100%;
   height: 100%;
 `;
@@ -97,7 +97,7 @@ export const ButtonsContainer = styled.div`
   border-radius: 50px;
 `;
 
-export const Border = styled(motion.span)<Border>`
+export const Border = styled(motion.span)<BorderProps>`
   position: absolute;
   pointer-events: none;
   z-index: 1;
@@ -118,7 +118,7 @@ export const Border = styled(motion.span)<Border>`
     `}
 `;
 
-export const Button = styled.button<Button>`
+export const Button = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   font-weight: 800;
@@ -145,11 +145,11 @@ export const Button = styled.button<Button>`
     `}
 `;
 
-interface SignInWrapper {
+interface SignInWrapperProps {
   isActive: boolean;
 }
 
-export const SignInWrapper = styled.div<SignInWrapper>`
+export const SignInWrapper = styled.div<SignInWrapperProps>`
   position: absolute;
   left: 0;
   width: 100%;
@@ -163,11 +163,11 @@ export const SignInWrapper = styled.div<SignInWrapper>`
     `}
 `;
 
-interface SignUpWrapper {
+interface SignUpWrapperProps {
   isActive: boolean;
 }
 
-export const SignUpWrapper = styled.div<SignUpWrapper>`
+export const SignUpWrapper = styled.div<SignUpWrapperProps>`
   position: absolute;
   left: 0;
   width: 100%;
@@ -188,11 +188,11 @@ export const FormContainer = styled.div`
   perspective: 500px;
 `;
 
-interface FillBackground {
+interface FillBackgroundProps {
   elHeight: number;
 }
 
-export const FillBackground = styled.div<FillBackground>`
+export const FillBackground = styled.div<FillBackgroundProps>`
   width: 100%;
   position: relative;
   background-color: ${sharedValues.colors.white};

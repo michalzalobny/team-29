@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 import { sharedValues } from 'utils/sharedValues';
 
-interface SubmitWrapper {
+interface SubmitWrapperProps {
   isSubmitting: boolean;
 }
 
@@ -13,7 +13,7 @@ export const Wrapper = styled(motion.div)`
 
 export const Form = styled.form``;
 
-export const SubmitWrapper = styled.button<SubmitWrapper>`
+export const SubmitWrapper = styled.button<SubmitWrapperProps>`
   margin-top: 35px;
   cursor: pointer;
 

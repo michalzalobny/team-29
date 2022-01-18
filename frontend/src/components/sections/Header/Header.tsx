@@ -2,9 +2,7 @@ import React from 'react';
 
 import * as S from './Header.styles';
 
-interface Props {}
-
-export const Header = (props: Props) => {
+export const Header = () => {
   return (
     <>
       <S.Wrapper>

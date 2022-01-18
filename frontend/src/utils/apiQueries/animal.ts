@@ -49,8 +49,12 @@ interface AddAnimalPOST {
   population: number;
 }
 
-export const addAnimalPOST = (data: AddAnimalPOST) => {
-  return axios.post('animals', data);
+export const addAnimalPOST = (data: AddAnimalPOST, token: unknown) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  return axios.post('animals', data, config);
 };
 
 export const getAnimals = () => {

@@ -16,7 +16,7 @@ export const GameWrapper = styled.div`
     padding: 0;
     width: 100rem;
     margin: 0 auto;
-    margin-top: -10rem;
+    margin-top: -8rem;
     margin-bottom: 8rem;
   }
 `;

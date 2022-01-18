@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const BottomSvg = (props: undefined) => {
+export const BottomSvg = (props: any) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1532.49 25.33" {...props}>
       <title>{'hd_1'}</title>

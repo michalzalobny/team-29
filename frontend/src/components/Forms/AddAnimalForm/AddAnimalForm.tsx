@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { toast } from 'react-toastify';
 
+import { useAuthContext } from 'context/AuthContext';
 import { sharedValues } from 'utils/sharedValues';
 import { BlobButton } from 'components/Buttons/BlobButton/BlobButton';
 import { Input } from 'components/Input/Input';
@@ -27,11 +28,12 @@ export const AddAnimalForm = (props: Props) => {
   const hookForm = useForm({ resolver: yupResolver(yupAddAnimalSchema) });
   const { setError, handleSubmit, formState } = hookForm;
   const { errors, isSubmitting } = formState;
+  const { user } = useAuthContext();
 
   const onSubmitHandler = React.useCallback(
     async data => {
       try {
-        const res = await addAnimalPOST(data);
+        const res = await addAnimalPOST(data, user.accessToken);
 
         if (res.status !== 200) {
           setError('apiError', { message: 'Something went wrong' });

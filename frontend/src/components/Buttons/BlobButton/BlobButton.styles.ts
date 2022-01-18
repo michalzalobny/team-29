@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 
-interface Wrapper {
+interface WrapperProps {
   backgroundColor: string;
   textColor: string;
   extraSidePadding: boolean;
 }
 
-export const Wrapper = styled.span<Wrapper>`
+export const Wrapper = styled.span<WrapperProps>`
   background-color: ${props => props.backgroundColor};
   color: ${props => props.textColor};
   border-radius: 50px;
@@ -21,7 +21,6 @@ export const Wrapper = styled.span<Wrapper>`
 
   display: inline-block;
   position: relative;
-  z-index: 1;
   box-shadow: 0 0 13px ${props => props.backgroundColor};
   font-size: 14px;
   line-height: 1.6;

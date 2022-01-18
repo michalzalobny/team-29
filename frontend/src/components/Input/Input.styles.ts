@@ -2,11 +2,11 @@ import styled, { css } from 'styled-components';
 
 import { sharedValues } from 'utils/sharedValues';
 
-interface Input {
+interface InputProps {
   isError: boolean;
 }
 
-interface Label {
+interface LabelProps {
   isFocused: boolean;
 }
 
@@ -17,7 +17,7 @@ export const InputWrapper = styled.div`
   margin-top: 30px;
 `;
 
-export const Label = styled.label<Label>`
+export const Label = styled.label<LabelProps>`
   user-select: none;
   pointer-events: none;
   font-size: 16px;
@@ -57,7 +57,7 @@ export const Select = styled.select`
   text-overflow: '';
 `;
 
-export const Input = styled.input<Input>`
+export const Input = styled.input<InputProps>`
   width: 100%;
   font-size: 16px;
   border-radius: 50px;

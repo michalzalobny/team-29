@@ -8,3 +8,5 @@ export const useGetAnimals = () => useQuery(['animals'], () => getAnimals());
 export const useGetUserAnimals = () => useQuery(['animals'], () => getUserAnimals);
 
 export const useAddUserAnimal = () => useQuery(['animals'], () => addUserAnimal);
+
+export const useGetUsersScores = () => useQuery(['usersScores'], () => getUsersScores());

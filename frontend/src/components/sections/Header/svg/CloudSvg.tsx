@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const CloudSvg = (props: undefined) => {
+export const CloudSvg = (props: any) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920.33 199.95" {...props}>
       <g data-name="Layer 2">

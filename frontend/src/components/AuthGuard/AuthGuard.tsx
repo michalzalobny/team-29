@@ -6,12 +6,20 @@ import { Scope, useAuthContext } from 'context/AuthContext';
 
 interface Props {
   children: React.ReactNode;
-  authFor: Scope;
+  authFor: Scope | Scope[];
 }
 
 export const AuthGuard = (props: Props) => {
   const { authFor, children } = props;
   const { user } = useAuthContext();
 
-  return <>{user.scope === authFor ? children : <S.Wrapper>Access denied.</S.Wrapper>}</>;
+  return (
+    <>
+      {user.scope === authFor || (user.scope && authFor.includes(user.scope)) ? (
+        children
+      ) : (
+        <S.Wrapper>Access denied.</S.Wrapper>
+      )}
+    </>
+  );
 };
