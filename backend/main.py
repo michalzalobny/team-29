@@ -8,7 +8,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from db.database import engine, Base
-from routers import users, auth, animals, games, email
+from routers import users, auth, animals, games, email, updates
 from settings import origins
 from utils import logger
 
@@ -20,6 +20,7 @@ app.include_router(animals.router)
 app.include_router(auth.router)
 app.include_router(email.router)
 app.include_router(games.router)
+app.include_router(updates.router)
 
 app.add_middleware(
     CORSMiddleware,
