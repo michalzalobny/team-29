@@ -17,3 +17,8 @@ class Role(str, Enum):
     """Roles for users"""
     ADMIN = "ADMIN"
     USER = "USER"
+
+
+class Channels(str, Enum):
+    """Channels available for RSS"""
+    ANIMALS = "ANIMALS"

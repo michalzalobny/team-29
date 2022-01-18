@@ -1,5 +1,10 @@
 """Database tables modeled using classes"""
-from sqlalchemy import Boolean, Column, Integer, String, Text, Enum, Table, ForeignKey, CheckConstraint, TIMESTAMP
+from datetime import datetime
+
+from sqlalchemy import (
+    Boolean, Column, Integer, String, Text, Enum, Table,
+    ForeignKey, CheckConstraint, TIMESTAMP, DateTime
+)
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.functions import current_timestamp
 
@@ -62,3 +67,12 @@ class Game(Base):
     score = Column(Integer, CheckConstraint("score >= 0"))
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     date = Column(TIMESTAMP, default=current_timestamp())
+
+
+class BuildTimes(Base):
+    """Stores datetime of last updates"""
+    __tablename__ = "build_times"
+
+    id = Column(Integer, primary_key=True)
+    channel_name = Column(String(20), unique=True, nullable=False)
+    last_build_date = Column(DateTime, default=datetime.now())

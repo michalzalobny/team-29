@@ -6,12 +6,19 @@ from sqlalchemy.orm import Session
 
 from db import crud
 from db import schemas
+from db.enums import Channels
 from dependencies import get_db, manager
 
 router = APIRouter(
     prefix="/animals",
     responses={404: {"description": "Not found"}},
 )
+
+
+@router.get("/{animal_id}", response_model=schemas.Animal, tags=["animals"])
+def read_animal(animal_id: int, session: Session = Depends(get_db)):
+    """Get specific animal"""
+    return crud.get_animal(animal_id, session)
 
 
 @router.get("", response_model=List[schemas.Animal], tags=["animals"])
@@ -29,6 +36,7 @@ def read_animals(session: Session = Depends(get_db)):
 def create_animal(animal: schemas.AnimalCreate, session: Session = Depends(get_db)):
     """Create new animal record"""
     db_animal = crud.create_animal(animal, session)
+    crud.update_or_create_last_build(Channels.ANIMALS, session)
     return db_animal
 
 
