@@ -15,6 +15,12 @@ router = APIRouter(
 )
 
 
+@router.get("/{animal_id}", response_model=schemas.Animal, tags=["animals"])
+def read_animal(animal_id: int, session: Session = Depends(get_db)):
+    """Get specific animal"""
+    return crud.get_animal(animal_id, session)
+
+
 @router.get("", response_model=List[schemas.Animal], tags=["animals"])
 def read_animals(session: Session = Depends(get_db)):
     """Get all animals"""

@@ -217,6 +217,6 @@ def update_or_create_last_build(channel: Channels, db: Session) -> models.BuildT
 
     build_obj.last_build_date = datetime.now(tz=timezone.utc)
     db.add(build_obj)
-    build_obj.commit()
+    db.commit()
 
     return build_obj
