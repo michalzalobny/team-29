@@ -33,7 +33,11 @@ export default function SpeciesListPage(props: Props) {
       <S.Wrapper>
         <S.Title>List of animals</S.Title>
         <S.InputWrapper>
-          <S.FilterInput placeholder="Filter animals" value={value} onChange={handleChange} />
+          <S.FilterInput
+            placeholder="Filter animals by name"
+            value={value}
+            onChange={handleChange}
+          />
         </S.InputWrapper>
 
         <S.TilesWrapper>
