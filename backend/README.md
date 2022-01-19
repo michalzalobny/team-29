@@ -57,7 +57,7 @@ DB_URL=sqlite:///./team29.db
 This will allow sqlalchemy to use `sqlite` instead.
 
 
-## Running the server
+## Running the server.
 Make sure that you're running `backend` folder as a project on your IDE/editor (it is the current working directory)
 and not the whole `team-29` repo.
 ```sh
