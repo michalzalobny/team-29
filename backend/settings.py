@@ -1,17 +1,24 @@
 """Configurations for the project"""
 from pathlib import Path
+
 from fastapi_mail import ConnectionConfig
 from sqlalchemy.engine import make_url
 from starlette.config import Config
 from starlette.datastructures import Secret
 
-
 config = Config("./.env")
 secret_key = config("SECRET_KEY")
 
+# DATABASE CONFIG
+# main database
 db_url = config("DB_URL", cast=Secret)
 db_driver = make_url(str(db_url)).drivername
 
+# test database
+test_db_url = config("TEST_DB_URL", default="sqlite:///./test_db.db")
+
+
+# EMAIL CONFIG
 email_password = config("EMAIL_PASSWORD")
 email_address = config("EMAIL_ADDRESS")
 email_username = email_address.split("@")[0]
@@ -29,6 +36,7 @@ email_conf = ConnectionConfig(
     VALIDATE_CERTS=True,
     TEMPLATE_FOLDER=Path(__file__).parent / 'email-templates',
 )
+
 
 origins = [
     "http://localhost:3000",
