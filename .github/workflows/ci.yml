@@ -42,10 +42,10 @@ jobs:
         pip install -r ./backend/requirements-dev.txt
         pip install -r ./backend/requirements.txt
         
-     - name: Test with pytest
-       working-directory: ./backend
-       run: |
-         python -m pytest tests
+    - name: Test with pytest
+      working-directory: ./backend
+      run: |
+        python -m pytest tests
         
     - name: Analysing the code with pylint
       working-directory: ./backend
