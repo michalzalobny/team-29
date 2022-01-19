@@ -22,6 +22,12 @@ on:
       - 'backend/**.txt'
       - '**.md'
 
+env:
+  DB_URL: {{secrets.DB_URL}}
+  EMAIL_ADDRESS: {{secrets.EMAIL_ADDRESS}}
+  EMAIL_PASSWORD: {{secrets.EMAIL_PASSWORD}}
+  SECRET_KEY: {{secrets.SECRET_KEY}}
+  TEST_DB_URL: {{secrets.TEST_DB_URL}}
 
 jobs:
   build:
