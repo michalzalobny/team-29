@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 
@@ -38,6 +38,24 @@ export default function RankingPage(props: Props) {
     }
   }, [refetch, user.accessToken]);
 
+  const [sortedScores, setSortedScores] = useState<BackendScore[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      const arrSorted = (data.data as BackendScore[]).sort((a, b) => {
+        if (a.score < b.score) {
+          return 1;
+        }
+        if (a.score > b.score) {
+          return -1;
+        }
+        return 0;
+      });
+
+      setSortedScores(arrSorted);
+    }
+  }, [data]);
+
   return (
     <>
       <Head {...head} />
@@ -48,14 +66,13 @@ export default function RankingPage(props: Props) {
             <S.LoadingInfo>Loading...</S.LoadingInfo>
           ) : (
             <>
-              {data &&
-                data.data.map((scoreInfo: BackendScore) => (
-                  <ScoreTile
-                    username={scoreInfo.username}
-                    key={scoreInfo.id}
-                    score={scoreInfo.score}
-                  />
-                ))}
+              {sortedScores.map((scoreInfo: BackendScore) => (
+                <ScoreTile
+                  username={scoreInfo.username}
+                  key={scoreInfo.id}
+                  score={scoreInfo.score}
+                />
+              ))}
 
               {user.scope === 'ADMIN' && (
                 <S.ClearRankingButtonWrapper onClick={() => setIsOpened(true)}>
