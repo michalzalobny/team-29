@@ -58,6 +58,14 @@ export const Navbar = () => {
       shouldHide: user.scope === null,
     },
     {
+      label: 'About',
+      href: '/about',
+    },
+    {
+      label: 'Resources',
+      href: '/resources',
+    },
+    {
       label: 'Admin panel',
       href: '/admin-panel',
       shouldHide: user.scope !== 'ADMIN',
