@@ -36,3 +36,22 @@ export const Title = styled.h1`
   position: relative;
   margin-bottom: 4rem;
 `;
+
+export const InputWrapper = styled.div`
+  margin: 3rem 0;
+`;
+
+export const FilterInput = styled.input`
+  width: 100%;
+  font-size: 16px;
+  border-radius: 50px;
+  padding: 14px 25px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+
+  transition: box-shadow 0.3s;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 12px ${sharedValues.colors.brown};
+  }
+`;
