@@ -1,4 +1,4 @@
-"""Configurations for the project"""
+"""Configurations for the project. Contains everything that are before the program can run."""
 from pathlib import Path
 
 from fastapi_mail import ConnectionConfig

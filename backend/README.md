@@ -1,5 +1,5 @@
 ## Backend
-This project is a FastAPI project.
+This project is a FastAPI project. Deployed [here](https://fast-api-tanimals.herokuapp.com/docs).
 
 
 ## Dependencies
@@ -18,19 +18,9 @@ is the easier way. Make sure that you set the local port, on the SSH Tunnel sect
 preferably to 3307.**
 
 
-#### Setting up a database connection
-1. ssh into your university linux machine
-```shell
-ssh <uni_ssh_username>@linux.cs.ncl.ac.uk
-```
-2. create a configuration file for mysql
-```shell
-echo "bind-address=0.0.0.0" >> ~/my.cnf
-```
-You only have to do above once.
+#### Setting up a database connection with the university databases from non-university machines
 
-Steps below must be repeated when the connection closes.
-3. After setting up the configuration file, either logout of the terminal or open a new one and do
+A tunnel session must be created first via the command below.
 ```shell
 ssh -f <your_ssh_username>@linux.cs.ncl.ac.uk -L 3307:cs-db.ncl.ac.uk:3306 -N
 ```
@@ -43,10 +33,11 @@ Create a file inside [backend folder](../backend) called `.env` and fill
 (anything that is enclosed by `<>` must be replaced with actual values)
 **There must be no space between equal signs `=`**
 ```
-DB_USERNAME=csc2033_team29
-DB_PASSWORD=<insert_our_db_password>
-DB_NAME=csc2033_team29
-DB_URL=mysql+pymysql://{}:{}@127.0.0.1:3307/{}?charset=utf8mb4
+SECRET_KEY=<your_secret_key> 
+EMAIL_ADDRESS=<a_valid_emaill_address_to_send_emails_from>
+EMAIL_PASSWORD=<password_for_EMAIL_ADDRESS>
+DB_URL=<valid_database_url_that_python_can_use>  # sqlite:///./team-29.db if you don't have one
+TEST_DB_URL=<optional_db_which_uses_sqlite_by_default>
 ```
 This is only possible if you are able to ssh tunnel into the university machine, using an sqlite URL is possible
 if you can't access the university database. Just replace the value of `DB_URL` like
@@ -61,23 +52,22 @@ This will allow sqlalchemy to use `sqlite` instead.
 Make sure that you're running `backend` folder as a project on your IDE/editor (it is the current working directory)
 and not the whole `team-29` repo.
 ```sh
-# if just inside the repository but outside of backend
-# this is the preferred way
+# backend folder **MUST BE ROOT/CURRENT DIRECTORY**
 
 # Non-Windows
 python -m uvicorn main:app --host 127.0.0.1 --port 8080 --reload
 ## or
-python main.py
+python main.py  # preferable
 
 # Windows
 py -m uvicorn main:app --host 127.0.0.1 --port 8080 --reload
 ## or
-py main.py
+py main.py  # preferable
 ```
 Doing either of the above will serve the API on `http://127.0.0.1:8080`. 
 To test if this works, you can go to that link in your browser.
 
-Interactive documention will be served at `/docs`, alternative documentation will be at `/redoc`
+Interactive documentation will be served at `127.0.0.1:8080/docs` endpoint, alternative documentation will be at `/redoc`
 
 
 ### Running Tests
@@ -94,23 +84,7 @@ python -m pytest
 ```
 
 ### Coding Guidelines (Linting and Formatting)
-Linting will be enforced by [`pylint`](https://pylint.pycqa.org/en/latest/user_guide/run.html) which 
-adheres to [PEP8](https://pep8.org/) by default. This means that variable and module names must be in
- `snake_case`, class names must be in `PascalCase`, etc. *everything is in pep8*.
-
-
-This will be a new development dependency and must be installed.
-```sh
-pip install pylint
-```
-Configurations for it will be in [pylintrc](../backend/pylintrc) (which doesn't exist yet) so that 
-running `pylint` will be easier and your IDE and can just load it.
-
-We are going to adhere to [Google's style of documentation strings](https://gist.github.com/redlotus/3bc387c2591e3e908c9b63b97b11d24e) 
-as it is more modern than reStructuredText and is supported better for FastAPI's autodocumentation.
-
-It is also recommended to add [type hints](https://www.python.org/dev/peps/pep-0484/) to everything as much as possible. 
-
+Check [guidelines](./GUIDELINES.md)
 
 ### Resources
 [FastAPI Tutorial and Docmentation](https://fastapi.tiangolo.com/tutorial/)
