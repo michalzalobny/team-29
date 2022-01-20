@@ -28,7 +28,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Coding Guidlines
 
-We are using eslint and prettier
-Every variable and component will need to start with an Upper Case letter.
+We are using eslint and prettier for linting for the frontend.
+Every variable and component will need to start with an upper case letter, and should then have every word following also starting with an upper case letter, for example: AnimalTile.
 The pages are exported as default, the function componenets are exported as const
-The web app components are stored in the frontend/src/ folder; all compoments are stored in frontend/src/components, all route pages are stored in frontend/src/pages
+The web app components are stored in the frontend/src/ folder; all components are stored in frontend/src/components, all route pages are stored in frontend/src/pages
