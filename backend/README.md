@@ -10,6 +10,15 @@ Important dependencies are going to be listed here for brief description of thei
 - `Pydantic` - type and data validation
 - `Uvicorn` - lightning fast server, used for serving this backend API
 
+```shell
+# backend folder must be the current working directory
+py -m pip install requirements-dev.txt  # windows
+python -m pip install requirements-dev.txt  #non-windows
+
+# optional for development dependencies so you can run tests and linting
+py -m pip install requirements-dev.txt
+```
+
 ### University Database Setup (**NEEDED when running on non-university machines**)
 Anything that is enclosed by `<>` must be replaced with actual values
 
@@ -74,8 +83,9 @@ Interactive documentation will be served at `127.0.0.1:8080/docs` endpoint, alte
 Running tests will require extra dependencies that are not listed at `requirements.txt` 
 (Application dependencies must be separate from development dependencies). In your terminal do:
 ```sh
-pip install pytest
-pip install requests
+# install development dependencies first
+py -m pip install requirements-dev.txt  # windows
+python -m pip install requirements-dev.txt  #non-windows
 
 # after installing run ...
 py -m pytest
