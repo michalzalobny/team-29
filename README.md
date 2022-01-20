@@ -5,7 +5,7 @@ Official readmes are inside the backend and frontend folders as these are 2 sepa
 
 Official Website
 - https://team-29.vercel.app/ (Frontend)
-- https://fast-api-tanimals.herokuapp.com/ (Backend)
+- https://fast-api-tanimals.herokuapp.com/docs (Backend)
 
 Team project for CSC2033 @ Newcastle University, UK
 
