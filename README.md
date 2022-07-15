@@ -1,6 +1,6 @@
 # Team 29 - Save the Animals
 
-[[CI](https://github.com/javusScriptus/team-29/actions/workflows/ci.yml/badge.svg)](https://github.com/javusScriptus/team-29/actions/workflows/ci.yml)
+<!-- [![CI](https://github.com/javusScriptus/team-29/actions/workflows/ci.yml/badge.svg)](https://github.com/javusScriptus/team-29/actions/workflows/ci.yml) -->
 
 Official readmes are inside the backend and frontend folders as these are 2 separate applications.
 
